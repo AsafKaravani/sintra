@@ -6,11 +6,15 @@
   "author": "Assaf Koren <assafnoahkoren@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
+  },
   "workspaces": [
     "services/*",
     "packages/*"
   ],
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^5.0.1",
     "eslint": "^8.7.0",
