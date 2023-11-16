@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "sintra-app-dev",
+    "prod": "sintra-app-prod",
+    "dev": "sintra-app-dev"
+  },
+  "targets": {},
+  "etags": {}
+}
