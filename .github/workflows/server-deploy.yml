@@ -15,4 +15,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "sintra-server-dev" #Must be unique in Heroku
           heroku_email: "asaf.karavani1@gmail.com"
-          appdir: ./service/server
+          appdir: ./services/server
