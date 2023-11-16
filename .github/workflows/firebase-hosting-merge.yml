@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: echo "$VITE_FB_API_KEY"
+      - run: echo ${{env.VITE_FB_API_KEY}}
       - run: yarn install && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
