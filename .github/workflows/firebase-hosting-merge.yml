@@ -20,6 +20,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         working-directory: ./services/client
         with:
+          entryPoint: ./services/client
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SINTRA_APP_DEV }}'
           channelId: live
