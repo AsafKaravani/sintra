@@ -16,9 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install && yarn build
-        working-directory: ./services/client
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        working-directory: ./services/client
         with:
           entryPoint: ./services/client
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
