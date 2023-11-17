@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: sintra-server-dev
     env:
-      SERVER_ENDPOINT: ${{ secrets.SERVER_ENDPOINT }}
-      HASURA_GQL_ENDPOINT: ${{ secrets.HASURA_GQL_ENDPOINT }}
+      VITE_SERVER_ENDPOINT: ${{ secrets.VITE_SERVER_ENDPOINT }}
+      VITE_HASURA_GQL_ENDPOINT: ${{ secrets.VITE_HASURA_GQL_ENDPOINT }}
       HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
       PG_HOST: ${{ secrets.PG_HOST }}
       PG_USERNAME: ${{ secrets.PG_USERNAME }}
