@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-const env = import.meta.env;
+import { Button } from '@mui/material';
 
 function App() {
 	const [count, setCount] = useState(0);
 
-	useEffect(() => {
-		console.log(env);
-	});
-
 	return (
 		<>
 			<div>
+				<Button variant="contained">Hello world</Button>
+				<i className="fa-solid fa-star"></i>
 				<a href="https://vitejs.dev" target="_blank">
 					<img src={viteLogo} className="logo" alt="Vite logo" />
 				</a>
