@@ -1,14 +1,14 @@
 import { Button, Popover } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLogout } from '../../core/firebase/firebase';
 
 interface CompProps extends React.PropsWithChildren {
 	children: ReactElement | ReactElement[];
 }
 
 export const Shell: FC<CompProps> = props => {
-	const navigate = useNavigate();
-
+	const [logout] = useLogout();
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -55,12 +55,7 @@ export const Shell: FC<CompProps> = props => {
 							<span>Edit profile</span>
 							<i className="fa-solid fa-pencil "></i>
 						</Button>
-						<Button
-							onClick={() => navigate('/login')}
-							variant="text"
-							color="error"
-							className="text-red-500 flex justify-between w-32"
-						>
+						<Button onClick={logout} variant="text" color="error" className="text-red-500 flex justify-between w-32">
 							<span>Sign out</span>
 							<i className="fa-solid fa-sign-out "></i>
 						</Button>
