@@ -1,32 +1,44 @@
 {
-  "ignorePatterns": [
-    "**/dist/*"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "@stylistic/js"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "rules": {
-    "no-unused-vars": "off",
-    "@stylistic/js/newline-per-chained-call": [
-      "error",
-      {
-        "ignoreChainWithDepth": 2
-      }
-    ],
-    "indent": [
-      "error",
-      "tab"
-    ]
-  }
+	"ignorePatterns": [
+		"**/dist/*"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint",
+		"@stylistic/js"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react-hooks/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"rules": {
+		"no-unused-vars": "off",
+		"@stylistic/js/newline-per-chained-call": [
+			"error",
+			{
+				"ignoreChainWithDepth": 2
+			}
+		],
+		"indent": [
+			"error",
+			"tab"
+		],
+		"array-element-newline": [
+			"error",
+			{
+				"minItems": 3
+			}
+		],
+		"array-bracket-newline": [
+			"error",
+			{
+				"minItems": 3
+			}
+		]
+	}
 }
