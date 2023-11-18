@@ -1,6 +1,5 @@
 import { Button, Popover } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../../core/firebase/firebase';
 
 interface CompProps extends React.PropsWithChildren {

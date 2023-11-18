@@ -19,12 +19,7 @@ export const LoginPage: FC = () => {
 		__
 	] = useSignInPassword();
 
-	const [
-		signInWithGoogle,
-		user_google,
-		loading,
-		error
-	] = useSignInGoogle();
+	const [signInWithGoogle, user_google] = useSignInGoogle();
 	useEffect(() => {
 		if (user_google) {
 			navigate('/s/home');
