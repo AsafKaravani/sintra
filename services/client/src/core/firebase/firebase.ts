@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import {
 	SignOutHook,
 	useAuthState,
@@ -48,3 +48,19 @@ export const useLogout = () => {
 		error
 	] as SignOutHook;
 };
+
+export async function checkAuthStatus(): Promise<User | null> {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = onAuthStateChanged(
+			firebaseAuth,
+			user => {
+				unsubscribe(); // Unsubscribe after receiving the initial status
+				resolve(user); // Resolve with the user object if authenticated
+			},
+			error => {
+				unsubscribe(); // Unsubscribe on error as well
+				reject(error); // Reject the promise if there's an error
+			}
+		);
+	});
+}
