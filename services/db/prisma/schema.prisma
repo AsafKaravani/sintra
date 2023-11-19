@@ -1,0 +1,154 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_URL")
+}
+
+model Profile {
+  id         Int      @id @default(autoincrement())
+  first_name String?
+  last_name  String?
+  phone      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Business {
+  id               Int                @id @default(autoincrement())
+  name             String
+  address          String
+  phone            String
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+  BusinessProduct  BusinessProduct[]
+  Order            Order[]
+  CertificateClaim CertificateClaim[]
+}
+
+model BusinessProduct {
+  id          Int      @id @default(autoincrement())
+  business    Business @relation(fields: [business_id], references: [id])
+  business_id Int
+  product     Product  @relation(fields: [product_id], references: [id])
+  product_id  Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model Product {
+  id               Int               @id @default(autoincrement())
+  name             String
+  image_url        String?
+  measurement_unit String
+  category_id      Int
+  category         Category          @relation(fields: [category_id], references: [id])
+  created_at       DateTime          @default(now())
+  updated_at       DateTime          @updatedAt
+  BusinessProduct  BusinessProduct[]
+  Order            Order[]
+}
+
+model Category {
+  id         Int       @id @default(autoincrement())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Product    Product[]
+}
+
+enum OfferType {
+  BUY
+  SELL
+}
+
+model Order {
+  id                Int           @id @default(autoincrement())
+  product_id        Int
+  product           Product       @relation(fields: [product_id], references: [id])
+  business_id       Int
+  business          Business      @relation(fields: [business_id], references: [id])
+  start_date        DateTime?
+  end_date          DateTime?
+  offer_type        OfferType
+  price_per_unit    Float?
+  quantity_by_units Float
+  created_at        DateTime      @default(now())
+  updated_at        DateTime      @updatedAt
+  buy_transaction   Transaction[] @relation("buy_order")
+  sell_transaction  Transaction[] @relation("sell_order")
+}
+
+enum TransactionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SHIPMENT
+  DELIVERED
+}
+
+model Transaction {
+  id            Int               @id @default(autoincrement())
+  buy_order_id  Int
+  buy_order     Order             @relation("buy_order", fields: [buy_order_id], references: [id])
+  sell_order_id Int
+  sell_order    Order             @relation("sell_order", fields: [sell_order_id], references: [id])
+  status        TransactionStatus
+  profile_id    Int
+  created_at    DateTime          @default(now())
+  updated_at    DateTime          @updatedAt
+
+  TransactionReview TransactionReview[]
+}
+
+model TransactionReview {
+  id             Int         @id @default(autoincrement())
+  transaction    Transaction @relation(fields: [transaction_id], references: [id])
+  transaction_id Int
+  rating         Int
+  comment        String
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @updatedAt
+}
+
+model Certificate {
+  id                     Int                  @id @default(autoincrement())
+  name                   String
+  image_url              String?
+  icon_url               String?
+  created_at             DateTime             @default(now())
+  updated_at             DateTime             @updatedAt
+  CertificateClaim       CertificateClaim[]
+  CertificateCategory    CertificateCategory? @relation(fields: [certificateCategory_id], references: [id])
+  certificateCategory_id Int?
+}
+
+model CertificateCategory {
+  id          Int           @id @default(autoincrement())
+  name        String
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+  Certificate Certificate[]
+}
+
+enum CertificateClaimStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model CertificateClaim {
+  id             Int                    @id @default(autoincrement())
+  certificate_id Int
+  certificate    Certificate            @relation(fields: [certificate_id], references: [id])
+  business_id    Int
+  business       Business               @relation(fields: [business_id], references: [id])
+  status         CertificateClaimStatus
+  created_at     DateTime               @default(now())
+  updated_at     DateTime               @updatedAt
+}
