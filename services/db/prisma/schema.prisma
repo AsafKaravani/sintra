@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Profile {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   first_name String?
   last_name  String?
   phone      String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
 }
 
 model Business {
@@ -25,20 +25,20 @@ model Business {
   address          String
   phone            String
   created_at       DateTime           @default(now())
-  updated_at       DateTime           @updatedAt
+  updated_at       DateTime?          @updatedAt
   BusinessProduct  BusinessProduct[]
   Order            Order[]
   CertificateClaim CertificateClaim[]
 }
 
 model BusinessProduct {
-  id          Int      @id @default(autoincrement())
-  business    Business @relation(fields: [business_id], references: [id])
+  id          Int       @id @default(autoincrement())
+  business    Business  @relation(fields: [business_id], references: [id])
   business_id Int
-  product     Product  @relation(fields: [product_id], references: [id])
+  product     Product   @relation(fields: [product_id], references: [id])
   product_id  Int
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
 }
 
 model Product {
@@ -49,7 +49,7 @@ model Product {
   category_id      Int
   category         Category          @relation(fields: [category_id], references: [id])
   created_at       DateTime          @default(now())
-  updated_at       DateTime          @updatedAt
+  updated_at       DateTime?         @updatedAt
   BusinessProduct  BusinessProduct[]
   Order            Order[]
 }
@@ -58,7 +58,7 @@ model Category {
   id         Int       @id @default(autoincrement())
   name       String
   created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  updated_at DateTime? @updatedAt
   Product    Product[]
 }
 
@@ -79,7 +79,7 @@ model Order {
   price_per_unit    Float?
   quantity_by_units Float
   created_at        DateTime      @default(now())
-  updated_at        DateTime      @updatedAt
+  updated_at        DateTime?     @updatedAt
   buy_transaction   Transaction[] @relation("buy_order")
   sell_transaction  Transaction[] @relation("sell_order")
 }
@@ -101,7 +101,7 @@ model Transaction {
   status        TransactionStatus
   profile_id    Int
   created_at    DateTime          @default(now())
-  updated_at    DateTime          @updatedAt
+  updated_at    DateTime?         @updatedAt
 
   TransactionReview TransactionReview[]
 }
@@ -113,7 +113,7 @@ model TransactionReview {
   rating         Int
   comment        String
   created_at     DateTime    @default(now())
-  updated_at     DateTime    @updatedAt
+  updated_at     DateTime?   @updatedAt
 }
 
 model Certificate {
@@ -122,7 +122,7 @@ model Certificate {
   image_url              String?
   icon_url               String?
   created_at             DateTime             @default(now())
-  updated_at             DateTime             @updatedAt
+  updated_at             DateTime?            @updatedAt
   CertificateClaim       CertificateClaim[]
   CertificateCategory    CertificateCategory? @relation(fields: [certificateCategory_id], references: [id])
   certificateCategory_id Int?
@@ -132,7 +132,7 @@ model CertificateCategory {
   id          Int           @id @default(autoincrement())
   name        String
   created_at  DateTime      @default(now())
-  updated_at  DateTime      @updatedAt
+  updated_at  DateTime?     @updatedAt
   Certificate Certificate[]
 }
 
@@ -150,5 +150,5 @@ model CertificateClaim {
   business       Business               @relation(fields: [business_id], references: [id])
   status         CertificateClaimStatus
   created_at     DateTime               @default(now())
-  updated_at     DateTime               @updatedAt
+  updated_at     DateTime?              @updatedAt
 }
