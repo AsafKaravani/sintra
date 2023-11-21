@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "prepare": "husky install"
   },
   "workspaces": [
     "services/*",
@@ -20,10 +21,15 @@
     "eslint": "^8.7.0",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
     "prettier": "^3.1.0",
     "typescript": "^4.4.4"
   },
   "dependencies": {
     "eslint-config-prettier": "^9.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   }
 }
