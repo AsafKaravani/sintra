@@ -3,6 +3,8 @@ import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCreateUser } from '../../core/firebase/firebase';
+import { LanguagePicker } from '../../core/translations/LanguagePicker';
+import { useTranslate } from '../../core/translations/useTranslate';
 
 type RegisterFormFields = {
 	email: string;
@@ -11,6 +13,7 @@ type RegisterFormFields = {
 };
 
 export const RegisterPage: FC = () => {
+	const t = useTranslate();
 	const navigate = useNavigate();
 	const [
 		createUserWithEmailAndPassword,
@@ -34,12 +37,15 @@ export const RegisterPage: FC = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center bg-slate-200 h-screen">
-			<div className="flex flex-col items-center gap-4 bg-white p-10 h-min shadow-lg w-1/3 min-w-[400px] rounded">
+			<div className="flex flex-col items-center gap-4 bg-white p-10 h-min shadow-lg w-1/3 min-w-[400px] rounded relative">
+				<div className="absolute top-0 left-0 p-4">
+					<LanguagePicker />
+				</div>
 				<h1 className="text-5xl font-bold mb-4">Sintra</h1>
 				<form className="flex flex-col items-center gap-4 w-4/5" onSubmit={handleSubmit(onSubmit)}>
-					<TextField {...register('email')} placeholder="Email" fullWidth />
-					<TextField {...register('password')} type="password" placeholder="Password" fullWidth />
-					<TextField {...register('password2')} type="password" placeholder="Verify password" fullWidth />
+					<TextField {...register('email')} placeholder={t('Email')} fullWidth />
+					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
+					<TextField {...register('password2')} type="password" placeholder={t('Verify password')} fullWidth />
 					<Button type="submit" className="px-10" disabled={loading}>
 						Register
 					</Button>
