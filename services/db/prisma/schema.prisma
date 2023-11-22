@@ -11,24 +11,37 @@ datasource db {
 }
 
 model Profile {
-  id         Int       @id @default(autoincrement())
+  id         Int              @id @default(autoincrement())
   first_name String?
   last_name  String?
   phone      String?
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime         @default(now())
+  updated_at DateTime?        @updatedAt
+  WorkingAt  BusinessWorker[]
 }
 
 model Business {
-  id               Int                @id @default(autoincrement())
-  name             String
-  address          String
-  phone            String
-  created_at       DateTime           @default(now())
-  updated_at       DateTime?          @updatedAt
-  BusinessProduct  BusinessProduct[]
-  Order            Order[]
-  CertificateClaim CertificateClaim[]
+  id                Int                @id @default(autoincrement())
+  name              String
+  address           String
+  phone             String
+  created_at        DateTime           @default(now())
+  updated_at        DateTime?          @updatedAt
+  BusinessProducts  BusinessProduct[]
+  Order             Order[]
+  CertificateClaims CertificateClaim[]
+  BusinessWorkers   BusinessWorker[]
+}
+
+model BusinessWorker {
+  id          Int       @id @default(autoincrement())
+  business    Business  @relation(fields: [business_id], references: [id])
+  business_id Int
+  profile     Profile   @relation(fields: [profile_id], references: [id])
+  profile_id  Int
+  role        String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
 }
 
 model BusinessProduct {
