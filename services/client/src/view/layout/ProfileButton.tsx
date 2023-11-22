@@ -2,8 +2,10 @@ import { Button, Popover } from '@mui/material';
 import { FC } from 'react';
 import { useAuth, useLogout } from '../../core/firebase/firebase';
 import React from 'react';
+import { useTranslate } from '../../core/translations/useTranslate';
 
 export const ProfileButton: FC = () => {
+	const t = useTranslate();
 	const [logout] = useLogout();
 
 	const [user] = useAuth();
@@ -39,11 +41,11 @@ export const ProfileButton: FC = () => {
 				}}
 			>
 				<Button variant="text" className="flex justify-between w-32">
-					<span>Edit profile</span>
+					<span>{t('Edit profile')}</span>
 					<i className="fa-solid fa-pencil "></i>
 				</Button>
 				<Button onClick={logout} variant="text" color="error" className="text-red-500 flex justify-between w-32">
-					<span>Sign out</span>
+					<span>{t('Sign out')}</span>
 					<i className="fa-solid fa-sign-out "></i>
 				</Button>
 			</Popover>

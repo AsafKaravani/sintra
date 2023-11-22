@@ -55,7 +55,7 @@ export const LoginPage: FC = props => {
 				</form>
 				<div className="flex items-center gap-2">
 					<div className="h-px bg-gray-300 w-14"></div>
-					<p className="text-sm opacity-50 mb-1">or</p>
+					<p className="text-sm opacity-50 mb-1">{t('or')}</p>
 					<div className="h-px bg-gray-300 w-14"></div>
 				</div>
 				<Button onClick={() => signInWithGoogle()} variant="outlined" className="w-4/5">

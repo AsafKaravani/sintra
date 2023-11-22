@@ -47,16 +47,16 @@ export const RegisterPage: FC = () => {
 					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
 					<TextField {...register('password2')} type="password" placeholder={t('Verify password')} fullWidth />
 					<Button type="submit" className="px-10" disabled={loading}>
-						Register
+						{t('Register')}
 					</Button>
 					{loading && <CircularProgress color="inherit" size={24} />}
 				</form>
 				<Button onClick={() => navigate('/login')} variant="text" color="inherit" className="text-slate-400 w-4/5">
-					I already have an account
+					{t('I already have an account')}
 				</Button>
 			</div>
 			<div className="mt-5 mb-60">
-				<p className="text-sm opacity-50">© 2023 Sintra. All rights reserved.</p>
+				<p className="text-sm opacity-50">{t('© 2023 Sintra. All rights reserved.')}</p>
 			</div>
 		</div>
 	);
