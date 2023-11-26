@@ -48,6 +48,17 @@ export const AppTheme: FC<AppThemeProps> = props => {
 						}
 					}
 				}
+			},
+
+			MuiListItem: {
+				defaultProps: {
+					disablePadding: true
+				}
+			},
+			MuiListItemButton: {
+				defaultProps: {
+					disableRipple: true
+				}
 			}
 		}
 	});

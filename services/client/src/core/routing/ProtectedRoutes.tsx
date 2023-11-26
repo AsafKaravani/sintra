@@ -3,6 +3,10 @@ import { Outlet, redirect } from 'react-router-dom';
 import { HomePage } from '../../view/pages/HomePage';
 import { Shell } from '../../view/layout/Shell';
 import { checkAuthStatus } from '../firebase/firebase';
+import { LiveMarketPage } from '../../view/pages/LiveMarketPage';
+import { MarketplacePage } from '../../view/pages/MarketplacePage';
+import { OffersPage } from '../../view/pages/OffersPage';
+import { RequestsPage } from '../../view/pages/RequestsPage';
 
 const authGuard = async () => {
 	const isAuthenticated = await checkAuth();
@@ -22,7 +26,6 @@ const checkAuth = async () => {
 		return false;
 	}
 
-	console.log('user', user);
 	if (!user) return false;
 
 	return true;
@@ -36,5 +39,11 @@ export const ProtectedRoutes: RouteObject = {
 		</Shell>
 	),
 	loader: authGuard,
-	children: [{ path: 'home', element: <HomePage /> }]
+	children: [
+		{ path: 'home', element: <HomePage /> },
+		{ path: 'live-market', element: <LiveMarketPage /> },
+		{ path: 'marketplace', element: <MarketplacePage /> },
+		{ path: 'offers', element: <OffersPage /> },
+		{ path: 'requests', element: <RequestsPage /> }
+	]
 };
