@@ -6150,6 +6150,11 @@ synckit@^0.8.5:
     "@pkgr/utils" "^2.3.1"
     tslib "^2.5.0"
 
+tailwind-safelist-generator@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tailwind-safelist-generator/-/tailwind-safelist-generator-1.0.0.tgz#0726a2c84a5506eeb5ef9c7e41706b7f2a148356"
+  integrity sha512-3SmQijeTyEkP+z5UdOhygUJTm/iA0ic0eaM5O0cmGWyjABfTr/XwcY4nCIA09A4otPz1Ms6tqTCZ/DSRkg3M8A==
+
 tailwindcss@^3.3.5:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.3.5.tgz#22a59e2fbe0ecb6660809d9cc5f3976b077be3b8"
