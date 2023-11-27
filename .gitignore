@@ -1,4 +1,4 @@
 node_modules
 .env*
 !.env.example
-services/client/src/assets/fontawesome/css/solid.min.css
+safelist.txt
