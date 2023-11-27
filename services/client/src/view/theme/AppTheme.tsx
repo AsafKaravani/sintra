@@ -39,6 +39,16 @@ export const AppTheme: FC<AppThemeProps> = props => {
 					}
 				}
 			},
+
+			MuiSelect: {
+				styleOverrides: {
+					root: {
+						'& .MuiSelect-select': {
+							padding: '4px 14px'
+						}
+					}
+				}
+			},
 			MuiPopover: {
 				defaultProps: {
 					slotProps: {
