@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslate } from '../../../core/translations/useTranslate';
 import { Button, Divider, MenuItem, Select, Switch, TextField, ToggleButton } from '@mui/material';
 import { LiveRequestRow } from './LiveRequestRow';
+import Line from './SparkChart';
 
 export const LiveMarketPage: FC = React.memo(() => {
 	const t = useTranslate();
@@ -83,7 +84,61 @@ export const LiveMarketPage: FC = React.memo(() => {
 				/>
 			</div>
 			<Divider className="mb-2" />
-			<h1 className="text-xl">{t('Recent Activity')}</h1>
+			<h1 className="text-xl">{t('Market Prices')}</h1>
+			<div>
+				<div className="w-full  flex items-center gap-4 py-2">
+					<h1 className="text-lg w-52">Forastero Cocoa</h1>
+
+					<div className="flex flex-col items-center justify-center">
+						<Button className="p-0" variant="text">
+							<span className="text-sm w-max">36</span>
+						</Button>
+						<span className="text-xs text-slate-400">producers</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<span className="text-sm w-max">5 $</span>
+						<span className="text-xs w-max text-slate-400">per kg</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<Line />
+					</div>
+				</div>
+				<div className="w-full  flex items-center gap-4 py-2">
+					<h1 className="text-lg w-52">Criollo Cocoa</h1>
+
+					<div className="flex flex-col items-center justify-center">
+						<Button className="p-0" variant="text">
+							<span className="text-sm w-max">12</span>
+						</Button>
+						<span className="text-xs text-slate-400">producers</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<span className="text-sm w-max">3.8 $</span>
+						<span className="text-xs w-max text-slate-400">per kg</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<Line />
+					</div>
+				</div>
+
+				<div className="w-full  flex items-center gap-4 py-2">
+					<h1 className="text-lg w-52">Trinitario Cocoa</h1>
+
+					<div className="flex flex-col items-center justify-center">
+						<Button className="p-0" variant="text">
+							<span className="text-sm w-max">17</span>
+						</Button>
+						<span className="text-xs text-slate-400">producers</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<span className="text-sm w-max">2.3 $</span>
+						<span className="text-xs w-max text-slate-400">per kg</span>
+					</div>
+					<div className="flex flex-col items-center justify-center">
+						<Line />
+					</div>
+				</div>
+			</div>
 		</>
 	);
 });
