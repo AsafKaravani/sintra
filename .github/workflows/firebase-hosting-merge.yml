@@ -54,5 +54,5 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_TITLE: ${{ github.event.head_commit.message }}
-        SLACK_MESSAGE: 'https://sintra-app-dev.web.app
+        SLACK_MESSAGE: 'https://sintra-app-dev.web.app'
         SLACK_FOOTER: ''
