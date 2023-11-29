@@ -85,57 +85,114 @@ export const LiveMarketPage: FC = React.memo(() => {
 			</div>
 			<Divider className="mb-2" />
 			<h1 className="text-xl">{t('Market Prices')}</h1>
-			<div>
-				<div className="w-full  flex items-center gap-4 py-2">
-					<h1 className="text-lg w-52">Forastero Cocoa</h1>
+			<div className="flex">
+				<div className="w-max">
+					<div className="w-full flex items-center gap-4 p-2 bg-slate-300 rounded-s z-10 relative border border-e-0">
+						<h1 className="text-lg w-52">Forastero Cocoa</h1>
 
-					<div className="flex flex-col items-center justify-center">
-						<Button className="p-0" variant="text">
-							<span className="text-sm w-max">36</span>
-						</Button>
-						<span className="text-xs text-slate-400">producers</span>
+						<div className="flex flex-col items-center justify-center">
+							<Button className="p-0" variant="text">
+								<span className="text-sm w-max">36</span>
+							</Button>
+							<span className="text-xs text-slate-400">producers</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<span className="text-sm w-max">5 $</span>
+							<span className="text-xs w-max text-slate-400">per kg</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<Line />
+						</div>
 					</div>
-					<div className="flex flex-col items-center justify-center">
-						<span className="text-sm w-max">5 $</span>
-						<span className="text-xs w-max text-slate-400">per kg</span>
+					<div className="w-full flex items-center gap-4 p-2">
+						<h1 className="text-lg w-52">Criollo Cocoa</h1>
+
+						<div className="flex flex-col items-center justify-center">
+							<Button className="p-0" variant="text">
+								<span className="text-sm w-max">12</span>
+							</Button>
+							<span className="text-xs text-slate-400">producers</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<span className="text-sm w-max">3.8 $</span>
+							<span className="text-xs w-max text-slate-400">per kg</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<Line />
+						</div>
 					</div>
-					<div className="flex flex-col items-center justify-center">
-						<Line />
+					<div className="w-full flex items-center gap-4 p-2">
+						<h1 className="text-lg w-52">Trinitario Cocoa</h1>
+
+						<div className="flex flex-col items-center justify-center">
+							<Button className="p-0" variant="text">
+								<span className="text-sm w-max">17</span>
+							</Button>
+							<span className="text-xs text-slate-400">producers</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<span className="text-sm w-max">2.3 $</span>
+							<span className="text-xs w-max text-slate-400">per kg</span>
+						</div>
+						<div className="flex flex-col items-center justify-center">
+							<Line />
+						</div>
 					</div>
 				</div>
-				<div className="w-full  flex items-center gap-4 py-2">
-					<h1 className="text-lg w-52">Criollo Cocoa</h1>
+				<div className="flex-1 bg-slate-300 p-2 rounded-e border relative right-0.5">
+					<h3 className="">Recent Activity</h3>
+					<div className="flex flex-col gap-2 w-full rounded">
+						<div className="flex gap-4 items-center p-1 bg-slate-400">
+							<span className="text-sm text-opacity-40">15 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-sm text-opacity-40"> (kg)</span>
+							</span>
 
-					<div className="flex flex-col items-center justify-center">
-						<Button className="p-0" variant="text">
-							<span className="text-sm w-max">12</span>
-						</Button>
-						<span className="text-xs text-slate-400">producers</span>
-					</div>
-					<div className="flex flex-col items-center justify-center">
-						<span className="text-sm w-max">3.8 $</span>
-						<span className="text-xs w-max text-slate-400">per kg</span>
-					</div>
-					<div className="flex flex-col items-center justify-center">
-						<Line />
-					</div>
-				</div>
+							<span className="">
+								5$
+								<span className="text-sm text-opacity-40"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'BR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IL'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+						<div className="flex gap-4 items-center p-1 bg-slate-400">
+							<span className="text-sm text-opacity-40">27 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-sm text-opacity-40"> (kg)</span>
+							</span>
 
-				<div className="w-full  flex items-center gap-4 py-2">
-					<h1 className="text-lg w-52">Trinitario Cocoa</h1>
+							<span className="">
+								6.2$
+								<span className="text-sm text-opacity-40"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'AR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'DE'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+						<div className="flex gap-4 items-center p-1 bg-slate-400">
+							<span className="text-sm text-opacity-40">1 hour ago</span>
+							<span className="">
+								5,000
+								<span className="text-sm text-opacity-40"> (kg)</span>
+							</span>
 
-					<div className="flex flex-col items-center justify-center">
-						<Button className="p-0" variant="text">
-							<span className="text-sm w-max">17</span>
-						</Button>
-						<span className="text-xs text-slate-400">producers</span>
-					</div>
-					<div className="flex flex-col items-center justify-center">
-						<span className="text-sm w-max">2.3 $</span>
-						<span className="text-xs w-max text-slate-400">per kg</span>
-					</div>
-					<div className="flex flex-col items-center justify-center">
-						<Line />
+							<span className="">
+								4.9$
+								<span className="text-sm text-opacity-40"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'PR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IT'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
