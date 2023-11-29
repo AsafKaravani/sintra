@@ -58,3 +58,4 @@ jobs:
         SLACK_FOOTER: ''
         SLACK_ICON: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
         SLACK_USERNAME: 'Sintra Updates Bot'
+        MSG_MINIMAL: true
