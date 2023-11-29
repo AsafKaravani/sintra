@@ -96,7 +96,7 @@ export const LiveRequestRow: FC<LiveRequestRowProps> = React.memo(props => {
 					<div className="flex items-center gap-2">
 						<Button>Accept</Button>
 						<Button className="hover:text-red-500 text-red-400 p-2 min-w-0" variant="text" color="inherit">
-							<i className="fa-solid fa-trash"></i>
+							<i className="fa-solid fa-times"></i>
 						</Button>
 					</div>
 				</div>
