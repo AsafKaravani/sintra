@@ -42,7 +42,9 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SINTRA_APP_DEV }}'
           channelId: live
           projectId: sintra-app-dev
+
   slackNotification:
+    needs: build_and_deploy
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +53,6 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_TITLE: Sintra got updated!
-        SLACK_MESSAGE: ${{ github.event.head_commit.message }}
+        SLACK_TITLE: ${{ github.event.head_commit.message }}
+        SLACK_MESSAGE: 'https://sintra-app-dev.web.app
         SLACK_FOOTER: ''
