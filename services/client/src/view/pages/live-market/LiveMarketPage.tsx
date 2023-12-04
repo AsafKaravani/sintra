@@ -12,18 +12,6 @@ export const LiveMarketPage: FC = React.memo(() => {
 		<>
 			<div className="flex items-center gap-2">
 				<h1 className="text-xl mb-2">{t('Live Requests')}</h1>
-				<ToggleButton
-					className="border-none p-0 px-3"
-					color="primary"
-					disableRipple
-					value="check"
-					selected={selected}
-					onChange={() => {
-						setSelected(!selected);
-					}}
-				>
-					<div style={{ textTransform: 'none' }}>Show relevant only</div>
-				</ToggleButton>
 			</div>
 			<div className="border rounded p-2 mb-2 flex items-center">
 				<span className="me-2">Text search</span>
@@ -84,7 +72,45 @@ export const LiveMarketPage: FC = React.memo(() => {
 				/>
 			</div>
 			<Divider className="mb-2" />
-			<h1 className="text-xl">{t('Market Prices')}</h1>
+			<h1 className="text-xl mb-2">{t('Market Prices')}</h1>
+
+			<div className="border rounded p-2 mb-2 flex items-center">
+				<span className="me-2">Text search</span>
+				<TextField
+					className="overflow-hidden rounded-lg"
+					inputProps={{
+						style: { padding: '4px 14px', borderRadius: '40px' }
+					}}
+				/>
+				<Divider orientation="vertical" className="mx-4 h-4" />
+
+				<span className="me-2">Category</span>
+				<Select defaultValue={0}>
+					<MenuItem value={0}>All</MenuItem>
+					<MenuItem value={10}>
+						<i className="fa-solid fa-candy-bar me-2"></i>
+						Cacao
+					</MenuItem>
+					<MenuItem value={20}>
+						<i className="fa-solid fa-coffee-bean me-2"></i>
+						Coffee
+					</MenuItem>
+					<MenuItem value={30}>
+						<i className="fa-solid fa-acorn me-2"></i>
+						Nuts
+					</MenuItem>
+				</Select>
+				<Divider orientation="vertical" className="mx-4 h-4 " />
+
+				<span className="me-2">Match my offers</span>
+				<Switch />
+
+				<Button variant="outlined" className="ms-auto">
+					<i className="fa-solid fa-filter me-2"></i>
+					Filter
+				</Button>
+			</div>
+
 			<div className="flex">
 				<div className="w-max">
 					<div className="w-full flex items-center gap-4 p-2 bg-slate-200 rounded-s z-10 relative border border-e-0">
@@ -139,19 +165,20 @@ export const LiveMarketPage: FC = React.memo(() => {
 						</div>
 					</div>
 				</div>
-				<div className="flex-1 bg-slate-200 p-2 rounded-e border relative right-0.5">
-					<h3 className="">Recent Activity</h3>
-					<div className="flex flex-col gap-2 w-full rounded">
-						<div className="flex gap-4 items-center p-1 bg-slate-300">
-							<span className="text-sm text-opacity-40">15 minutes ago</span>
+				<div className="flex-1 bg-slate-200 p-2 rounded-e border relative right-[1px]">
+					<h3 className="mb-2">Recent Activity</h3>
+
+					<div className="flex flex-col gap-1 w-full rounded bg-slate-300">
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">15 minutes ago</span>
 							<span className="">
 								5,000
-								<span className="text-sm text-opacity-40"> (kg)</span>
+								<span className="text-xs text-slate-400"> (kg)</span>
 							</span>
 
 							<span className="">
 								5$
-								<span className="text-sm text-opacity-40"> (per kg)</span>
+								<span className="text-xs text-slate-400"> (per kg)</span>
 							</span>
 							<div className="flex items-center gap-1">
 								<img src={`https://flagsapi.com/${'BR'}/flat/32.png`} className="h-4" />
@@ -159,16 +186,18 @@ export const LiveMarketPage: FC = React.memo(() => {
 								<img src={`https://flagsapi.com/${'IL'}/flat/32.png`} className="h-4" />
 							</div>
 						</div>
-						<div className="flex gap-4 items-center p-1 bg-slate-300">
-							<span className="text-sm text-opacity-40">27 minutes ago</span>
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">27 minutes ago</span>
 							<span className="">
 								5,000
-								<span className="text-sm text-opacity-40"> (kg)</span>
+								<span className="text-xs text-slate-400"> (kg)</span>
 							</span>
 
 							<span className="">
 								6.2$
-								<span className="text-sm text-opacity-40"> (per kg)</span>
+								<span className="text-xs text-slate-400"> (per kg)</span>
 							</span>
 							<div className="flex items-center gap-1">
 								<img src={`https://flagsapi.com/${'AR'}/flat/32.png`} className="h-4" />
@@ -176,16 +205,19 @@ export const LiveMarketPage: FC = React.memo(() => {
 								<img src={`https://flagsapi.com/${'DE'}/flat/32.png`} className="h-4" />
 							</div>
 						</div>
-						<div className="flex gap-4 items-center p-1 bg-slate-300">
-							<span className="text-sm text-opacity-40">1 hour ago</span>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">1 hour ago</span>
 							<span className="">
 								5,000
-								<span className="text-sm text-opacity-40"> (kg)</span>
+								<span className="text-xs text-slate-400"> (kg)</span>
 							</span>
 
 							<span className="">
 								4.9$
-								<span className="text-sm text-opacity-40"> (per kg)</span>
+								<span className="text-xs text-slate-400"> (per kg)</span>
 							</span>
 							<div className="flex items-center gap-1">
 								<img src={`https://flagsapi.com/${'PR'}/flat/32.png`} className="h-4" />
@@ -193,6 +225,185 @@ export const LiveMarketPage: FC = React.memo(() => {
 								<img src={`https://flagsapi.com/${'IT'}/flat/32.png`} className="h-4" />
 							</div>
 						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">15 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								5$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'BR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IL'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">27 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								6.2$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'AR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'DE'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">1 hour ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								4.9$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'PR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IT'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">15 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								5$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'BR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IL'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">27 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								6.2$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'AR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'DE'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">1 hour ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								4.9$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'PR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IT'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">15 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								5$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'BR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IL'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">27 minutes ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								6.2$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'AR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'DE'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
+
+						<div className="flex gap-4 items-center p-1">
+							<span className="text-xs text-slate-400">1 hour ago</span>
+							<span className="">
+								5,000
+								<span className="text-xs text-slate-400"> (kg)</span>
+							</span>
+
+							<span className="">
+								4.9$
+								<span className="text-xs text-slate-400"> (per kg)</span>
+							</span>
+							<div className="flex items-center gap-1">
+								<img src={`https://flagsapi.com/${'PR'}/flat/32.png`} className="h-4" />
+								<i className="fa-solid fa-arrow-right text-lime-600"></i>
+								<img src={`https://flagsapi.com/${'IT'}/flat/32.png`} className="h-4" />
+							</div>
+						</div>
+
+						<Divider className="mx-2" />
 					</div>
 				</div>
 			</div>

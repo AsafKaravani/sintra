@@ -220,13 +220,13 @@ function makeSeries(i: number, dataType: DataType, datums: number, useR?: boolea
 	startDate.setUTCMilliseconds(0);
 	// const length = 5 + Math.round(Math.random() * 15)
 	const length = datums;
-	const min = 0;
-	const max = 100;
+	const min = 2;
+	const max = 6;
 	const rMin = 2;
 	const rMax = 20;
 	const nullChance = 0;
 	return {
-		label: `Series ${i + 1}`,
+		label: `price`,
 		data: [...new Array(length)].map((_, i) => {
 			let x;
 
@@ -242,7 +242,7 @@ function makeSeries(i: number, dataType: DataType, datums: number, useR?: boolea
 
 			const distribution = 1.1;
 
-			const y = Math.random() < nullChance ? null : min + Math.round(Math.random() * (max - min));
+			const y = Math.random() < nullChance ? null : min + Math.round(Math.random() * (max - min) * 100) / 100;
 
 			const r = !useR
 				? undefined
