@@ -54,8 +54,9 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_TITLE: ${{ github.event.head_commit.message }}
-        SLACK_MESSAGE: 'https://sintra-app-dev.web.app'
-        SLACK_FOOTER: '@channel'
+        SLACK_MESSAGE: 'https://sintra-app-dev.web.app @channel'
+        SLACK_FOOTER: ''
         SLACK_ICON: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
         SLACK_USERNAME: 'Sintra Updates Bot'
         MSG_MINIMAL: true
+        SLACK_LINK_NAMES: true
