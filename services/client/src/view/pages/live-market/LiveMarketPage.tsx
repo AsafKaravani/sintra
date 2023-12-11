@@ -10,9 +10,7 @@ export const LiveMarketPage: FC = React.memo(() => {
 	const [selected, setSelected] = React.useState(false);
 	return (
 		<>
-			<div className="flex items-center gap-2">
-				<h1 className="text-xl mb-2">{t('Live Requests')}</h1>
-			</div>
+			<h1 className="text-xl mb-2">{t('Live Requests')}</h1>
 			<div className="border rounded p-2 mb-2 flex items-center">
 				<span className="me-2">Text search</span>
 				<TextField

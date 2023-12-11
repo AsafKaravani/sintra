@@ -15,6 +15,7 @@
 		"@fontsource/roboto": "^5.0.8",
 		"@mui/material": "^5.14.18",
 		"@prisma/client": "^5.6.0",
+		"ag-grid-react": "^31.0.1",
 		"country-code-lookup": "^0.1.0",
 		"firebase": "^10.6.0",
 		"i18next": "^23.7.6",

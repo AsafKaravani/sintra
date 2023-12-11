@@ -7,6 +7,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+import 'ag-grid-community/styles/ag-grid.css'; // Core CSS
+import 'ag-grid-community/styles/ag-theme-quartz.css'; // Theme
+
 import './core/translations/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
