@@ -48,10 +48,14 @@ export const LoginPage: FC = props => {
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center gap-4 w-4/5">
 					<TextField {...register('email')} placeholder={t('Email')} fullWidth />
 					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
-					<Button type="submit" className="px-10">
-						{t('Login')}
-					</Button>
-					{loading_signInWithPassword && <CircularProgress color="inherit" size={24} />}
+					<div className='relative flex items-center gap-2'>
+						<Button type="submit" className="px-10">
+							{t('Login')}
+						</Button>
+						<div className='h-full absolute right-2 flex items-center text-white'>
+							{loading_signInWithPassword && <CircularProgress color="inherit" size={20} />}
+						</div>
+					</div>
 				</form>
 				<div className="flex items-center gap-2">
 					<div className="h-px bg-gray-300 w-14"></div>

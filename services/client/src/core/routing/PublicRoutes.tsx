@@ -10,7 +10,8 @@ export const PublicRoutes: RouteObject = {
 		</>
 	),
 	children: [
-		{ path: '/', element: <Navigate to="/s/live-market" replace /> },
+		{ path: '/', element: <Navigate to="/s/marketplace" replace /> },
+		{ path: '/s/', element: <Navigate to="/s/marketplace" replace /> },
 		{ path: 'login', element: <LoginPage /> },
 		{ path: 'register', element: <RegisterPage /> }
 	]
