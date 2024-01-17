@@ -40,6 +40,9 @@
 			{
 				"minItems": 3
 			}
-		]
+		],
+		"react-hooks/exhaustive-deps": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"no-mixed-spaces-and-tabs": "off"
 	}
 }

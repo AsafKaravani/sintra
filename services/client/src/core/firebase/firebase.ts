@@ -26,6 +26,10 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
 
 export const useAuth = () => useAuthState(firebaseAuth);
+export const useAuthId = () => {
+	const [user] = useAuth();
+	return user?.uid ? sdbm(user?.uid) : undefined;
+};
 export const useSignInGoogle = () => useSignInWithGoogle(firebaseAuth);
 export const useSignInPassword = () => useSignInWithEmailAndPassword(firebaseAuth);
 export const useCreateUser = () => useCreateUserWithEmailAndPassword(firebaseAuth);
@@ -64,3 +68,12 @@ export async function checkAuthStatus(): Promise<User | null> {
 		);
 	});
 }
+
+const sdbm = (str: string): number => {
+	const arr = str.split('');
+	return arr.reduce(
+		(hashCode: number, currentVal: string) =>
+			(hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
+		0
+	);
+};

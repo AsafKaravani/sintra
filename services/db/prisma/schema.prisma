@@ -31,6 +31,7 @@ model Business {
   Order             Order[]
   CertificateClaims CertificateClaim[]
   BusinessWorkers   BusinessWorker[]
+  Offer             Offer[]
 }
 
 model BusinessWorker {
@@ -65,6 +66,7 @@ model Product {
   updated_at       DateTime?         @updatedAt
   BusinessProduct  BusinessProduct[]
   Order            Order[]
+  Offer            Offer[]
 }
 
 model Category {
@@ -167,4 +169,20 @@ model CertificateClaim {
   status         CertificateClaimStatus
   created_at     DateTime               @default(now())
   updated_at     DateTime?              @updatedAt
+}
+
+model Offer {
+  id             Int       @id @default(autoincrement())
+  product_id     Int
+  product        Product   @relation(fields: [product_id], references: [id])
+  business_id    Int
+  business       Business  @relation(fields: [business_id], references: [id])
+  end_date       DateTime?
+  price_per_unit Float?
+  packaging      Float?
+  quantity       Float?
+  active         Boolean   @default(true)
+  harvest_date   DateTime?
+  created_at     DateTime  @default(now())
+  updated_at     DateTime? @updatedAt
 }

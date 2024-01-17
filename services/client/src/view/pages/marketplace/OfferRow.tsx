@@ -1,10 +1,11 @@
 import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import lookup from 'country-code-lookup';
+import moment from 'moment';
 
 interface OfferRowProps extends React.PropsWithChildren {
 	productName: string;
-	timeToShip: number;
+	harvestDate: Date;
 	totalKg: number;
 	kgPerPack: number;
 	pricePerKg: number;
@@ -23,9 +24,9 @@ export const OfferRow: FC<OfferRowProps> = React.memo(props => {
 					</div>
 					<div className="flex overflow-auto w-4/6 justify-between gap-4 pb-1">
 						<div className="flex flex-col items-center justify-center">
-							<span className="text-xs text-slate-400 opacity-0">.</span>
-							<span className="text-sm w-max">{props.timeToShip} days</span>
-							<span className="text-xs text-slate-400">Time To Ship</span>
+							<span className="text-xs text-slate-400">{moment(props.harvestDate).fromNow()}</span>
+							<span className="text-sm w-max">{moment(props.harvestDate).format('DD/MM/YY')}</span>
+							<span className="text-xs text-slate-400">Harvest date</span>
 						</div>
 						<div className="flex flex-col items-center justify-center">
 							<span className="text-xs text-slate-400 opacity-0">.</span>
@@ -43,32 +44,34 @@ export const OfferRow: FC<OfferRowProps> = React.memo(props => {
 							<span className="text-xs w-max w-max text-slate-400">price per kg</span>
 						</div>
 
-						<div className="flex flex-col items-center justify-center">
+						{/* <div className="flex flex-col items-center justify-center">
 							<span className="text-xs text-slate-400 opacity-0">.</span>
 							<Button className="p-0" variant="text">
 								<span className="text-sm w-max w-max">{props.companyName}</span>
 							</Button>
 							<span className="text-xs text-slate-400">producer</span>
-						</div>
-						<div className="flex flex-col items-center justify-center">
-							<span className="text-xs text-slate-400">{props.rating}</span>
-							<span className="text-sm w-max">
-								{new Array(Math.floor(props.rating)).fill(0)
-									.map((_, i) => (
-										<i className="fa-solid fa-star text-yellow-400 "></i>
-									))}
-								{props.rating % 1 > 0 && <i className="fa-solid fa-star-half text-yellow-400 "></i>}
-							</span>
-							<span className="text-xs text-slate-400">rating</span>
-						</div>
-						<div className="flex flex-col items-center justify-center">
+						</div> */}
+						{props.rating && (
+							<div className="flex flex-col items-center justify-center">
+								<span className="text-xs text-slate-400">{props.rating}</span>
+								<span className="text-sm w-max">
+									{new Array(Math.floor(props.rating)).fill(0)
+										.map((_, i) => (
+											<i className="fa-solid fa-star text-yellow-400 "></i>
+										))}
+									{props.rating % 1 > 0 && <i className="fa-solid fa-star-half text-yellow-400 "></i>}
+								</span>
+								<span className="text-xs text-slate-400">rating</span>
+							</div>
+						)}
+						{/* <div className="flex flex-col items-center justify-center">
 							<span className="text-xs text-slate-400 opacity-0">.</span>
 							<span className="text-sm flex gap-1 items-center w-max">
 								<img src={`https://flagsapi.com/${lookup.byCountry(props.origin)?.iso2}/flat/32.png`} className="h-4" />
 								{props.origin} ({props.origin && lookup.byCountry(props.origin)?.iso2})
 							</span>
 							<span className="text-xs text-slate-400">origin</span>
-						</div>
+						</div> */}
 						<div className="flex flex-col items-center justify-center">
 							<span className="text-xs text-slate-400 opacity-0">.</span>
 							<span className="w-max flex gap-2 p-0.5">

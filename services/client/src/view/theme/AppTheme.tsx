@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
-
+import { Toaster } from 'react-hot-toast';
 interface AppThemeProps extends React.PropsWithChildren {
 	children: ReactElement | ReactElement[];
 }
@@ -75,7 +75,14 @@ export const AppTheme: FC<AppThemeProps> = props => {
 
 	return (
 		<>
-			<ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+			<ThemeProvider theme={theme}>
+				<Toaster
+					toastOptions={{
+						duration: 5000
+					}}
+				/>
+				{props.children}
+			</ThemeProvider>
 		</>
 	);
 };
