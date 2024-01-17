@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import React, { useCallback, useEffect, useState } from 'react';
 import { FC } from 'react';
 import { useTranslate } from '../../core/translations/useTranslate';

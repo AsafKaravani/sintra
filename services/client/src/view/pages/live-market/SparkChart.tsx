@@ -25,7 +25,7 @@ export default function Line() {
 	[]
 	);
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	 
 	const getSeriesStyle = React.useCallback((series: any) => {
 		console.log(series.datums);
 

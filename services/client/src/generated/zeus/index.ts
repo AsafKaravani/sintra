@@ -622,7 +622,7 @@ export const InternalArgsBuilt = ({
     }
     const checkType = ResolveFromPath(props, returns, ops)(p);
     if (checkType.startsWith('scalar.')) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+       
       const [_, ...splittedScalar] = checkType.split('.');
       const scalarKey = splittedScalar.join('.');
       return (scalars?.[scalarKey]?.encode?.(a) as string) || JSON.stringify(a);
@@ -725,7 +725,7 @@ type IsInterfaced<SRC extends DeepAnify<DST>, DST, SCLR extends ScalarDefinition
 export type MapType<SRC, DST, SCLR extends ScalarDefinition> = SRC extends DeepAnify<DST>
   ? IsInterfaced<SRC, DST, SCLR>
   : never;
-// eslint-disable-next-line @typescript-eslint/ban-types
+ 
 export type InputType<SRC, DST, SCLR extends ScalarDefinition = {}> = IsPayLoad<DST> extends { __alias: infer R }
   ? {
       [P in keyof R]: MapType<SRC, R[P], SCLR>[keyof MapType<SRC, R[P], SCLR>];
@@ -739,7 +739,7 @@ export type SubscriptionToGraphQL<Z, T, SCLR extends ScalarDefinition> = {
   open: () => void;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+ 
 export type FromSelector<SELECTOR, NAME extends keyof GraphQLTypes, SCLR extends ScalarDefinition = {}> = InputType<
   GraphQLTypes[NAME],
   SELECTOR,
@@ -816,7 +816,7 @@ export type Variable<T extends GraphQLVariableType, Name extends string> = {
 export type ExtractVariablesDeep<Query> = Query extends Variable<infer VType, infer VName>
   ? { [key in VName]: GetVariableType<VType> }
   : Query extends string | number | boolean | Array<string | number | boolean>
-  ? // eslint-disable-next-line @typescript-eslint/ban-types
+  ?  
     {}
   : UnionToIntersection<{ [K in keyof Query]: WithOptionalNullables<ExtractVariablesDeep<Query[K]>> }[keyof Query]>;
 
@@ -825,7 +825,7 @@ export type ExtractVariables<Query> = Query extends Variable<infer VType, infer 
   : Query extends [infer Inputs, infer Outputs]
   ? ExtractVariablesDeep<Inputs> & ExtractVariables<Outputs>
   : Query extends string | number | boolean | Array<string | number | boolean>
-  ? // eslint-disable-next-line @typescript-eslint/ban-types
+  ?  
     {}
   : UnionToIntersection<{ [K in keyof Query]: WithOptionalNullables<ExtractVariables<Query[K]>> }[keyof Query]>;
 
