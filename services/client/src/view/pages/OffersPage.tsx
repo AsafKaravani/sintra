@@ -1,4 +1,3 @@
- 
 import React, { useCallback, useEffect, useState } from 'react';
 import { FC } from 'react';
 import { useTranslate } from '../../core/translations/useTranslate';
@@ -31,7 +30,7 @@ export const OffersPage: FC = React.memo(() => {
 	}, []);
 
 	const cancelNewOffer = useCallback(() => {
-		setInputRowData();
+		setInputRowData(undefined);
 	}, []);
 
 	// Column Definitions: Defines & controls grid columns.
@@ -41,7 +40,7 @@ export const OffersPage: FC = React.memo(() => {
 		{
 			field: 'harvest_date',
 			cellDataType: 'date',
-			cellRenderer: data => {
+			cellRenderer: (data: any) => {
 				return data.value ? `${moment(data.value).format('DD/MM/YYYY')} (${moment(data.value).fromNow()})` : '';
 			},
 			flex: 2
@@ -51,10 +50,9 @@ export const OffersPage: FC = React.memo(() => {
 		{ field: 'price_per_unit', cellDataType: 'number', cellEditorParams: { placeholder: 'Price per unit' } },
 		{ field: 'active', cellDataType: 'boolean' },
 		{
-			field: 'actions',
 			editable: false,
 
-			cellRenderer: context => (
+			cellRenderer: (context: any) => (
 				<i
 					className="fas fa-trash text-red-500 cursor-pointer"
 					onClick={() => mutation_deleteOffer.mutate(context.data)}
@@ -72,7 +70,8 @@ export const OffersPage: FC = React.memo(() => {
 		minWidth: 100
 	};
 
-	const isPinnedRowDataCompleted: GridOptions<Offer>['onCellEditingStopped'] = event => {
+	// type CellEditingStoppedEvent = Parameters<GridOptions<Offer>['onCellEditingStopped']>[0];
+	const isPinnedRowDataCompleted = (event: any) => {
 		let dataInputCompleted = true;
 
 		const requiredFields = [
@@ -98,7 +97,6 @@ export const OffersPage: FC = React.memo(() => {
 		pinnedTopRowData: inputRowData ? [inputRowData] : [],
 
 		onCellEditingStopped: event => {
-			console.log(event.data.id);
 			if (event.data && isPinnedRowDataCompleted(event)) {
 				if (event.data.id) {
 					mutation_UpdateOffer.mutate(event.data);
@@ -134,7 +132,6 @@ export const OffersPage: FC = React.memo(() => {
 	);
 });
 
-//@ts-expect-error external function
 function isEmptyPinnedCell({ node, value }) {
 	return (node.rowPinned === 'top' && value == null) || (node.rowPinned === 'top' && value == '');
 }

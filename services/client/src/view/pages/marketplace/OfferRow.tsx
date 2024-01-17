@@ -9,9 +9,9 @@ interface OfferRowProps extends React.PropsWithChildren {
 	totalKg: number;
 	kgPerPack: number;
 	pricePerKg: number;
-	companyName: string;
-	rating: number;
-	origin: string;
+	companyName?: string;
+	rating?: number;
+	origin?: string;
 }
 
 export const OfferRow: FC<OfferRowProps> = React.memo(props => {

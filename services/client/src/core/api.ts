@@ -176,7 +176,7 @@ export const useMutation_UpdateOffer = () => {
 			return chain('mutation')({
 				update_Offer_by_pk: [{
 					pk_columns: {
-						id: offer.id
+						id: offer.id!
 					},
 					_set: {
 						...toUpdate(offer)
@@ -203,7 +203,7 @@ export const useMutation_DeleteOffer = () => {
 			toastIdRef.current = toast.loading('Deleting offer...');
 			return chain('mutation')({
 				delete_Offer_by_pk: [{
-					id: offer.id
+					id: offer.id!
 				}, {
 					id: true
 				}]
