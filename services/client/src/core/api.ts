@@ -1,5 +1,5 @@
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
-import { chain } from '../generated/zeus/chain';
+import { chain, scalars } from '../generated/zeus/chain';
 import { ModelTypes, ValueTypes, order_by } from '../generated/zeus';
 import { useAuthId } from './firebase/firebase';
 import toast from 'react-hot-toast';
@@ -20,7 +20,7 @@ export const useQuery_AllProducts = () => {
 	return useQuery({
 		queryKey: ['all-products'],
 		queryFn: () =>
-			chain('query')({
+			chain('query', { scalars })({
 				Product: [{}, {
 					id: true,
 					name: true,
@@ -41,7 +41,7 @@ export const useQuery_AllOffers = () => {
 	return useQuery({
 		queryKey: ['offers', 'all-offers'],
 		queryFn: () =>
-			chain('query')({
+			chain('query', { scalars })({
 				Offer: [{ order_by: [{ created_at: order_by.desc }] }, {
 					harvest_date: true,
 					quantity: true,
@@ -66,7 +66,7 @@ export const useQuery_CurrentUserOffers = () => {
 		enabled: !!userId,
 		queryKey: ['offers', 'current-user-offers'],
 		queryFn: () =>
-			chain('query')({
+			chain('query', { scalars })({
 				Offer: [{
 					order_by: [{ created_at: order_by.desc }],
 					where: {
@@ -101,10 +101,11 @@ export const useQuery_FindOffers = (search: string) => {
 			search
 		],
 		queryFn: () =>
-			chain('query')({
+			chain('query', { scalars })({
 				Offer: [{
 					order_by: [{ created_at: order_by.desc }],
 					where: {
+						active: { _eq: true },
 						_or: [{
 							Product: {
 								name: {
@@ -146,7 +147,7 @@ export const useMutation_CreateOffer = () => {
 	return useMutation({
 		mutationFn: (offer: Offer) => {
 			toastIdRef.current = toast.loading('Creating offer...');
-			return chain('mutation')({
+			return chain('mutation', { scalars })({
 				insert_Offer_one: [{
 					object: {
 						...toInput(offer),
@@ -170,10 +171,8 @@ export const useMutation_UpdateOffer = () => {
 	const toastIdRef = useRef<string>();
 	return useMutation({
 		mutationFn: (offer: Offer) => {
-			console.log(offer);
-
 			toastIdRef.current = toast.loading('Updating offer...');
-			return chain('mutation')({
+			return chain('mutation', { scalars })({
 				update_Offer_by_pk: [{
 					pk_columns: {
 						id: offer.id!
@@ -198,10 +197,8 @@ export const useMutation_DeleteOffer = () => {
 	const toastIdRef = useRef<string>();
 	return useMutation({
 		mutationFn: (offer: Offer) => {
-			console.log(offer);
-
 			toastIdRef.current = toast.loading('Deleting offer...');
-			return chain('mutation')({
+			return chain('mutation', { scalars })({
 				delete_Offer_by_pk: [{
 					id: offer.id!
 				}, {

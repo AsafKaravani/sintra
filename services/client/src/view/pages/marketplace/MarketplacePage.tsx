@@ -77,10 +77,10 @@ export const MarketplacePage: FC = React.memo(() => {
 					<OfferRow
 						key={offer.id}
 						productName={offer.Product.name}
-						totalKg={offer.quantity as any}
-						kgPerPack={offer.packaging as any}
-						harvestDate={offer.harvest_date as any}
-						pricePerKg={offer.price_per_unit as any}
+						totalKg={offer.quantity}
+						kgPerPack={offer.packaging}
+						harvestDate={offer.harvest_date}
+						pricePerKg={offer.price_per_unit}
 					/>
 				))}
 			</div>

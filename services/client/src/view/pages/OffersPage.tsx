@@ -26,7 +26,9 @@ export const OffersPage: FC = React.memo(() => {
 	const [inputRowData, setInputRowData] = useState<Offer | undefined>();
 
 	const newOffer = useCallback(() => {
-		setInputRowData({});
+		setInputRowData({
+			active: true
+		});
 	}, []);
 
 	const cancelNewOffer = useCallback(() => {

@@ -4,11 +4,11 @@ import lookup from 'country-code-lookup';
 import moment from 'moment';
 
 interface OfferRowProps extends React.PropsWithChildren {
-	productName: string;
-	harvestDate: Date;
-	totalKg: number;
-	kgPerPack: number;
-	pricePerKg: number;
+	productName?: string;
+	harvestDate?: Date;
+	totalKg?: number;
+	kgPerPack?: number;
+	pricePerKg?: number;
 	companyName?: string;
 	rating?: number;
 	origin?: string;
