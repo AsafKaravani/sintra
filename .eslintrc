@@ -32,13 +32,13 @@
 		"array-element-newline": [
 			"error",
 			{
-				"minItems": 3
+				"minItems": 4
 			}
 		],
 		"array-bracket-newline": [
 			"error",
 			{
-				"minItems": 3
+				"minItems": 4
 			}
 		],
 		"react-hooks/exhaustive-deps": "off",

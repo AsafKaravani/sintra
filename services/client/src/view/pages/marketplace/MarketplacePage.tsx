@@ -4,13 +4,12 @@ import { FC } from 'react';
 import { useTranslate } from '../../../core/translations/useTranslate';
 import { LiveRequestRow } from '../live-market/LiveRequestRow';
 import { OfferRow } from './OfferRow';
-import { useQuery_FindOffers } from '../../../core/api';
+import { useQuery_FindOffers } from '../../../core/api/api';
 
 export const MarketplacePage: FC = React.memo(() => {
 	const t = useTranslate();
 	const [search, setSearch] = useState('');
 	const query_Offers = useQuery_FindOffers(search);
-	console.log(query_Offers.data);
 
 	return (
 		<>

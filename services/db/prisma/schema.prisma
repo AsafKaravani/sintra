@@ -12,12 +12,15 @@ datasource db {
 
 model Profile {
   id         Int              @id @default(autoincrement())
+  email      String           @unique
+  pictureUrl String?
   first_name String?
   last_name  String?
   phone      String?
   created_at DateTime         @default(now())
   updated_at DateTime?        @updatedAt
   WorkingAt  BusinessWorker[]
+  Offer      Offer[]
 }
 
 model Business {
@@ -175,8 +178,10 @@ model Offer {
   id             Int       @id @default(autoincrement())
   product_id     Int
   product        Product   @relation(fields: [product_id], references: [id])
-  business_id    Int
-  business       Business  @relation(fields: [business_id], references: [id])
+  business_id    Int?
+  business       Business? @relation(fields: [business_id], references: [id])
+  profile_id     Int?
+  profile        Profile?  @relation(fields: [profile_id], references: [id])
   end_date       DateTime?
   price_per_unit Float?
   packaging      Float?

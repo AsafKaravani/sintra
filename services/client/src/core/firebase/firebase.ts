@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { getStorage, ref, deleteObject } from 'firebase/storage';
+
 import {
 	SignOutHook,
 	useAuthState,
@@ -9,6 +11,8 @@ import {
 	useSignInWithGoogle,
 	useSignOut
 } from 'react-firebase-hooks/auth';
+import { useDownloadURL, useUploadFile } from 'react-firebase-hooks/storage';
+
 import { useNavigate } from 'react-router-dom';
 const env = import.meta.env;
 
@@ -24,6 +28,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
+export const storage = getStorage(firebaseApp);
 
 export const useAuth = () => useAuthState(firebaseAuth);
 export const useAuthId = () => {
@@ -34,23 +39,15 @@ export const useSignInGoogle = () => useSignInWithGoogle(firebaseAuth);
 export const useSignInPassword = () => useSignInWithEmailAndPassword(firebaseAuth);
 export const useCreateUser = () => useCreateUserWithEmailAndPassword(firebaseAuth);
 export const useLogout = () => {
-	const [
-		signOut,
-		loading,
-		error
-	] = useSignOut(firebaseAuth);
+	const [signOut, loading, error] = useSignOut(firebaseAuth);
 
 	const naviate = useNavigate();
 
-	return [
-		() => {
-			return signOut().then(() => {
-				naviate('/login');
-			});
-		},
-		loading,
-		error
-	] as SignOutHook;
+	return [() => {
+		return signOut().then(() => {
+			naviate('/login');
+		});
+	}, loading, error] as SignOutHook;
 };
 
 export async function checkAuthStatus(): Promise<User | null> {
@@ -68,6 +65,38 @@ export async function checkAuthStatus(): Promise<User | null> {
 		);
 	});
 }
+
+type uploadFileParams = Parameters<ReturnType<typeof useUploadFile>[0]>;
+export const useStorage = () => {
+	const [
+		uploadFile,
+		uploading,
+		snapshot,
+		error
+	] = useUploadFile();
+	const upload = (fileName: string, data: uploadFileParams[1], metadata: uploadFileParams[2]) => {
+		const fileRef = ref(storage, fileName);
+		return uploadFile(fileRef, data, metadata);
+	};
+	const deleteFile = (fileName: string) => deleteObject(ref(storage, fileName));
+
+	return {
+		deleteFile,
+		upload,
+		uploading,
+		snapshot,
+		error
+	};
+};
+
+const useFile = (fileName: string) => {
+	const [value, loading, error] = useDownloadURL(ref(storage, fileName));
+	return {
+		url,
+		loading,
+		error
+	};
+};
 
 const sdbm = (str: string): number => {
 	const arr = str.split('');

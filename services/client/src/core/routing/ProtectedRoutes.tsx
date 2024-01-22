@@ -7,6 +7,8 @@ import { LiveMarketPage } from '../../view/pages/live-market/LiveMarketPage';
 import { MarketplacePage } from '../../view/pages/marketplace/MarketplacePage';
 import { OffersPage } from '../../view/pages/OffersPage';
 import { RequestsPage } from '../../view/pages/RequestsPage';
+import { GlobalJobs } from '../global-jobs/GlobalJobs';
+import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 
 const authGuard = async () => {
 	const isAuthenticated = await checkAuth();
@@ -34,9 +36,12 @@ const checkAuth = async () => {
 export const ProtectedRoutes: RouteObject = {
 	path: '/s',
 	element: (
-		<Shell>
-			<Outlet />
-		</Shell>
+		<>
+			<GlobalJobs />
+			<Shell>
+				<Outlet />
+			</Shell>
+		</>
 	),
 	loader: authGuard,
 	children: [
@@ -44,6 +49,7 @@ export const ProtectedRoutes: RouteObject = {
 		{ path: 'live-market', element: <LiveMarketPage /> },
 		{ path: 'marketplace', element: <MarketplacePage /> },
 		{ path: 'offers', element: <OffersPage /> },
-		{ path: 'requests', element: <RequestsPage /> }
+		{ path: 'requests', element: <RequestsPage /> },
+		{ path: 'onboarding', element: <OnboardingPage /> }
 	]
 };

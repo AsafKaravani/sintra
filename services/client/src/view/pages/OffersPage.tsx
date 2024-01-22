@@ -10,7 +10,7 @@ import {
 	useMutation_UpdateOffer,
 	useQuery_CurrentUserOffers,
 	useMutation_DeleteOffer
-} from '../../core/api';
+} from '../../core/api/api';
 import moment from 'moment';
 
 export const OffersPage: FC = React.memo(() => {
@@ -19,8 +19,6 @@ export const OffersPage: FC = React.memo(() => {
 	const mutation_CreateOffer = useMutation_CreateOffer();
 	const mutation_UpdateOffer = useMutation_UpdateOffer();
 	const mutation_deleteOffer = useMutation_DeleteOffer();
-
-	console.log(query_MyOffers.data);
 
 	// Row Data: The data to be displayed.
 	const [inputRowData, setInputRowData] = useState<Offer | undefined>();
@@ -127,7 +125,7 @@ export const OffersPage: FC = React.memo(() => {
 				)}
 			</div>
 
-			<div style={{ height: '50vh' }}>
+			<div className="h-1/2">
 				<AgGridReact {...gridOptions} className="ag-theme-quartz" />
 			</div>
 		</>

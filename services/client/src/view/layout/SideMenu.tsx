@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SideMenuItem } from './SideMenuItem';
 
 const drawerWidth = '20vw';
@@ -20,6 +20,8 @@ const maxDrawerWidth = '220px';
 const minDrawerWidth = '200px';
 
 export const SideMenu: FC = React.memo(() => {
+	const location = useLocation();
+	if (location.pathname === '/s/onboarding') return null;
 	return (
 		<Drawer
 			sx={{
@@ -51,8 +53,8 @@ export const SideMenu: FC = React.memo(() => {
 					to="/s/live-market"
 					text="Live Market"
 					icon="bullhorn"
-				//notifications={4}
-				//notificationsColor="red"
+					//notifications={4}
+					//notificationsColor="red"
 				/>
 				<SideMenuItem disabled text="Requests" to="/s/requests" icon="satellite-dish" />
 				<SideMenuItem disabled text="Sales" to="/s/sales" icon="sack-dollar" />

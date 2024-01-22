@@ -1,20 +1,16 @@
-import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
-import { chain, scalars } from '../generated/zeus/chain';
-import { ModelTypes, ValueTypes, order_by } from '../generated/zeus';
-import { useAuthId } from './firebase/firebase';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { chain, scalars } from '../../generated/zeus/chain';
+import { ModelTypes, ValueTypes, order_by } from '../../generated/zeus';
+import { useAuth, useAuthId } from '../firebase/firebase';
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
+import { queryClient } from './query-client';
 
-export const queryClient = new QueryClient();
+// ---- Auth API -------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------//
-//                                       Auth API                                       //
-//--------------------------------------------------------------------------------------//
 export const useQuery_Auth = () => {};
 
-//--------------------------------------------------------------------------------------//
-//                                     Products API                                     //
-//--------------------------------------------------------------------------------------//
+// ---- Products API ---------------------------------------------------------------------
 
 export const useQuery_AllProducts = () => {
 	return useQuery({
@@ -33,9 +29,8 @@ export const useQuery_AllProducts = () => {
 	});
 };
 
-//--------------------------------------------------------------------------------------//
-//                                        Offers                                        //
-//--------------------------------------------------------------------------------------//
+// ---- Offers ---------------------------------------------------------------------------
+
 export type Offer = DeepPartial<ModelTypes['Offer']>;
 export const useQuery_AllOffers = () => {
 	return useQuery({
@@ -95,11 +90,7 @@ export const useQuery_CurrentUserOffers = () => {
 
 export const useQuery_FindOffers = (search: string) => {
 	return useQuery({
-		queryKey: [
-			'offers',
-			'find-offers',
-			search
-		],
+		queryKey: ['offers', 'find-offers', search],
 		queryFn: () =>
 			chain('query', { scalars })({
 				Offer: [{
@@ -214,6 +205,54 @@ export const useMutation_DeleteOffer = () => {
 	});
 };
 
+// ---- Profile --------------------------------------------------------------------------
+
+export const useQuery_Profile = () => {
+	const [user] = useAuth();
+	return useQuery({
+		enabled: !!user?.email,
+		queryKey: ['profile'],
+		queryFn: () =>
+			chain('query', { scalars })({
+				Profile: [{
+					where: {
+						email: { _eq: user.email }
+					}
+				}, {
+					email: true,
+					first_name: true,
+					last_name: true,
+					phone: true,
+					pictureUrl: true,
+					updated_at: true,
+					created_at: true
+				}]
+			})
+	});
+};
+
+export const useMutation_CreateProfile = () => {
+	const [user] = useAuth();
+	return useMutation({
+		mutationFn: (profile: DeepPartial<ModelTypes['Profile']>) => {
+			return chain('mutation', { scalars })({
+				insert_Profile_one: [{
+					object: {
+						...toInput(profile),
+						email: user.email
+					}
+				}, {
+					id: true
+				}]
+			});
+		},
+		onSettled: (data, error) => {
+			queryClient.invalidateQueries({ queryKey: ['profile'] });
+		}
+	});
+};
+
+// ---- Utils ----------------------------------------------------------------------------
 // A function that loop over keys of object and if the key's first latter is uppercase then nest the value in {data: value}
 export const toInput = (obj: any) => {
 	const newObj: any = {};

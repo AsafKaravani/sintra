@@ -1104,6 +1104,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_bool_exp:{
@@ -1121,6 +1122,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"float8_comparison_exp",
 		price_per_unit:"float8_comparison_exp",
 		product_id:"Int_comparison_exp",
+		profile_id:"Int_comparison_exp",
 		quantity:"float8_comparison_exp",
 		updated_at:"timestamp_comparison_exp"
 	},
@@ -1150,6 +1152,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by",
 		updated_at:"order_by"
 	},
@@ -1162,6 +1165,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by",
 		updated_at:"order_by"
 	},
@@ -1182,6 +1186,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by",
 		updated_at:"order_by"
 	},
@@ -1214,6 +1219,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_stddev_pop_order_by:{
@@ -1222,6 +1228,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_stddev_samp_order_by:{
@@ -1230,6 +1237,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_stream_cursor_input:{
@@ -1251,6 +1259,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_update_column: "enum" as const,
@@ -1265,6 +1274,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_var_samp_order_by:{
@@ -1273,6 +1283,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Offer_variance_order_by:{
@@ -1281,6 +1292,7 @@ export const AllTypesProps: Record<string,any> = {
 		packaging:"order_by",
 		price_per_unit:"order_by",
 		product_id:"order_by",
+		profile_id:"order_by",
 		quantity:"order_by"
 	},
 	Order:{
@@ -1786,10 +1798,12 @@ export const AllTypesProps: Record<string,any> = {
 		_not:"Profile_bool_exp",
 		_or:"Profile_bool_exp",
 		created_at:"timestamp_comparison_exp",
+		email:"String_comparison_exp",
 		first_name:"String_comparison_exp",
 		id:"Int_comparison_exp",
 		last_name:"String_comparison_exp",
 		phone:"String_comparison_exp",
+		pictureUrl:"String_comparison_exp",
 		updated_at:"timestamp_comparison_exp"
 	},
 	Profile_constraint: "enum" as const,
@@ -1813,10 +1827,12 @@ export const AllTypesProps: Record<string,any> = {
 	Profile_order_by:{
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate_order_by",
 		created_at:"order_by",
+		email:"order_by",
 		first_name:"order_by",
 		id:"order_by",
 		last_name:"order_by",
 		phone:"order_by",
+		pictureUrl:"order_by",
 		updated_at:"order_by"
 	},
 	Profile_pk_columns_input:{
@@ -3668,6 +3684,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"float8",
 		price_per_unit:"float8",
 		product_id:"Int",
+		profile_id:"Int",
 		quantity:"float8",
 		updated_at:"timestamp"
 	},
@@ -3695,6 +3712,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_max_fields:{
@@ -3706,6 +3724,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"float8",
 		price_per_unit:"float8",
 		product_id:"Int",
+		profile_id:"Int",
 		quantity:"float8",
 		updated_at:"timestamp"
 	},
@@ -3718,6 +3737,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"float8",
 		price_per_unit:"float8",
 		product_id:"Int",
+		profile_id:"Int",
 		quantity:"float8",
 		updated_at:"timestamp"
 	},
@@ -3731,6 +3751,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_stddev_pop_fields:{
@@ -3739,6 +3760,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_stddev_samp_fields:{
@@ -3747,6 +3769,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_sum_fields:{
@@ -3755,6 +3778,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"float8",
 		price_per_unit:"float8",
 		product_id:"Int",
+		profile_id:"Int",
 		quantity:"float8"
 	},
 	Offer_var_pop_fields:{
@@ -3763,6 +3787,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_var_samp_fields:{
@@ -3771,6 +3796,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Offer_variance_fields:{
@@ -3779,6 +3805,7 @@ export const ReturnTypes: Record<string,any> = {
 		packaging:"Float",
 		price_per_unit:"Float",
 		product_id:"Float",
+		profile_id:"Float",
 		quantity:"Float"
 	},
 	Order:{
@@ -3991,10 +4018,12 @@ export const ReturnTypes: Record<string,any> = {
 		BusinessWorkers:"BusinessWorker",
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate",
 		created_at:"timestamp",
+		email:"String",
 		first_name:"String",
 		id:"Int",
 		last_name:"String",
 		phone:"String",
+		pictureUrl:"String",
 		updated_at:"timestamp"
 	},
 	Profile_aggregate:{
@@ -4019,18 +4048,22 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	Profile_max_fields:{
 		created_at:"timestamp",
+		email:"String",
 		first_name:"String",
 		id:"Int",
 		last_name:"String",
 		phone:"String",
+		pictureUrl:"String",
 		updated_at:"timestamp"
 	},
 	Profile_min_fields:{
 		created_at:"timestamp",
+		email:"String",
 		first_name:"String",
 		id:"Int",
 		last_name:"String",
 		phone:"String",
+		pictureUrl:"String",
 		updated_at:"timestamp"
 	},
 	Profile_mutation_response:{

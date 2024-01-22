@@ -23,5 +23,8 @@
 	"update.mode": "none",
 	"workbench.enableExperiments": false,
 	"workbench.settings.enableNaturalLanguageSearch": false,
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	},
 
 }

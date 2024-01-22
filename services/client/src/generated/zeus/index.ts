@@ -622,7 +622,7 @@ export const InternalArgsBuilt = ({
     }
     const checkType = ResolveFromPath(props, returns, ops)(p);
     if (checkType.startsWith('scalar.')) {
-       
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, ...splittedScalar] = checkType.split('.');
       const scalarKey = splittedScalar.join('.');
       return (scalars?.[scalarKey]?.encode?.(a) as string) || JSON.stringify(a);
@@ -725,7 +725,7 @@ type IsInterfaced<SRC extends DeepAnify<DST>, DST, SCLR extends ScalarDefinition
 export type MapType<SRC, DST, SCLR extends ScalarDefinition> = SRC extends DeepAnify<DST>
   ? IsInterfaced<SRC, DST, SCLR>
   : never;
- 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type InputType<SRC, DST, SCLR extends ScalarDefinition = {}> = IsPayLoad<DST> extends { __alias: infer R }
   ? {
       [P in keyof R]: MapType<SRC, R[P], SCLR>[keyof MapType<SRC, R[P], SCLR>];
@@ -739,7 +739,7 @@ export type SubscriptionToGraphQL<Z, T, SCLR extends ScalarDefinition> = {
   open: () => void;
 };
 
- 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type FromSelector<SELECTOR, NAME extends keyof GraphQLTypes, SCLR extends ScalarDefinition = {}> = InputType<
   GraphQLTypes[NAME],
   SELECTOR,
@@ -816,7 +816,7 @@ export type Variable<T extends GraphQLVariableType, Name extends string> = {
 export type ExtractVariablesDeep<Query> = Query extends Variable<infer VType, infer VName>
   ? { [key in VName]: GetVariableType<VType> }
   : Query extends string | number | boolean | Array<string | number | boolean>
-  ?  
+  ? // eslint-disable-next-line @typescript-eslint/ban-types
     {}
   : UnionToIntersection<{ [K in keyof Query]: WithOptionalNullables<ExtractVariablesDeep<Query[K]>> }[keyof Query]>;
 
@@ -825,7 +825,7 @@ export type ExtractVariables<Query> = Query extends Variable<infer VType, infer 
   : Query extends [infer Inputs, infer Outputs]
   ? ExtractVariablesDeep<Inputs> & ExtractVariables<Outputs>
   : Query extends string | number | boolean | Array<string | number | boolean>
-  ?  
+  ? // eslint-disable-next-line @typescript-eslint/ban-types
     {}
   : UnionToIntersection<{ [K in keyof Query]: WithOptionalNullables<ExtractVariables<Query[K]>> }[keyof Query]>;
 
@@ -2888,6 +2888,7 @@ count?: [{	columns?: Array<ValueTypes["Certificate_select_column"]> | undefined 
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -3040,6 +3041,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3050,6 +3052,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** Boolean expression to filter rows from the table "Offer". All fields are combined with a logical 'AND'. */
@@ -3068,6 +3071,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["float8_comparison_exp"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["float8_comparison_exp"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["float8_comparison_exp"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
 };
@@ -3080,6 +3084,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	product_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["float8"] | undefined | null | Variable<any, string>
 };
 	/** input type for inserting data into table "Offer" */
@@ -3095,6 +3100,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	product_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
@@ -3108,6 +3114,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -3122,6 +3129,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
@@ -3135,6 +3143,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -3149,6 +3158,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
@@ -3179,6 +3189,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
@@ -3219,6 +3230,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	product_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
@@ -3229,6 +3241,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3239,6 +3252,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** aggregate stddev_pop on columns */
@@ -3248,6 +3262,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3258,6 +3273,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** aggregate stddev_samp on columns */
@@ -3267,6 +3283,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3277,6 +3294,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** Streaming cursor of the table "Offer" */
@@ -3297,6 +3315,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	product_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["float8"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
@@ -3307,6 +3326,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3317,6 +3337,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** update columns of table "Offer" */
@@ -3336,6 +3357,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3346,6 +3368,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** aggregate var_samp on columns */
@@ -3355,6 +3378,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3365,6 +3389,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** aggregate variance on columns */
@@ -3374,6 +3399,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3384,6 +3410,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 	packaging?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	price_per_unit?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	product_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	quantity?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** columns and relationships of "Order" */
@@ -4245,10 +4272,12 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ValueTypes["BusinessWorker_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["BusinessWorker_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["BusinessWorker_aggregate"]],
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4286,10 +4315,12 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	_not?: ValueTypes["Profile_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["Profile_bool_exp"]> | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
+	email?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	first_name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
 	last_name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	phone?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	pictureUrl?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -4302,29 +4333,35 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ValueTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	email?: string | undefined | null | Variable<any, string>,
 	first_name?: string | undefined | null | Variable<any, string>,
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
+	pictureUrl?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["Profile_max_fields"]: AliasType<{
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Profile_min_fields"]: AliasType<{
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4352,10 +4389,12 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ValueTypes["BusinessWorker_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	email?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	first_name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	last_name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	phone?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	pictureUrl?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: Profile */
@@ -4367,10 +4406,12 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** input type for updating data in table "Profile" */
 ["Profile_set_input"]: {
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	email?: string | undefined | null | Variable<any, string>,
 	first_name?: string | undefined | null | Variable<any, string>,
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
+	pictureUrl?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate stddev on columns */
@@ -4398,10 +4439,12 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** Initial value of the column from where the streaming should start */
 ["Profile_stream_cursor_value_input"]: {
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	email?: string | undefined | null | Variable<any, string>,
 	first_name?: string | undefined | null | Variable<any, string>,
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
+	pictureUrl?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate sum on columns */
@@ -8104,6 +8147,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Certificate_select_column"]> | un
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -8256,6 +8300,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8266,6 +8311,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** Boolean expression to filter rows from the table "Offer". All fields are combined with a logical 'AND'. */
@@ -8284,6 +8330,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["float8_comparison_exp"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["float8_comparison_exp"] | undefined | null,
 	product_id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
+	profile_id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
 	quantity?: ResolverInputTypes["float8_comparison_exp"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
 };
@@ -8296,6 +8343,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["float8"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["float8"] | undefined | null,
 	product_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
 	quantity?: ResolverInputTypes["float8"] | undefined | null
 };
 	/** input type for inserting data into table "Offer" */
@@ -8311,6 +8359,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["float8"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["float8"] | undefined | null,
 	product_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
 	quantity?: ResolverInputTypes["float8"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
@@ -8324,6 +8373,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -8338,6 +8388,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null,
 	updated_at?: ResolverInputTypes["order_by"] | undefined | null
 };
@@ -8351,6 +8402,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
@@ -8365,6 +8417,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null,
 	updated_at?: ResolverInputTypes["order_by"] | undefined | null
 };
@@ -8395,6 +8448,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null,
 	updated_at?: ResolverInputTypes["order_by"] | undefined | null
 };
@@ -8435,6 +8489,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["float8"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["float8"] | undefined | null,
 	product_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
 	quantity?: ResolverInputTypes["float8"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
@@ -8445,6 +8500,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8455,6 +8511,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** aggregate stddev_pop on columns */
@@ -8464,6 +8521,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8474,6 +8532,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** aggregate stddev_samp on columns */
@@ -8483,6 +8542,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8493,6 +8553,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** Streaming cursor of the table "Offer" */
@@ -8513,6 +8574,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["float8"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["float8"] | undefined | null,
 	product_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
 	quantity?: ResolverInputTypes["float8"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
@@ -8523,6 +8585,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8533,6 +8596,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** update columns of table "Offer" */
@@ -8552,6 +8616,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8562,6 +8627,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** aggregate var_samp on columns */
@@ -8571,6 +8637,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8581,6 +8648,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** aggregate variance on columns */
@@ -8590,6 +8658,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?:boolean | `@${string}`,
 	price_per_unit?:boolean | `@${string}`,
 	product_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
 	quantity?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -8600,6 +8669,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 	packaging?: ResolverInputTypes["order_by"] | undefined | null,
 	price_per_unit?: ResolverInputTypes["order_by"] | undefined | null,
 	product_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
 	quantity?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** columns and relationships of "Order" */
@@ -9461,10 +9531,12 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ResolverInputTypes["BusinessWorker_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["BusinessWorker_bool_exp"] | undefined | null},ResolverInputTypes["BusinessWorker_aggregate"]],
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -9502,10 +9574,12 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	_not?: ResolverInputTypes["Profile_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["Profile_bool_exp"]> | undefined | null,
 	created_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
+	email?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	first_name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
 	last_name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	phone?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	pictureUrl?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -9518,29 +9592,35 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ResolverInputTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null,
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	email?: string | undefined | null,
 	first_name?: string | undefined | null,
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
+	pictureUrl?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate max on columns */
 ["Profile_max_fields"]: AliasType<{
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Profile_min_fields"]: AliasType<{
 	created_at?:boolean | `@${string}`,
+	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
+	pictureUrl?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -9568,10 +9648,12 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ResolverInputTypes["BusinessWorker_aggregate_order_by"] | undefined | null,
 	created_at?: ResolverInputTypes["order_by"] | undefined | null,
+	email?: ResolverInputTypes["order_by"] | undefined | null,
 	first_name?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
 	last_name?: ResolverInputTypes["order_by"] | undefined | null,
 	phone?: ResolverInputTypes["order_by"] | undefined | null,
+	pictureUrl?: ResolverInputTypes["order_by"] | undefined | null,
 	updated_at?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: Profile */
@@ -9583,10 +9665,12 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** input type for updating data in table "Profile" */
 ["Profile_set_input"]: {
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	email?: string | undefined | null,
 	first_name?: string | undefined | null,
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
+	pictureUrl?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate stddev on columns */
@@ -9614,10 +9698,12 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** Initial value of the column from where the streaming should start */
 ["Profile_stream_cursor_value_input"]: {
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	email?: string | undefined | null,
 	first_name?: string | undefined | null,
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
+	pictureUrl?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate sum on columns */
@@ -13116,11 +13202,11 @@ export type ModelTypes = {
 	/** columns and relationships of "Offer" */
 ["Offer"]: {
 		/** An object relationship */
-	Business: ModelTypes["Business"],
+	Business?: ModelTypes["Business"] | undefined,
 	/** An object relationship */
 	Product: ModelTypes["Product"],
 	active: boolean,
-	business_id: number,
+	business_id?: number | undefined,
 	created_at: ModelTypes["timestamp"],
 	end_date?: ModelTypes["timestamp"] | undefined,
 	harvest_date?: ModelTypes["timestamp"] | undefined,
@@ -13128,6 +13214,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id: number,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13277,6 +13364,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by avg() on columns of table "Offer" */
@@ -13286,6 +13374,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** Boolean expression to filter rows from the table "Offer". All fields are combined with a logical 'AND'. */
@@ -13304,6 +13393,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8_comparison_exp"] | undefined,
 	price_per_unit?: ModelTypes["float8_comparison_exp"] | undefined,
 	product_id?: ModelTypes["Int_comparison_exp"] | undefined,
+	profile_id?: ModelTypes["Int_comparison_exp"] | undefined,
 	quantity?: ModelTypes["float8_comparison_exp"] | undefined,
 	updated_at?: ModelTypes["timestamp_comparison_exp"] | undefined
 };
@@ -13315,6 +13405,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined
 };
 	/** input type for inserting data into table "Offer" */
@@ -13330,6 +13421,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13343,6 +13435,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13356,6 +13449,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined,
 	updated_at?: ModelTypes["order_by"] | undefined
 };
@@ -13369,6 +13463,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13382,6 +13477,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined,
 	updated_at?: ModelTypes["order_by"] | undefined
 };
@@ -13411,6 +13507,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined,
 	updated_at?: ModelTypes["order_by"] | undefined
 };
@@ -13440,6 +13537,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13450,6 +13548,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev() on columns of table "Offer" */
@@ -13459,6 +13558,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** aggregate stddev_pop on columns */
@@ -13468,6 +13568,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev_pop() on columns of table "Offer" */
@@ -13477,6 +13578,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** aggregate stddev_samp on columns */
@@ -13486,6 +13588,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev_samp() on columns of table "Offer" */
@@ -13495,6 +13598,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** Streaming cursor of the table "Offer" */
@@ -13515,6 +13619,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
@@ -13525,6 +13630,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["float8"] | undefined,
 	price_per_unit?: ModelTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: ModelTypes["float8"] | undefined
 };
 	/** order by sum() on columns of table "Offer" */
@@ -13534,6 +13640,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	["Offer_update_column"]:Offer_update_column;
@@ -13552,6 +13659,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by var_pop() on columns of table "Offer" */
@@ -13561,6 +13669,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** aggregate var_samp on columns */
@@ -13570,6 +13679,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by var_samp() on columns of table "Offer" */
@@ -13579,6 +13689,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** aggregate variance on columns */
@@ -13588,6 +13699,7 @@ export type ModelTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by variance() on columns of table "Offer" */
@@ -13597,6 +13709,7 @@ export type ModelTypes = {
 	packaging?: ModelTypes["order_by"] | undefined,
 	price_per_unit?: ModelTypes["order_by"] | undefined,
 	product_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
 	quantity?: ModelTypes["order_by"] | undefined
 };
 	/** columns and relationships of "Order" */
@@ -14368,10 +14481,12 @@ export type ModelTypes = {
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: ModelTypes["BusinessWorker_aggregate"],
 	created_at: ModelTypes["timestamp"],
+	email: string,
 	first_name?: string | undefined,
 	id: number,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregated selection of "Profile" */
@@ -14405,10 +14520,12 @@ export type ModelTypes = {
 	_not?: ModelTypes["Profile_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["Profile_bool_exp"]> | undefined,
 	created_at?: ModelTypes["timestamp_comparison_exp"] | undefined,
+	email?: ModelTypes["String_comparison_exp"] | undefined,
 	first_name?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["Int_comparison_exp"] | undefined,
 	last_name?: ModelTypes["String_comparison_exp"] | undefined,
 	phone?: ModelTypes["String_comparison_exp"] | undefined,
+	pictureUrl?: ModelTypes["String_comparison_exp"] | undefined,
 	updated_at?: ModelTypes["timestamp_comparison_exp"] | undefined
 };
 	["Profile_constraint"]:Profile_constraint;
@@ -14420,28 +14537,34 @@ export type ModelTypes = {
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ModelTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
 	created_at?: ModelTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
 ["Profile_max_fields"]: {
 		created_at?: ModelTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
 ["Profile_min_fields"]: {
 		created_at?: ModelTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Profile" */
@@ -14467,10 +14590,12 @@ export type ModelTypes = {
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ModelTypes["BusinessWorker_aggregate_order_by"] | undefined,
 	created_at?: ModelTypes["order_by"] | undefined,
+	email?: ModelTypes["order_by"] | undefined,
 	first_name?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
 	last_name?: ModelTypes["order_by"] | undefined,
 	phone?: ModelTypes["order_by"] | undefined,
+	pictureUrl?: ModelTypes["order_by"] | undefined,
 	updated_at?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Profile */
@@ -14481,10 +14606,12 @@ export type ModelTypes = {
 	/** input type for updating data in table "Profile" */
 ["Profile_set_input"]: {
 	created_at?: ModelTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate stddev on columns */
@@ -14509,10 +14636,12 @@ export type ModelTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["Profile_stream_cursor_value_input"]: {
 	created_at?: ModelTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate sum on columns */
@@ -17777,11 +17906,11 @@ export type GraphQLTypes = {
 ["Offer"]: {
 	__typename: "Offer",
 	/** An object relationship */
-	Business: GraphQLTypes["Business"],
+	Business?: GraphQLTypes["Business"] | undefined,
 	/** An object relationship */
 	Product: GraphQLTypes["Product"],
 	active: boolean,
-	business_id: number,
+	business_id?: number | undefined,
 	created_at: GraphQLTypes["timestamp"],
 	end_date?: GraphQLTypes["timestamp"] | undefined,
 	harvest_date?: GraphQLTypes["timestamp"] | undefined,
@@ -17789,6 +17918,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id: number,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -17941,6 +18071,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by avg() on columns of table "Offer" */
@@ -17950,6 +18081,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** Boolean expression to filter rows from the table "Offer". All fields are combined with a logical 'AND'. */
@@ -17968,6 +18100,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8_comparison_exp"] | undefined,
 	price_per_unit?: GraphQLTypes["float8_comparison_exp"] | undefined,
 	product_id?: GraphQLTypes["Int_comparison_exp"] | undefined,
+	profile_id?: GraphQLTypes["Int_comparison_exp"] | undefined,
 	quantity?: GraphQLTypes["float8_comparison_exp"] | undefined,
 	updated_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined
 };
@@ -17980,6 +18113,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined
 };
 	/** input type for inserting data into table "Offer" */
@@ -17995,6 +18129,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -18009,6 +18144,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -18022,6 +18158,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined,
 	updated_at?: GraphQLTypes["order_by"] | undefined
 };
@@ -18036,6 +18173,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -18049,6 +18187,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined,
 	updated_at?: GraphQLTypes["order_by"] | undefined
 };
@@ -18079,6 +18218,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined,
 	updated_at?: GraphQLTypes["order_by"] | undefined
 };
@@ -18119,6 +18259,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -18130,6 +18271,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev() on columns of table "Offer" */
@@ -18139,6 +18281,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** aggregate stddev_pop on columns */
@@ -18149,6 +18292,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev_pop() on columns of table "Offer" */
@@ -18158,6 +18302,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** aggregate stddev_samp on columns */
@@ -18168,6 +18313,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by stddev_samp() on columns of table "Offer" */
@@ -18177,6 +18323,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** Streaming cursor of the table "Offer" */
@@ -18197,6 +18344,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
@@ -18208,6 +18356,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["float8"] | undefined,
 	price_per_unit?: GraphQLTypes["float8"] | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: GraphQLTypes["float8"] | undefined
 };
 	/** order by sum() on columns of table "Offer" */
@@ -18217,6 +18366,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** update columns of table "Offer" */
@@ -18237,6 +18387,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by var_pop() on columns of table "Offer" */
@@ -18246,6 +18397,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** aggregate var_samp on columns */
@@ -18256,6 +18408,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by var_samp() on columns of table "Offer" */
@@ -18265,6 +18418,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** aggregate variance on columns */
@@ -18275,6 +18429,7 @@ export type GraphQLTypes = {
 	packaging?: number | undefined,
 	price_per_unit?: number | undefined,
 	product_id?: number | undefined,
+	profile_id?: number | undefined,
 	quantity?: number | undefined
 };
 	/** order by variance() on columns of table "Offer" */
@@ -18284,6 +18439,7 @@ export type GraphQLTypes = {
 	packaging?: GraphQLTypes["order_by"] | undefined,
 	price_per_unit?: GraphQLTypes["order_by"] | undefined,
 	product_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
 	quantity?: GraphQLTypes["order_by"] | undefined
 };
 	/** columns and relationships of "Order" */
@@ -19098,10 +19254,12 @@ export type GraphQLTypes = {
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: GraphQLTypes["BusinessWorker_aggregate"],
 	created_at: GraphQLTypes["timestamp"],
+	email: string,
 	first_name?: string | undefined,
 	id: number,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregated selection of "Profile" */
@@ -19138,10 +19296,12 @@ export type GraphQLTypes = {
 	_not?: GraphQLTypes["Profile_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["Profile_bool_exp"]> | undefined,
 	created_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
+	email?: GraphQLTypes["String_comparison_exp"] | undefined,
 	first_name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["Int_comparison_exp"] | undefined,
 	last_name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	phone?: GraphQLTypes["String_comparison_exp"] | undefined,
+	pictureUrl?: GraphQLTypes["String_comparison_exp"] | undefined,
 	updated_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -19154,30 +19314,36 @@ export type GraphQLTypes = {
 ["Profile_insert_input"]: {
 		BusinessWorkers?: GraphQLTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
 	created_at?: GraphQLTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
 ["Profile_max_fields"]: {
 	__typename: "Profile_max_fields",
 	created_at?: GraphQLTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
 ["Profile_min_fields"]: {
 	__typename: "Profile_min_fields",
 	created_at?: GraphQLTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Profile" */
@@ -19204,10 +19370,12 @@ export type GraphQLTypes = {
 ["Profile_order_by"]: {
 		BusinessWorkers_aggregate?: GraphQLTypes["BusinessWorker_aggregate_order_by"] | undefined,
 	created_at?: GraphQLTypes["order_by"] | undefined,
+	email?: GraphQLTypes["order_by"] | undefined,
 	first_name?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
 	last_name?: GraphQLTypes["order_by"] | undefined,
 	phone?: GraphQLTypes["order_by"] | undefined,
+	pictureUrl?: GraphQLTypes["order_by"] | undefined,
 	updated_at?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Profile */
@@ -19219,10 +19387,12 @@ export type GraphQLTypes = {
 	/** input type for updating data in table "Profile" */
 ["Profile_set_input"]: {
 		created_at?: GraphQLTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate stddev on columns */
@@ -19250,10 +19420,12 @@ export type GraphQLTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["Profile_stream_cursor_value_input"]: {
 		created_at?: GraphQLTypes["timestamp"] | undefined,
+	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
+	pictureUrl?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate sum on columns */
@@ -20784,6 +20956,7 @@ export const enum Offer_select_column {
 	packaging = "packaging",
 	price_per_unit = "price_per_unit",
 	product_id = "product_id",
+	profile_id = "profile_id",
 	quantity = "quantity",
 	updated_at = "updated_at"
 }
@@ -20854,6 +21027,7 @@ export const enum Offer_update_column {
 	packaging = "packaging",
 	price_per_unit = "price_per_unit",
 	product_id = "product_id",
+	profile_id = "profile_id",
 	quantity = "quantity",
 	updated_at = "updated_at"
 }
@@ -20953,24 +21127,29 @@ export const enum Product_update_column {
 }
 /** unique or primary key constraints on table "Profile" */
 export const enum Profile_constraint {
+	Profile_email_key = "Profile_email_key",
 	Profile_pkey = "Profile_pkey"
 }
 /** select columns of table "Profile" */
 export const enum Profile_select_column {
 	created_at = "created_at",
+	email = "email",
 	first_name = "first_name",
 	id = "id",
 	last_name = "last_name",
 	phone = "phone",
+	pictureUrl = "pictureUrl",
 	updated_at = "updated_at"
 }
 /** update columns of table "Profile" */
 export const enum Profile_update_column {
 	created_at = "created_at",
+	email = "email",
 	first_name = "first_name",
 	id = "id",
 	last_name = "last_name",
 	phone = "phone",
+	pictureUrl = "pictureUrl",
 	updated_at = "updated_at"
 }
 /** unique or primary key constraints on table "TransactionReview" */

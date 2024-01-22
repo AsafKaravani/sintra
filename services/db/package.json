@@ -6,7 +6,8 @@
 	"private": "true",
 	"scripts": {
 		"migrate": "dotenv -e ../../.env.local prisma migrate dev",
-		"generate": "dotenv -e ../../.env.local prisma generate"
+		"generate": "dotenv -e ../../.env.local prisma generate",
+		"studio": "dotenv -e ../../.env.local prisma studio"
 	},
 	"devDependencies": {
 		"@types/node": "18.15.11",
