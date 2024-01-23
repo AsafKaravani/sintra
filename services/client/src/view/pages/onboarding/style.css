@@ -11,6 +11,7 @@
 	}
 	.swiper-slide:not(.swiper-slide-active) {
 		@apply scale-90 opacity-30;
+		@apply relative -z-10;
 	}
 
 	.swiper-pagination {
