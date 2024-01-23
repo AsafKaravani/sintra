@@ -175,19 +175,29 @@ model CertificateClaim {
 }
 
 model Offer {
-  id             Int       @id @default(autoincrement())
-  product_id     Int
-  product        Product   @relation(fields: [product_id], references: [id])
-  business_id    Int?
-  business       Business? @relation(fields: [business_id], references: [id])
-  profile_id     Int?
-  profile        Profile?  @relation(fields: [profile_id], references: [id])
-  end_date       DateTime?
-  price_per_unit Float?
-  packaging      Float?
-  quantity       Float?
-  active         Boolean   @default(true)
-  harvest_date   DateTime?
-  created_at     DateTime  @default(now())
-  updated_at     DateTime? @updatedAt
+  id                  Int        @id @default(autoincrement())
+  offer_type          OfferType?
+  parent_id           Int?
+  parent              Offer?     @relation(fields: [parent_id], references: [id], name: "ParentOffer")
+  child_offers        Offer[]    @relation("ParentOffer")
+  product_id          Int
+  product             Product    @relation(fields: [product_id], references: [id])
+  business_id         Int?
+  business            Business?  @relation(fields: [business_id], references: [id])
+  profile_id          Int?
+  profile             Profile?   @relation(fields: [profile_id], references: [id])
+  end_date            DateTime?
+  price_per_unit      Float?
+  packaging           Float?
+  quantity            Float?
+  origin_country      String?
+  destination_country String?
+  appearance          String?
+  texture             String?
+  payment_terms       String?
+  delivery_due_date   DateTime?
+  active              Boolean    @default(true)
+  harvest_date        DateTime?
+  created_at          DateTime   @default(now())
+  updated_at          DateTime?  @updatedAt
 }

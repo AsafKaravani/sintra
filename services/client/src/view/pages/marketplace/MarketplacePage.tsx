@@ -13,7 +13,7 @@ export const MarketplacePage: FC = React.memo(() => {
 
 	return (
 		<div className="p-4">
-			<h1 className="text-xl mb-2">{t('Maketplace')}</h1>
+			<h1 className="text-xl mb-2">{t('Marketplace')}</h1>
 			<div className="border rounded p-2 mb-2 flex items-center">
 				<span className="me-2">Text search</span>
 				<TextField
