@@ -12,7 +12,7 @@ export const Shell: FC<CompProps> = props => {
 			<SideMenu />
 			<div className="flex flex-col flex-1">
 				<TopBar />
-				<div className="flex-1 p-4 overflow-y-auto">{props.children}</div>
+				<div className="flex-1 overflow-y-auto">{props.children}</div>
 			</div>
 		</div>
 	);

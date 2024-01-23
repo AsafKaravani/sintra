@@ -2879,6 +2879,8 @@ count?: [{	columns?: Array<ValueTypes["Certificate_select_column"]> | undefined 
 	Business?:ValueTypes["Business"],
 	/** An object relationship */
 	Product?:ValueTypes["Product"],
+	/** An object relationship */
+	Profile?:ValueTypes["Profile"],
 	active?:boolean | `@${string}`,
 	business_id?:boolean | `@${string}`,
 	created_at?:boolean | `@${string}`,
@@ -3059,6 +3061,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_bool_exp"]: {
 	Business?: ValueTypes["Business_bool_exp"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_bool_exp"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_bool_exp"] | undefined | null | Variable<any, string>,
 	_and?: Array<ValueTypes["Offer_bool_exp"]> | undefined | null | Variable<any, string>,
 	_not?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["Offer_bool_exp"]> | undefined | null | Variable<any, string>,
@@ -3091,6 +3094,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_insert_input"]: {
 	Business?: ValueTypes["Business_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
 	active?: boolean | undefined | null | Variable<any, string>,
 	business_id?: number | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
@@ -3180,6 +3184,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_order_by"]: {
 	Business?: ValueTypes["Business_order_by"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_order_by"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_order_by"] | undefined | null | Variable<any, string>,
 	active?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	business_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
@@ -4271,13 +4276,25 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
 	order_by?: Array<ValueTypes["BusinessWorker_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["BusinessWorker_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["BusinessWorker_aggregate"]],
+Offers?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Offer_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Offer"]],
+Offers_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Offer_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Offer_aggregate"]],
 	created_at?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4311,6 +4328,8 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ValueTypes["BusinessWorker_bool_exp"] | undefined | null | Variable<any, string>,
 	BusinessWorkers_aggregate?: ValueTypes["BusinessWorker_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
+	Offers?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
+	Offers_aggregate?: ValueTypes["Offer_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
 	_and?: Array<ValueTypes["Profile_bool_exp"]> | undefined | null | Variable<any, string>,
 	_not?: ValueTypes["Profile_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["Profile_bool_exp"]> | undefined | null | Variable<any, string>,
@@ -4320,7 +4339,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
 	last_name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	phone?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	pictureUrl?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	picture_url?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -4332,13 +4351,14 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ValueTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
+	Offers?: ValueTypes["Offer_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
 	email?: string | undefined | null | Variable<any, string>,
 	first_name?: string | undefined | null | Variable<any, string>,
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
-	pictureUrl?: string | undefined | null | Variable<any, string>,
+	picture_url?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
@@ -4349,7 +4369,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4361,7 +4381,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4388,13 +4408,14 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ValueTypes["BusinessWorker_aggregate_order_by"] | undefined | null | Variable<any, string>,
+	Offers_aggregate?: ValueTypes["Offer_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	email?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	first_name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	last_name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	phone?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	pictureUrl?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	picture_url?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: Profile */
@@ -4411,7 +4432,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
-	pictureUrl?: string | undefined | null | Variable<any, string>,
+	picture_url?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate stddev on columns */
@@ -4444,7 +4465,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	id?: number | undefined | null | Variable<any, string>,
 	last_name?: string | undefined | null | Variable<any, string>,
 	phone?: string | undefined | null | Variable<any, string>,
-	pictureUrl?: string | undefined | null | Variable<any, string>,
+	picture_url?: string | undefined | null | Variable<any, string>,
 	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate sum on columns */
@@ -8138,6 +8159,8 @@ count?: [{	columns?: Array<ResolverInputTypes["Certificate_select_column"]> | un
 	Business?:ResolverInputTypes["Business"],
 	/** An object relationship */
 	Product?:ResolverInputTypes["Product"],
+	/** An object relationship */
+	Profile?:ResolverInputTypes["Profile"],
 	active?:boolean | `@${string}`,
 	business_id?:boolean | `@${string}`,
 	created_at?:boolean | `@${string}`,
@@ -8318,6 +8341,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_bool_exp"]: {
 	Business?: ResolverInputTypes["Business_bool_exp"] | undefined | null,
 	Product?: ResolverInputTypes["Product_bool_exp"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_bool_exp"] | undefined | null,
 	_and?: Array<ResolverInputTypes["Offer_bool_exp"]> | undefined | null,
 	_not?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["Offer_bool_exp"]> | undefined | null,
@@ -8350,6 +8374,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_insert_input"]: {
 	Business?: ResolverInputTypes["Business_obj_rel_insert_input"] | undefined | null,
 	Product?: ResolverInputTypes["Product_obj_rel_insert_input"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_obj_rel_insert_input"] | undefined | null,
 	active?: boolean | undefined | null,
 	business_id?: number | undefined | null,
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
@@ -8439,6 +8464,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_order_by"]: {
 	Business?: ResolverInputTypes["Business_order_by"] | undefined | null,
 	Product?: ResolverInputTypes["Product_order_by"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_order_by"] | undefined | null,
 	active?: ResolverInputTypes["order_by"] | undefined | null,
 	business_id?: ResolverInputTypes["order_by"] | undefined | null,
 	created_at?: ResolverInputTypes["order_by"] | undefined | null,
@@ -9530,13 +9556,25 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	offset?: number | undefined | null,	/** sort the rows by one or more columns */
 	order_by?: Array<ResolverInputTypes["BusinessWorker_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["BusinessWorker_bool_exp"] | undefined | null},ResolverInputTypes["BusinessWorker_aggregate"]],
+Offers?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Offer_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Offer_bool_exp"] | undefined | null},ResolverInputTypes["Offer"]],
+Offers_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Offer_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Offer_bool_exp"] | undefined | null},ResolverInputTypes["Offer_aggregate"]],
 	created_at?:boolean | `@${string}`,
 	email?:boolean | `@${string}`,
 	first_name?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -9570,6 +9608,8 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ResolverInputTypes["BusinessWorker_bool_exp"] | undefined | null,
 	BusinessWorkers_aggregate?: ResolverInputTypes["BusinessWorker_aggregate_bool_exp"] | undefined | null,
+	Offers?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
+	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_bool_exp"] | undefined | null,
 	_and?: Array<ResolverInputTypes["Profile_bool_exp"]> | undefined | null,
 	_not?: ResolverInputTypes["Profile_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["Profile_bool_exp"]> | undefined | null,
@@ -9579,7 +9619,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
 	last_name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	phone?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	pictureUrl?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	picture_url?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -9591,13 +9631,14 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ResolverInputTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null,
+	Offers?: ResolverInputTypes["Offer_arr_rel_insert_input"] | undefined | null,
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
 	email?: string | undefined | null,
 	first_name?: string | undefined | null,
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
-	pictureUrl?: string | undefined | null,
+	picture_url?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate max on columns */
@@ -9608,7 +9649,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -9620,7 +9661,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	id?:boolean | `@${string}`,
 	last_name?:boolean | `@${string}`,
 	phone?:boolean | `@${string}`,
-	pictureUrl?:boolean | `@${string}`,
+	picture_url?:boolean | `@${string}`,
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -9647,13 +9688,14 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ResolverInputTypes["BusinessWorker_aggregate_order_by"] | undefined | null,
+	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_order_by"] | undefined | null,
 	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	email?: ResolverInputTypes["order_by"] | undefined | null,
 	first_name?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
 	last_name?: ResolverInputTypes["order_by"] | undefined | null,
 	phone?: ResolverInputTypes["order_by"] | undefined | null,
-	pictureUrl?: ResolverInputTypes["order_by"] | undefined | null,
+	picture_url?: ResolverInputTypes["order_by"] | undefined | null,
 	updated_at?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: Profile */
@@ -9670,7 +9712,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
-	pictureUrl?: string | undefined | null,
+	picture_url?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate stddev on columns */
@@ -9703,7 +9745,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	id?: number | undefined | null,
 	last_name?: string | undefined | null,
 	phone?: string | undefined | null,
-	pictureUrl?: string | undefined | null,
+	picture_url?: string | undefined | null,
 	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate sum on columns */
@@ -13205,6 +13247,8 @@ export type ModelTypes = {
 	Business?: ModelTypes["Business"] | undefined,
 	/** An object relationship */
 	Product: ModelTypes["Product"],
+	/** An object relationship */
+	Profile?: ModelTypes["Profile"] | undefined,
 	active: boolean,
 	business_id?: number | undefined,
 	created_at: ModelTypes["timestamp"],
@@ -13381,6 +13425,7 @@ export type ModelTypes = {
 ["Offer_bool_exp"]: {
 	Business?: ModelTypes["Business_bool_exp"] | undefined,
 	Product?: ModelTypes["Product_bool_exp"] | undefined,
+	Profile?: ModelTypes["Profile_bool_exp"] | undefined,
 	_and?: Array<ModelTypes["Offer_bool_exp"]> | undefined,
 	_not?: ModelTypes["Offer_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["Offer_bool_exp"]> | undefined,
@@ -13412,6 +13457,7 @@ export type ModelTypes = {
 ["Offer_insert_input"]: {
 	Business?: ModelTypes["Business_obj_rel_insert_input"] | undefined,
 	Product?: ModelTypes["Product_obj_rel_insert_input"] | undefined,
+	Profile?: ModelTypes["Profile_obj_rel_insert_input"] | undefined,
 	active?: boolean | undefined,
 	business_id?: number | undefined,
 	created_at?: ModelTypes["timestamp"] | undefined,
@@ -13498,6 +13544,7 @@ export type ModelTypes = {
 ["Offer_order_by"]: {
 	Business?: ModelTypes["Business_order_by"] | undefined,
 	Product?: ModelTypes["Product_order_by"] | undefined,
+	Profile?: ModelTypes["Profile_order_by"] | undefined,
 	active?: ModelTypes["order_by"] | undefined,
 	business_id?: ModelTypes["order_by"] | undefined,
 	created_at?: ModelTypes["order_by"] | undefined,
@@ -14480,13 +14527,17 @@ export type ModelTypes = {
 	BusinessWorkers: Array<ModelTypes["BusinessWorker"]>,
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: ModelTypes["BusinessWorker_aggregate"],
+	/** An array relationship */
+	Offers: Array<ModelTypes["Offer"]>,
+	/** An aggregate relationship */
+	Offers_aggregate: ModelTypes["Offer_aggregate"],
 	created_at: ModelTypes["timestamp"],
 	email: string,
 	first_name?: string | undefined,
 	id: number,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregated selection of "Profile" */
@@ -14516,6 +14567,8 @@ export type ModelTypes = {
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ModelTypes["BusinessWorker_bool_exp"] | undefined,
 	BusinessWorkers_aggregate?: ModelTypes["BusinessWorker_aggregate_bool_exp"] | undefined,
+	Offers?: ModelTypes["Offer_bool_exp"] | undefined,
+	Offers_aggregate?: ModelTypes["Offer_aggregate_bool_exp"] | undefined,
 	_and?: Array<ModelTypes["Profile_bool_exp"]> | undefined,
 	_not?: ModelTypes["Profile_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["Profile_bool_exp"]> | undefined,
@@ -14525,7 +14578,7 @@ export type ModelTypes = {
 	id?: ModelTypes["Int_comparison_exp"] | undefined,
 	last_name?: ModelTypes["String_comparison_exp"] | undefined,
 	phone?: ModelTypes["String_comparison_exp"] | undefined,
-	pictureUrl?: ModelTypes["String_comparison_exp"] | undefined,
+	picture_url?: ModelTypes["String_comparison_exp"] | undefined,
 	updated_at?: ModelTypes["timestamp_comparison_exp"] | undefined
 };
 	["Profile_constraint"]:Profile_constraint;
@@ -14536,13 +14589,14 @@ export type ModelTypes = {
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ModelTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
+	Offers?: ModelTypes["Offer_arr_rel_insert_input"] | undefined,
 	created_at?: ModelTypes["timestamp"] | undefined,
 	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
@@ -14553,7 +14607,7 @@ export type ModelTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
@@ -14564,7 +14618,7 @@ export type ModelTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Profile" */
@@ -14589,13 +14643,14 @@ export type ModelTypes = {
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ModelTypes["BusinessWorker_aggregate_order_by"] | undefined,
+	Offers_aggregate?: ModelTypes["Offer_aggregate_order_by"] | undefined,
 	created_at?: ModelTypes["order_by"] | undefined,
 	email?: ModelTypes["order_by"] | undefined,
 	first_name?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
 	last_name?: ModelTypes["order_by"] | undefined,
 	phone?: ModelTypes["order_by"] | undefined,
-	pictureUrl?: ModelTypes["order_by"] | undefined,
+	picture_url?: ModelTypes["order_by"] | undefined,
 	updated_at?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Profile */
@@ -14611,7 +14666,7 @@ export type ModelTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate stddev on columns */
@@ -14641,7 +14696,7 @@ export type ModelTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate sum on columns */
@@ -17909,6 +17964,8 @@ export type GraphQLTypes = {
 	Business?: GraphQLTypes["Business"] | undefined,
 	/** An object relationship */
 	Product: GraphQLTypes["Product"],
+	/** An object relationship */
+	Profile?: GraphQLTypes["Profile"] | undefined,
 	active: boolean,
 	business_id?: number | undefined,
 	created_at: GraphQLTypes["timestamp"],
@@ -18088,6 +18145,7 @@ export type GraphQLTypes = {
 ["Offer_bool_exp"]: {
 		Business?: GraphQLTypes["Business_bool_exp"] | undefined,
 	Product?: GraphQLTypes["Product_bool_exp"] | undefined,
+	Profile?: GraphQLTypes["Profile_bool_exp"] | undefined,
 	_and?: Array<GraphQLTypes["Offer_bool_exp"]> | undefined,
 	_not?: GraphQLTypes["Offer_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["Offer_bool_exp"]> | undefined,
@@ -18120,6 +18178,7 @@ export type GraphQLTypes = {
 ["Offer_insert_input"]: {
 		Business?: GraphQLTypes["Business_obj_rel_insert_input"] | undefined,
 	Product?: GraphQLTypes["Product_obj_rel_insert_input"] | undefined,
+	Profile?: GraphQLTypes["Profile_obj_rel_insert_input"] | undefined,
 	active?: boolean | undefined,
 	business_id?: number | undefined,
 	created_at?: GraphQLTypes["timestamp"] | undefined,
@@ -18209,6 +18268,7 @@ export type GraphQLTypes = {
 ["Offer_order_by"]: {
 		Business?: GraphQLTypes["Business_order_by"] | undefined,
 	Product?: GraphQLTypes["Product_order_by"] | undefined,
+	Profile?: GraphQLTypes["Profile_order_by"] | undefined,
 	active?: GraphQLTypes["order_by"] | undefined,
 	business_id?: GraphQLTypes["order_by"] | undefined,
 	created_at?: GraphQLTypes["order_by"] | undefined,
@@ -19253,13 +19313,17 @@ export type GraphQLTypes = {
 	BusinessWorkers: Array<GraphQLTypes["BusinessWorker"]>,
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: GraphQLTypes["BusinessWorker_aggregate"],
+	/** An array relationship */
+	Offers: Array<GraphQLTypes["Offer"]>,
+	/** An aggregate relationship */
+	Offers_aggregate: GraphQLTypes["Offer_aggregate"],
 	created_at: GraphQLTypes["timestamp"],
 	email: string,
 	first_name?: string | undefined,
 	id: number,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregated selection of "Profile" */
@@ -19292,6 +19356,8 @@ export type GraphQLTypes = {
 ["Profile_bool_exp"]: {
 		BusinessWorkers?: GraphQLTypes["BusinessWorker_bool_exp"] | undefined,
 	BusinessWorkers_aggregate?: GraphQLTypes["BusinessWorker_aggregate_bool_exp"] | undefined,
+	Offers?: GraphQLTypes["Offer_bool_exp"] | undefined,
+	Offers_aggregate?: GraphQLTypes["Offer_aggregate_bool_exp"] | undefined,
 	_and?: Array<GraphQLTypes["Profile_bool_exp"]> | undefined,
 	_not?: GraphQLTypes["Profile_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["Profile_bool_exp"]> | undefined,
@@ -19301,7 +19367,7 @@ export type GraphQLTypes = {
 	id?: GraphQLTypes["Int_comparison_exp"] | undefined,
 	last_name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	phone?: GraphQLTypes["String_comparison_exp"] | undefined,
-	pictureUrl?: GraphQLTypes["String_comparison_exp"] | undefined,
+	picture_url?: GraphQLTypes["String_comparison_exp"] | undefined,
 	updated_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "Profile" */
@@ -19313,13 +19379,14 @@ export type GraphQLTypes = {
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 		BusinessWorkers?: GraphQLTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
+	Offers?: GraphQLTypes["Offer_arr_rel_insert_input"] | undefined,
 	created_at?: GraphQLTypes["timestamp"] | undefined,
 	email?: string | undefined,
 	first_name?: string | undefined,
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
@@ -19331,7 +19398,7 @@ export type GraphQLTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
@@ -19343,7 +19410,7 @@ export type GraphQLTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Profile" */
@@ -19369,13 +19436,14 @@ export type GraphQLTypes = {
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 		BusinessWorkers_aggregate?: GraphQLTypes["BusinessWorker_aggregate_order_by"] | undefined,
+	Offers_aggregate?: GraphQLTypes["Offer_aggregate_order_by"] | undefined,
 	created_at?: GraphQLTypes["order_by"] | undefined,
 	email?: GraphQLTypes["order_by"] | undefined,
 	first_name?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
 	last_name?: GraphQLTypes["order_by"] | undefined,
 	phone?: GraphQLTypes["order_by"] | undefined,
-	pictureUrl?: GraphQLTypes["order_by"] | undefined,
+	picture_url?: GraphQLTypes["order_by"] | undefined,
 	updated_at?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Profile */
@@ -19392,7 +19460,7 @@ export type GraphQLTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate stddev on columns */
@@ -19425,7 +19493,7 @@ export type GraphQLTypes = {
 	id?: number | undefined,
 	last_name?: string | undefined,
 	phone?: string | undefined,
-	pictureUrl?: string | undefined,
+	picture_url?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate sum on columns */
@@ -21138,7 +21206,7 @@ export const enum Profile_select_column {
 	id = "id",
 	last_name = "last_name",
 	phone = "phone",
-	pictureUrl = "pictureUrl",
+	picture_url = "picture_url",
 	updated_at = "updated_at"
 }
 /** update columns of table "Profile" */
@@ -21149,7 +21217,7 @@ export const enum Profile_update_column {
 	id = "id",
 	last_name = "last_name",
 	phone = "phone",
-	pictureUrl = "pictureUrl",
+	picture_url = "picture_url",
 	updated_at = "updated_at"
 }
 /** unique or primary key constraints on table "TransactionReview" */

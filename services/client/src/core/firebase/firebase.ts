@@ -92,7 +92,7 @@ export const useStorage = () => {
 const useFile = (fileName: string) => {
 	const [value, loading, error] = useDownloadURL(ref(storage, fileName));
 	return {
-		url,
+		url: value,
 		loading,
 		error
 	};

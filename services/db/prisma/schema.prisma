@@ -11,16 +11,16 @@ datasource db {
 }
 
 model Profile {
-  id         Int              @id @default(autoincrement())
-  email      String           @unique
-  pictureUrl String?
-  first_name String?
-  last_name  String?
-  phone      String?
-  created_at DateTime         @default(now())
-  updated_at DateTime?        @updatedAt
-  WorkingAt  BusinessWorker[]
-  Offer      Offer[]
+  id          Int              @id @default(autoincrement())
+  email       String           @unique
+  picture_url String?
+  first_name  String?
+  last_name   String?
+  phone       String?
+  created_at  DateTime         @default(now())
+  updated_at  DateTime?        @updatedAt
+  WorkingAt   BusinessWorker[]
+  Offer       Offer[]
 }
 
 model Business {

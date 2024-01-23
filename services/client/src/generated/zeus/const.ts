@@ -1110,6 +1110,7 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_bool_exp:{
 		Business:"Business_bool_exp",
 		Product:"Product_bool_exp",
+		Profile:"Profile_bool_exp",
 		_and:"Offer_bool_exp",
 		_not:"Offer_bool_exp",
 		_or:"Offer_bool_exp",
@@ -1135,6 +1136,7 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_insert_input:{
 		Business:"Business_obj_rel_insert_input",
 		Product:"Product_obj_rel_insert_input",
+		Profile:"Profile_obj_rel_insert_input",
 		created_at:"timestamp",
 		end_date:"timestamp",
 		harvest_date:"timestamp",
@@ -1177,6 +1179,7 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_order_by:{
 		Business:"Business_order_by",
 		Product:"Product_order_by",
+		Profile:"Profile_order_by",
 		active:"order_by",
 		business_id:"order_by",
 		created_at:"order_by",
@@ -1784,6 +1787,16 @@ export const AllTypesProps: Record<string,any> = {
 			distinct_on:"BusinessWorker_select_column",
 			order_by:"BusinessWorker_order_by",
 			where:"BusinessWorker_bool_exp"
+		},
+		Offers:{
+			distinct_on:"Offer_select_column",
+			order_by:"Offer_order_by",
+			where:"Offer_bool_exp"
+		},
+		Offers_aggregate:{
+			distinct_on:"Offer_select_column",
+			order_by:"Offer_order_by",
+			where:"Offer_bool_exp"
 		}
 	},
 	Profile_aggregate_fields:{
@@ -1794,6 +1807,8 @@ export const AllTypesProps: Record<string,any> = {
 	Profile_bool_exp:{
 		BusinessWorkers:"BusinessWorker_bool_exp",
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate_bool_exp",
+		Offers:"Offer_bool_exp",
+		Offers_aggregate:"Offer_aggregate_bool_exp",
 		_and:"Profile_bool_exp",
 		_not:"Profile_bool_exp",
 		_or:"Profile_bool_exp",
@@ -1803,7 +1818,7 @@ export const AllTypesProps: Record<string,any> = {
 		id:"Int_comparison_exp",
 		last_name:"String_comparison_exp",
 		phone:"String_comparison_exp",
-		pictureUrl:"String_comparison_exp",
+		picture_url:"String_comparison_exp",
 		updated_at:"timestamp_comparison_exp"
 	},
 	Profile_constraint: "enum" as const,
@@ -1812,6 +1827,7 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Profile_insert_input:{
 		BusinessWorkers:"BusinessWorker_arr_rel_insert_input",
+		Offers:"Offer_arr_rel_insert_input",
 		created_at:"timestamp",
 		updated_at:"timestamp"
 	},
@@ -1826,13 +1842,14 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Profile_order_by:{
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate_order_by",
+		Offers_aggregate:"Offer_aggregate_order_by",
 		created_at:"order_by",
 		email:"order_by",
 		first_name:"order_by",
 		id:"order_by",
 		last_name:"order_by",
 		phone:"order_by",
-		pictureUrl:"order_by",
+		picture_url:"order_by",
 		updated_at:"order_by"
 	},
 	Profile_pk_columns_input:{
@@ -3675,6 +3692,7 @@ export const ReturnTypes: Record<string,any> = {
 	Offer:{
 		Business:"Business",
 		Product:"Product",
+		Profile:"Profile",
 		active:"Boolean",
 		business_id:"Int",
 		created_at:"timestamp",
@@ -4017,13 +4035,15 @@ export const ReturnTypes: Record<string,any> = {
 	Profile:{
 		BusinessWorkers:"BusinessWorker",
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate",
+		Offers:"Offer",
+		Offers_aggregate:"Offer_aggregate",
 		created_at:"timestamp",
 		email:"String",
 		first_name:"String",
 		id:"Int",
 		last_name:"String",
 		phone:"String",
-		pictureUrl:"String",
+		picture_url:"String",
 		updated_at:"timestamp"
 	},
 	Profile_aggregate:{
@@ -4053,7 +4073,7 @@ export const ReturnTypes: Record<string,any> = {
 		id:"Int",
 		last_name:"String",
 		phone:"String",
-		pictureUrl:"String",
+		picture_url:"String",
 		updated_at:"timestamp"
 	},
 	Profile_min_fields:{
@@ -4063,7 +4083,7 @@ export const ReturnTypes: Record<string,any> = {
 		id:"Int",
 		last_name:"String",
 		phone:"String",
-		pictureUrl:"String",
+		picture_url:"String",
 		updated_at:"timestamp"
 	},
 	Profile_mutation_response:{

@@ -10,7 +10,7 @@ export const useCreateProfileIfNoProfile = () => {
 		const noProfile = query_Profile.data?.Profile.length === 0;
 		if (noProfile) {
 			console.log('Creating profile');
-			mutation_CreateProfile.mutate();
+			mutation_CreateProfile.mutate({});
 		}
 	}, [query_Profile.data?.Profile]);
 };

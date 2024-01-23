@@ -56,18 +56,16 @@ export const useQuery_AllOffers = () => {
 };
 
 export const useQuery_CurrentUserOffers = () => {
-	const userId = useAuthId();
+	const profileId = useQuery_ProfileId();
 	return useQuery({
-		enabled: !!userId,
+		enabled: !!profileId,
 		queryKey: ['offers', 'current-user-offers'],
 		queryFn: () =>
 			chain('query', { scalars })({
 				Offer: [{
 					order_by: [{ created_at: order_by.desc }],
 					where: {
-						business_id: {
-							_eq: 1
-						}
+						profile_id: { _eq: profileId }
 					}
 				}, {
 					id: true,
@@ -133,7 +131,7 @@ export const useQuery_FindOffers = (search: string) => {
 };
 
 export const useMutation_CreateOffer = () => {
-	const userId = useAuthId();
+	const profileId = useQuery_ProfileId();
 	const toastIdRef = useRef<string>();
 	return useMutation({
 		mutationFn: (offer: Offer) => {
@@ -142,7 +140,7 @@ export const useMutation_CreateOffer = () => {
 				insert_Offer_one: [{
 					object: {
 						...toInput(offer),
-						business_id: 1
+						profileId: profileId
 					}
 				}, {
 					id: true
@@ -158,7 +156,6 @@ export const useMutation_CreateOffer = () => {
 };
 
 export const useMutation_UpdateOffer = () => {
-	const userId = useAuthId();
 	const toastIdRef = useRef<string>();
 	return useMutation({
 		mutationFn: (offer: Offer) => {
@@ -206,6 +203,7 @@ export const useMutation_DeleteOffer = () => {
 };
 
 // ---- Profile --------------------------------------------------------------------------
+export type Profile = DeepPartial<ModelTypes['Profile']>;
 
 export const useQuery_Profile = () => {
 	const [user] = useAuth();
@@ -216,19 +214,25 @@ export const useQuery_Profile = () => {
 			chain('query', { scalars })({
 				Profile: [{
 					where: {
-						email: { _eq: user.email }
+						email: { _eq: user!.email }
 					}
 				}, {
+					id: true,
 					email: true,
 					first_name: true,
 					last_name: true,
 					phone: true,
-					pictureUrl: true,
+					picture_url: true,
 					updated_at: true,
 					created_at: true
 				}]
 			})
 	});
+};
+
+export const useQuery_ProfileId = () => {
+	const query_Profile = useQuery_Profile();
+	return query_Profile.data?.Profile?.[0]?.id;
 };
 
 export const useMutation_CreateProfile = () => {
@@ -239,7 +243,7 @@ export const useMutation_CreateProfile = () => {
 				insert_Profile_one: [{
 					object: {
 						...toInput(profile),
-						email: user.email
+						email: user!.email
 					}
 				}, {
 					id: true
@@ -248,6 +252,38 @@ export const useMutation_CreateProfile = () => {
 		},
 		onSettled: (data, error) => {
 			queryClient.invalidateQueries({ queryKey: ['profile'] });
+		}
+	});
+};
+
+export const useMutation_UpdateProfile = () => {
+	const [user] = useAuth();
+	const toastIdRef = useRef<string>();
+	return useMutation({
+		mutationFn: (profile: DeepPartial<ModelTypes['Profile']>) => {
+			toastIdRef.current = toast.loading('Updating profile...');
+			return chain('mutation', { scalars })({
+				update_Profile: [{
+					where: {
+						email: { _eq: user!.email }
+					},
+					_set: {
+						...profile,
+						email: user!.email
+					}
+				}, {
+					affected_rows: true,
+					returning: {
+						id: true
+					}
+				}]
+			});
+		},
+		onSettled: (data, error) => {
+			console.error(error);
+			queryClient.invalidateQueries({ queryKey: ['profile'] });
+			if (error) toast.error('Error updating profile', { id: toastIdRef.current });
+			else toast.success('Profile updated successfully', { id: toastIdRef.current });
 		}
 	});
 };

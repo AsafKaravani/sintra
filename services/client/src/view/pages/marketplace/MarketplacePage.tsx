@@ -12,7 +12,7 @@ export const MarketplacePage: FC = React.memo(() => {
 	const query_Offers = useQuery_FindOffers(search);
 
 	return (
-		<>
+		<div className="p-4">
 			<h1 className="text-xl mb-2">{t('Maketplace')}</h1>
 			<div className="border rounded p-2 mb-2 flex items-center">
 				<span className="me-2">Text search</span>
@@ -83,6 +83,6 @@ export const MarketplacePage: FC = React.memo(() => {
 					/>
 				))}
 			</div>
-		</>
+		</div>
 	);
 });

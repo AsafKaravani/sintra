@@ -109,7 +109,7 @@ export const OffersPage: FC = React.memo(() => {
 	};
 
 	return (
-		<>
+		<div className="p-4 h-full">
 			<div className="flex gap-2 mb-2">
 				<h1 className="text-xl mb-2">{t('Manage Offers')}</h1>
 				{!inputRowData ? (
@@ -128,7 +128,7 @@ export const OffersPage: FC = React.memo(() => {
 			<div className="h-1/2">
 				<AgGridReact {...gridOptions} className="ag-theme-quartz" />
 			</div>
-		</>
+		</div>
 	);
 });
 

@@ -13,7 +13,6 @@
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"typescript.tsserver.maxTsServerMemory": 8192,
 	"typescript.format.enable": false,
-	"typescript.validate.enable": false,
 	"editor.accessibilitySupport": "off",
 	"extensions.ignoreRecommendations": true,
 	"telemetry.telemetryLevel": "crash",
@@ -26,5 +25,7 @@
 	"[prisma]": {
 		"editor.defaultFormatter": "Prisma.prisma"
 	},
+  "css.customData": [".vscode/tailwind.json"],
+
 
 }

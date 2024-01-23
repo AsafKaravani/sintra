@@ -12,6 +12,9 @@ import 'ag-grid-community/styles/ag-theme-quartz.css'; // Theme
 
 import './core/translations/i18n';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<App />
