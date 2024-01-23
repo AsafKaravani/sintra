@@ -1,10 +1,11 @@
-import { Avatar, Button, TextField } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Avatar, Button, CircularProgress, TextField } from '@mui/material';
+import React, { useEffect, useRef } from 'react';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslate } from '../../../core/translations/useTranslate';
 import { useMutation_UpdateProfile, useQuery_Profile } from '../../../core/api/api';
 import toast from 'react-hot-toast';
+import { getFileURL, useStorage } from '../../../core/firebase/firebase';
 type ProfileFormFields = {
 	email: string;
 	first_name: string;
@@ -22,8 +23,22 @@ export const ProfileForm: FC<ProfileFormProps> = React.memo(props => {
 	const mutation_UpdateProfile = useMutation_UpdateProfile();
 	const query_Profile = useQuery_Profile();
 	const profileData = query_Profile.data?.Profile[0];
-	const { register, handleSubmit, setValue, formState, getValues } = useForm<ProfileFormFields>();
-	console.log('formState.errors', formState.errors);
+	const { register, setValue, formState, getValues, watch } = useForm<ProfileFormFields>();
+	const formValues = watch();
+	const fileInputRef = useRef<HTMLInputElement>(null);
+	const storage = useStorage();
+	const handleFileUpload: React.ChangeEventHandler<HTMLInputElement> = e => {
+		console.log(e.target.files);
+		if (!e.target.files) return;
+		storage.upload(e.target.files![0].name, e.target.files![0]).then(async res => {
+			if (!res?.ref) return;
+			const fileUrl = await getFileURL(res?.ref);
+			console.log(fileUrl);
+			setValue('picture_url', fileUrl);
+		});
+	};
+
+	console.log(storage);
 
 	const submit = () => {
 		const values = getValues();
@@ -62,12 +77,25 @@ export const ProfileForm: FC<ProfileFormProps> = React.memo(props => {
 			<form className="flex flex-col items-center gap-4 w-4/5 max-w-lg">
 				<div className="relative">
 					<Button
-						type="submit"
-						className="bg-black transition-all absolute top-0 left-0 w-32 h-32 hover:opacity-70 opacity-0 z-10 rounded-full"
+						onClick={() => fileInputRef.current?.click()}
+						className="bg-black transition-all absolute top-0 left-0 w-32 h-32 opacity-0 hover:opacity-80 z-10 rounded-full"
 					>
 						Upload Photo
 					</Button>
-					<Avatar className="w-32 h-32" />
+					<input
+						type="file"
+						ref={fileInputRef}
+						onChange={handleFileUpload}
+						className="hidden"
+						accept=".jpg,.jpeg,.png"
+					/>
+					{storage.uploading ? (
+						<div className="w-32 h-32 flex justify-center items-center border-4 border-slate-100 rounded-full bg-slate-300">
+							<CircularProgress />
+						</div>
+					) : (
+						<Avatar className="w-32 h-32" src={formValues.picture_url || profileData?.picture_url} />
+					)}
 				</div>
 				<TextField {...register('picture_url')} className="hidden" />
 				<span className="flex gap-2 w-full">

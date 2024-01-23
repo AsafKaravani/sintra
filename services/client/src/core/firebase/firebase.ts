@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
-import { getStorage, ref, deleteObject } from 'firebase/storage';
+import { getStorage, ref, deleteObject, getDownloadURL, StorageReference } from 'firebase/storage';
 
 import {
 	SignOutHook,
@@ -74,8 +74,10 @@ export const useStorage = () => {
 		snapshot,
 		error
 	] = useUploadFile();
-	const upload = (fileName: string, data: uploadFileParams[1], metadata: uploadFileParams[2]) => {
-		const fileRef = ref(storage, fileName);
+	const upload = (fileName: string, data: uploadFileParams[1], metadata?: uploadFileParams[2]) => {
+		const now = new Date();
+		const unixTime = Math.floor(now.getTime());
+		const fileRef = ref(storage, `${unixTime}_${fileName}`);
 		return uploadFile(fileRef, data, metadata);
 	};
 	const deleteFile = (fileName: string) => deleteObject(ref(storage, fileName));
@@ -88,6 +90,8 @@ export const useStorage = () => {
 		error
 	};
 };
+
+export const getFileURL = (fileRef: StorageReference) => getDownloadURL(fileRef);
 
 const useFile = (fileName: string) => {
 	const [value, loading, error] = useDownloadURL(ref(storage, fileName));

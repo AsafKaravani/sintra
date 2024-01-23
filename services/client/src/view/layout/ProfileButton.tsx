@@ -1,14 +1,17 @@
-import { Button, Popover } from '@mui/material';
+import { Avatar, Button, Popover } from '@mui/material';
 import { FC } from 'react';
 import { useAuth, useLogout } from '../../core/firebase/firebase';
 import React from 'react';
 import { useTranslate } from '../../core/translations/useTranslate';
+import { useQuery_Profile } from '../../core/api/api';
 
 export const ProfileButton: FC = () => {
 	const t = useTranslate();
 	const [logout] = useLogout();
 
 	const [user] = useAuth();
+	const query_Profile = useQuery_Profile();
+	const profile = query_Profile.data?.Profile[0];
 
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,8 +30,10 @@ export const ProfileButton: FC = () => {
 				variant="text"
 				className="text-slate-500 rounded-none h-full flex gap-2 items-center"
 			>
-				<i className="fa-solid fa-user-circle text-xl"></i>
-				<span>{user?.displayName}</span>
+				<Avatar className="w-7 h-7" src={profile?.picture_url} />
+				<span>
+					{profile?.first_name} {profile?.last_name}
+				</span>
 			</Button>
 			<Popover
 				id={id}
