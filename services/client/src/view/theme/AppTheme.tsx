@@ -44,7 +44,8 @@ export const AppTheme: FC<AppThemeProps> = props => {
 				styleOverrides: {
 					root: {
 						'& .MuiSelect-select': {
-							padding: '4px 14px'
+							padding: '4px 14px',
+							height: '35px'
 						}
 					}
 				}
@@ -68,6 +69,11 @@ export const AppTheme: FC<AppThemeProps> = props => {
 			MuiListItemButton: {
 				defaultProps: {
 					disableRipple: true
+				}
+			},
+			MuiTooltip: {
+				defaultProps: {
+					arrow: true
 				}
 			}
 		}

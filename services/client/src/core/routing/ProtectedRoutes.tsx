@@ -5,7 +5,7 @@ import { Shell } from '../../view/layout/Shell';
 import { checkAuthStatus } from '../firebase/firebase';
 import { LiveMarketPage } from '../../view/pages/live-market/LiveMarketPage';
 import { MarketplacePage } from '../../view/pages/marketplace/MarketplacePage';
-import { OffersPage } from '../../view/pages/OffersPage';
+import { OffersPage } from '../../view/pages/offers-page/OffersPage';
 import { RequestsPage } from '../../view/pages/RequestsPage';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';

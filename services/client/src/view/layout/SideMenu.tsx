@@ -48,18 +48,21 @@ export const SideMenu: FC = React.memo(() => {
 			<List>
 				<SideMenuItem text="Marketplace" to="/s/marketplace" icon="scale-balanced" />
 				<SideMenuItem text="Offers" to="/s/offers" icon="hand-holding-box" />
-				<SideMenuItem
+				<SideMenuItem text="My Requests" to="/s/requests" icon="cart-shopping" />
+				<SideMenuItem text="Buyers Requests" to="/s/requests" icon="inbox" notifications={4} notificationsColor="red" />
+
+				{/* <SideMenuItem
 					disabled
 					to="/s/live-market"
 					text="Live Market"
 					icon="bullhorn"
 					//notifications={4}
 					//notificationsColor="red"
-				/>
-				<SideMenuItem disabled text="Requests" to="/s/requests" icon="satellite-dish" />
+				/> */}
+				{/* <SideMenuItem disabled text="Requests" to="/s/requests" icon="satellite-dish" />
 				<SideMenuItem disabled text="Sales" to="/s/sales" icon="sack-dollar" />
 				<SideMenuItem disabled text="Dispatches" to="/s/dispatches" icon="truck" notifications={2} />
-				<SideMenuItem disabled text="Invoices" to="/s/invoices" icon="receipt" />
+				<SideMenuItem disabled text="Invoices" to="/s/invoices" icon="receipt" /> */}
 			</List>
 		</Drawer>
 	);

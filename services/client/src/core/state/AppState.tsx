@@ -13,7 +13,7 @@ export const AppState: FC<AppStateProps> = React.memo(props => {
 		<>
 			<QueryClientProvider client={queryClient}>
 				<RecoilRoot>{props.children}</RecoilRoot>
-				<ReactQueryDevtools initialIsOpen={false} />
+				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			</QueryClientProvider>
 		</>
 	);

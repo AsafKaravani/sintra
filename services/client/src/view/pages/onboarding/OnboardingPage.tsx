@@ -4,7 +4,7 @@ import { useMutation_CreateProfile, useQuery_Profile } from '../../../core/api/a
 import { useCreateProfileIfNoProfile } from './useCreateProfileIfNoProfile';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import './style.css';
+import './styles.css';
 import { Button } from '@mui/material';
 import { Swiper as SwiperType } from 'swiper/types';
 import { ProfileForm } from './ProfileForm';
@@ -58,6 +58,10 @@ export const OnboardingPage: FC = React.memo(() => {
 							Go To Marketplace
 							<i className="fas fa-arrow-right ml-2"></i>
 						</Button>
+						<img
+							src="/art/barista-holds-a-bag-of-coffee-bean.png"
+							className="pointer-events-none absolute -right-[60px] bottom-[0] w-[250px] -scale-x-100 z-50"
+						/>
 					</SwiperSlide>
 				</Swiper>
 			</div>

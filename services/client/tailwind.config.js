@@ -1,20 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 
-import tailwindSafelistGenerator from 'tailwind-safelist-generator'
+import tailwindSafelistGenerator from 'tailwind-safelist-generator';
 
 export default {
-	content: [
-		"./index.html",
-		"./src/**/*.{js,ts,jsx,tsx}",
-		'./safelist.txt'
-	],
+	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './safelist.txt'],
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				'primary-color': 'var(--primary-color)',
+				'secondary-color': 'var(--secondary-color)'
+			}
+		}
 	},
 	plugins: [tailwindSafelistGenerator({
 		path: 'safelist.txt',
-		patterns: ['bg-{colors}'],
+		patterns: ['bg-{colors}']
 	})],
-	important: true,
-}
-
+	important: true
+};

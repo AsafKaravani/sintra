@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FC } from 'react';
-import { useTranslate } from '../../core/translations/useTranslate';
+import { useTranslate } from '../../../core/translations/useTranslate';
 import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { Button } from '@mui/material';
@@ -10,8 +10,10 @@ import {
 	useMutation_UpdateOffer,
 	useQuery_CurrentUserOffers,
 	useMutation_DeleteOffer
-} from '../../core/api/api';
+} from '../../../core/api/api';
 import moment from 'moment';
+import './styles.css';
+import { OfferEditor } from './OfferEditor';
 
 export const OffersPage: FC = React.memo(() => {
 	const t = useTranslate();
@@ -19,6 +21,8 @@ export const OffersPage: FC = React.memo(() => {
 	const mutation_CreateOffer = useMutation_CreateOffer();
 	const mutation_UpdateOffer = useMutation_UpdateOffer();
 	const mutation_deleteOffer = useMutation_DeleteOffer();
+
+	const [focusedOffer, setFocusedOffer] = useState<Offer | undefined>();
 
 	// Row Data: The data to be displayed.
 	const [inputRowData, setInputRowData] = useState<Offer | undefined>();
@@ -62,7 +66,7 @@ export const OffersPage: FC = React.memo(() => {
 	]);
 
 	const defaultColDef: ColDef = {
-		editable: !mutation_CreateOffer.isPending,
+		editable: false,
 		sortable: true,
 		filter: true,
 		resizable: true,
@@ -95,6 +99,18 @@ export const OffersPage: FC = React.memo(() => {
 		columnDefs: colDefs,
 		rowData: query_MyOffers.data?.Offer || [],
 		pinnedTopRowData: inputRowData ? [inputRowData] : [],
+		onRowClicked: event => {
+			if (!event.data) return;
+			if (focusedOffer?.id === event.data?.id) {
+				setFocusedOffer(undefined);
+			} else {
+				setFocusedOffer(event.data);
+			}
+		},
+
+		rowClassRules: {
+			'focused-row': params => params.data?.id === focusedOffer?.id
+		},
 
 		onCellEditingStopped: event => {
 			if (event.data && isPinnedRowDataCompleted(event)) {
@@ -109,9 +125,9 @@ export const OffersPage: FC = React.memo(() => {
 	};
 
 	return (
-		<div className="p-4 h-full">
+		<div className="offers-page p-4 h-full flex flex-col">
 			<div className="flex gap-2 mb-2">
-				<h1 className="text-xl mb-2">{t('Manage Offers')}</h1>
+				<h1 className="text-xl">{t('Manage Offers')}</h1>
 				{!inputRowData ? (
 					<Button onClick={newOffer} variant="contained" size="small" color="primary">
 						<i className="fas fa-plus mr-2" />
@@ -125,8 +141,11 @@ export const OffersPage: FC = React.memo(() => {
 				)}
 			</div>
 
-			<div className="h-1/2">
-				<AgGridReact {...gridOptions} className="ag-theme-quartz" />
+			<div className="flex-1">
+				<div className="h-1/2 flex justify-center items-center">
+					<OfferEditor offer={focusedOffer} />
+				</div>
+				<AgGridReact {...gridOptions} className="ag-theme-quartz h-1/2" />
 			</div>
 		</div>
 	);

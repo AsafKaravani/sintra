@@ -75,6 +75,11 @@ export const useQuery_CurrentUserOffers = () => {
 					price_per_unit: true,
 					active: true,
 					product_id: true,
+					appearance: true,
+					texture: true,
+					payment_terms: true,
+					origin_country: true,
+					end_date: true,
 					Product: {
 						name: true,
 						Category: {
@@ -140,7 +145,7 @@ export const useMutation_CreateOffer = () => {
 				insert_Offer_one: [{
 					object: {
 						...toInput(offer),
-						profileId: profileId
+						profile_id: profileId
 					}
 				}, {
 					id: true
