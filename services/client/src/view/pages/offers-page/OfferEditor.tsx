@@ -40,9 +40,29 @@ export const OfferEditor: FC<OfferEditorProps> = React.memo(props => {
 		}
 	}, [props.offer]);
 
+	useEffect(() => {
+		if (mutation_CreateOffer.isSuccess) {
+			offerForm.reset({ id: mutation_CreateOffer.data?.insert_Offer_one?.id });
+		}
+	}, [mutation_CreateOffer.isSuccess]);
+
 	const offerForm = useForm<OfferFormFields>({});
+	const offer = offerForm.watch();
+
+	useEffect(() => {
+		console.log('offer', offer);
+
+		if (offer.id) {
+			setMode('edit');
+		} else {
+			setMode('new');
+		}
+	}, [offer]);
+
 	const onSubmit: SubmitHandler<OfferFormFields> = offer => {
 		// reamove empty fields
+		console.log(offer);
+
 		Object.keys(offer).forEach(key => {
 			if (offer[key] === '') {
 				delete offer[key];
@@ -58,7 +78,11 @@ export const OfferEditor: FC<OfferEditorProps> = React.memo(props => {
 
 	const createNewOffer = () => {
 		setMode('new');
-		offerForm.reset({ product_id: undefined });
+		const offerNullMap = Object.keys(offer).reduce((acc, key) => {
+			acc[key] = null;
+			return acc;
+		}, {} as OfferFormFields);
+		offerForm.reset(offerNullMap);
 	};
 
 	return (
@@ -128,16 +152,22 @@ export const OfferEditor: FC<OfferEditorProps> = React.memo(props => {
 								<TextField className="flex-1" {...offerForm.register('texture')} helperText="Texture" />
 							</div>
 						</div>
-						<Button
-							size="small"
-							className="mt-4 px-14"
-							variant="contained"
-							color="primary"
-							type="submit"
-							disabled={mutation_CreateOffer.isPending || mutation_UpdateOffer.isPending}
-						>
-							Save
-						</Button>
+						<div className="flex justify-between mt-4">
+							<Button
+								size="small"
+								className="px-14"
+								variant="contained"
+								color="primary"
+								type="submit"
+								disabled={mutation_CreateOffer.isPending || mutation_UpdateOffer.isPending}
+							>
+								save
+							</Button>
+							<Button onClick={createNewOffer} size="small" variant="text" color="primary">
+								<i className="fas fa-plus mr-2" />
+								or create new
+							</Button>
+						</div>
 					</form>
 				</div>
 			)}

@@ -153,6 +153,7 @@ export const useMutation_CreateOffer = () => {
 			});
 		},
 		onSettled: (data, error, v, c) => {
+			console.error(error);
 			queryClient.invalidateQueries({ queryKey: ['offers'] });
 			if (error) toast.error('Error creating offer', { id: toastIdRef.current });
 			else toast.success('Offer created successfully', { id: toastIdRef.current });
@@ -179,6 +180,7 @@ export const useMutation_UpdateOffer = () => {
 			});
 		},
 		onSettled: (data, error) => {
+			error && console.error(error);
 			queryClient.invalidateQueries({ queryKey: ['offers'] });
 			if (error) toast.error('Error updating offer', { id: toastIdRef.current });
 			else toast.success('Offer updated successfully', { id: toastIdRef.current });
@@ -285,7 +287,7 @@ export const useMutation_UpdateProfile = () => {
 			});
 		},
 		onSettled: (data, error) => {
-			console.error(error);
+			error && console.error(error);
 			queryClient.invalidateQueries({ queryKey: ['profile'] });
 			if (error) toast.error('Error updating profile', { id: toastIdRef.current });
 			else toast.success('Profile updated successfully', { id: toastIdRef.current });
@@ -296,10 +298,14 @@ export const useMutation_UpdateProfile = () => {
 // ---- Utils ----------------------------------------------------------------------------
 // A function that loop over keys of object and if the key's first latter is uppercase then nest the value in {data: value}
 export const toInput = (obj: any) => {
+	console.log(obj);
+
 	const newObj: any = {};
 	for (const key in obj) {
+		if (obj[key] === null) continue;
 		const isFirstLatterUppercase = key[0] === key[0].toUpperCase();
 		if (isFirstLatterUppercase) {
+			newObj[key] = {};
 			newObj[key].data = obj[key];
 		} else {
 			newObj[key] = obj[key];

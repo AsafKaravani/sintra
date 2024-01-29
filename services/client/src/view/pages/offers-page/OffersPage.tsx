@@ -18,24 +18,9 @@ import { OfferEditor } from './OfferEditor';
 export const OffersPage: FC = React.memo(() => {
 	const t = useTranslate();
 	const query_MyOffers = useQuery_CurrentUserOffers();
-	const mutation_CreateOffer = useMutation_CreateOffer();
-	const mutation_UpdateOffer = useMutation_UpdateOffer();
 	const mutation_deleteOffer = useMutation_DeleteOffer();
 
 	const [focusedOffer, setFocusedOffer] = useState<Offer | undefined>();
-
-	// Row Data: The data to be displayed.
-	const [inputRowData, setInputRowData] = useState<Offer | undefined>();
-
-	const newOffer = useCallback(() => {
-		setInputRowData({
-			active: true
-		});
-	}, []);
-
-	const cancelNewOffer = useCallback(() => {
-		setInputRowData(undefined);
-	}, []);
 
 	// Column Definitions: Defines & controls grid columns.
 	const [colDefs, setColDefs] = useState<ColDef<Offer>[]>([
@@ -98,7 +83,6 @@ export const OffersPage: FC = React.memo(() => {
 		defaultColDef: defaultColDef,
 		columnDefs: colDefs,
 		rowData: query_MyOffers.data?.Offer || [],
-		pinnedTopRowData: inputRowData ? [inputRowData] : [],
 		onRowClicked: event => {
 			if (!event.data) return;
 			if (focusedOffer?.id === event.data?.id) {
@@ -110,17 +94,6 @@ export const OffersPage: FC = React.memo(() => {
 
 		rowClassRules: {
 			'focused-row': params => params.data?.id === focusedOffer?.id
-		},
-
-		onCellEditingStopped: event => {
-			if (event.data && isPinnedRowDataCompleted(event)) {
-				if (event.data.id) {
-					mutation_UpdateOffer.mutate(event.data);
-				} else {
-					mutation_CreateOffer.mutate(event.data);
-				}
-				setInputRowData(undefined);
-			}
 		}
 	};
 
@@ -128,17 +101,6 @@ export const OffersPage: FC = React.memo(() => {
 		<div className="offers-page p-4 h-full flex flex-col">
 			<div className="flex gap-2 mb-2">
 				<h1 className="text-xl">{t('Manage Offers')}</h1>
-				{!inputRowData ? (
-					<Button onClick={newOffer} variant="contained" size="small" color="primary">
-						<i className="fas fa-plus mr-2" />
-						New Offer
-					</Button>
-				) : (
-					<Button onClick={cancelNewOffer} variant="contained" size="small" color="error">
-						<i className="fas fa-times mr-2" />
-						Canel
-					</Button>
-				)}
 			</div>
 
 			<div className="flex-1">
