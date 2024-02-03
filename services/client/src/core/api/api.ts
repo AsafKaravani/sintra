@@ -91,6 +91,65 @@ export const useQuery_CurrentUserOffers = () => {
 	});
 };
 
+export const useQuery_CurrentUserBuyersRequests = () => {
+	const profileId = useQuery_ProfileId();
+	return useQuery({
+		enabled: !!profileId,
+		queryKey: ['offers', 'current-user-buyers-requests'],
+		queryFn: () =>
+			chain('query', { scalars })({
+				Offer: [{
+					order_by: [{ created_at: order_by.desc }],
+					where: {
+						Offer: {
+							parent_id: { _is_null: true },
+							profile_id: { _eq: profileId }
+						}
+					}
+				}, {
+					id: true,
+					harvest_date: true,
+					quantity: true,
+					packaging: true,
+					price_per_unit: true,
+					active: true,
+					product_id: true,
+					appearance: true,
+					texture: true,
+					payment_terms: true,
+					origin_country: true,
+					end_date: true,
+					delivery_due_date: true,
+					free_text: true,
+					destination_country: true,
+					Product: {
+						name: true,
+						Category: {
+							name: true
+						}
+					},
+					Offer: {
+						id: true,
+						harvest_date: true,
+						quantity: true,
+						packaging: true,
+						price_per_unit: true,
+						active: true,
+						product_id: true,
+						appearance: true,
+						texture: true,
+						payment_terms: true,
+						origin_country: true,
+						end_date: true,
+						delivery_due_date: true,
+						free_text: true,
+						destination_country: true
+					}
+				}]
+			})
+	});
+};
+
 export const useQuery_CurrentUserRequests = () => {
 	const profileId = useQuery_ProfileId();
 	return useQuery({
@@ -127,6 +186,23 @@ export const useQuery_CurrentUserRequests = () => {
 						Category: {
 							name: true
 						}
+					},
+					Offer: {
+						id: true,
+						harvest_date: true,
+						quantity: true,
+						packaging: true,
+						price_per_unit: true,
+						active: true,
+						product_id: true,
+						appearance: true,
+						texture: true,
+						payment_terms: true,
+						origin_country: true,
+						end_date: true,
+						delivery_due_date: true,
+						free_text: true,
+						destination_country: true
 					}
 				}]
 			})

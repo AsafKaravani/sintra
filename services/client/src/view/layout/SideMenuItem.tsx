@@ -1,6 +1,6 @@
 import { ListItem, ListItemButton, ListItemText, Avatar } from '@mui/material';
 import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslate } from '../../core/translations/useTranslate';
 
 interface SideMenuItemProps extends React.PropsWithChildren {
@@ -14,6 +14,8 @@ interface SideMenuItemProps extends React.PropsWithChildren {
 
 export const SideMenuItem: FC<SideMenuItemProps> = React.memo(props => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const isActive = location.pathname === props.to;
 
 	let goto = () => {};
 	if (typeof props.to === 'string') {
@@ -21,12 +23,14 @@ export const SideMenuItem: FC<SideMenuItemProps> = React.memo(props => {
 	}
 
 	return (
-		<ListItem>
+		<ListItem className={`${isActive ? 'bg-slate-300' : ''}`}>
 			<ListItemButton disabled={props.disabled} onClick={goto}>
-				<i className={`fa-solid fa-${props.icon} w-5 me-4`} />
+				<i className={`fa-solid fa-${props.icon} w-5 me-4`}></i>
 				<ListItemText primary={props.text} />
-				{props.notifications && (
-					<Avatar className={`w-6 h-6 text-xs bg-${props.notificationsColor}-600`}>{props.notifications}</Avatar>
+				{props.notifications !== undefined && props.notifications > 0 && (
+					<Avatar className={`w-6 h-6 text-xs bg-black bg-opacity-10 text-black bg-${props.notificationsColor}-600`}>
+						{props.notifications}
+					</Avatar>
 				)}
 			</ListItemButton>
 		</ListItem>

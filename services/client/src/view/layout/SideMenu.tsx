@@ -14,7 +14,7 @@ import React from 'react';
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SideMenuItem } from './SideMenuItem';
-import { useQuery_CurrentUserRequests } from '../../core/api/api';
+import { useQuery_CurrentUserBuyersRequests, useQuery_CurrentUserRequests } from '../../core/api/api';
 
 const drawerWidth = '20vw';
 const maxDrawerWidth = '220px';
@@ -23,6 +23,7 @@ const minDrawerWidth = '200px';
 export const SideMenu: FC = React.memo(() => {
 	const location = useLocation();
 	const query_CurrentUserRequests = useQuery_CurrentUserRequests();
+	const query_CurrentUserBuyersRequests = useQuery_CurrentUserBuyersRequests();
 
 	if (location.pathname === '/s/onboarding') return null;
 
@@ -58,7 +59,12 @@ export const SideMenu: FC = React.memo(() => {
 					icon="cart-shopping"
 					notifications={query_CurrentUserRequests.data?.Offer.length}
 				/>
-				<SideMenuItem text="Buyers Requests" to="/s/requests" icon="inbox" />
+				<SideMenuItem
+					text="Buyers Requests"
+					to="/s/buyers-requests"
+					icon="inbox"
+					notifications={query_CurrentUserBuyersRequests.data?.Offer.length}
+				/>
 
 				{/* <SideMenuItem
 					disabled
