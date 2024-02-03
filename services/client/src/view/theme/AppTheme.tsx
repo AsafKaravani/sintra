@@ -46,6 +46,9 @@ export const AppTheme: FC<AppThemeProps> = props => {
 						'& .MuiSelect-select': {
 							padding: '4px 14px',
 							height: '35px'
+						},
+						'& fieldset': {
+							borderColor: 'transparent'
 						}
 					}
 				}

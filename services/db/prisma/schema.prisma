@@ -195,6 +195,7 @@ model Offer {
   appearance          String?
   texture             String?
   payment_terms       String?
+  free_text           String?
   delivery_due_date   DateTime?
   active              Boolean    @default(true)
   harvest_date        DateTime?

@@ -100,6 +100,7 @@ export const useQuery_FindOffers = (search: string) => {
 					order_by: [{ created_at: order_by.desc }],
 					where: {
 						active: { _eq: true },
+						parent_id: { _is_null: true }, // Offers with parent_id are "counter offers" and not the original offer
 						_or: [{
 							Product: {
 								name: {
@@ -298,8 +299,7 @@ export const useMutation_UpdateProfile = () => {
 // ---- Utils ----------------------------------------------------------------------------
 // A function that loop over keys of object and if the key's first latter is uppercase then nest the value in {data: value}
 export const toInput = (obj: any) => {
-	console.log(obj);
-
+	Object.keys(obj).forEach(key => obj[key] === '' && delete obj[key]);
 	const newObj: any = {};
 	for (const key in obj) {
 		if (obj[key] === null) continue;

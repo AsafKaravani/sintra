@@ -1,11 +1,11 @@
-import { Button } from '@mui/material';
+import { Button, Collapse } from '@mui/material';
 import React, { FC } from 'react';
-import lookup from 'country-code-lookup';
 import moment from 'moment';
-import { AppForm } from '../../../core/form/AppForm';
-import { useForm } from 'react-hook-form';
+import { CreateRequestForm } from './CreateRequestForm';
 
 interface OfferRowProps extends React.PropsWithChildren {
+	productId?: number;
+	offerId?: number;
 	productName?: string;
 	harvestDate?: Date;
 	totalKg?: number;
@@ -17,14 +17,7 @@ interface OfferRowProps extends React.PropsWithChildren {
 }
 
 export const OfferRow: FC<OfferRowProps> = React.memo(props => {
-	const form = useForm({
-		defaultValues: {
-			product_id: 2
-		}
-	});
-	const onSubmit = form.handleSubmit(data => {
-		console.log(data);
-	});
+	const [buyRequestOpen, setBuyRequestOpen] = React.useState(false);
 
 	return (
 		<>
@@ -94,46 +87,21 @@ export const OfferRow: FC<OfferRowProps> = React.memo(props => {
 						</div>
 					</div>
 					<div className="flex items-center gap-2 ms-4">
-						<Button>Buy</Button>
+						<Button
+							onClick={() => setBuyRequestOpen(!buyRequestOpen)}
+							className={`min-w-[100px] ${buyRequestOpen && 'bg-red-500'}`}
+						>
+							{buyRequestOpen ? 'Cancel' : 'Buy'}
+						</Button>
 					</div>
 				</div>
-				<AppForm
-					form={form}
-					onSubmit={onSubmit}
-					submitText={
-						<>
-							<i className="fa-solid fa-paper-plane me-2"></i>
-							Send request
-						</>
-					}
-					fields={[
-						{
-							name: 'price_per_unit',
-							type: 'number',
-							helperText: 'Price per kg'
-						},
-						{
-							name: 'quantity',
-							type: 'number',
-							helperText: 'Quantity'
-						},
-						{
-							name: 'payment_terms',
-							type: 'text',
-							helperText: 'Payment terms'
-						},
-						{
-							name: 'product_id',
-							type: 'product',
-							helperText: 'Product'
-						},
-						{
-							name: 'delivery_due_date',
-							type: 'date',
-							helperText: 'Delivery due date'
-						}
-					]}
-				/>
+				<Collapse in={buyRequestOpen}>
+					<CreateRequestForm
+						offerId={props.offerId}
+						productId={props.productId}
+						onSuccess={() => setBuyRequestOpen(false)}
+					/>
+				</Collapse>
 			</div>
 		</>
 	);

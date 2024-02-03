@@ -75,6 +75,8 @@ export const MarketplacePage: FC = React.memo(() => {
 				{query_Offers.data?.Offer?.map(offer => (
 					<OfferRow
 						key={offer.id}
+						productId={offer.product_id}
+						offerId={offer.id}
 						productName={offer.Product.name}
 						totalKg={offer.quantity}
 						kgPerPack={offer.packaging}

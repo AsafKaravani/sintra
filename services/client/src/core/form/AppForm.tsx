@@ -6,6 +6,7 @@ import { AppFieldProps } from './custom-fields/Field.type';
 
 interface AppFormProps extends React.PropsWithChildren {
 	form: ReturnType<typeof useForm<any>>;
+	disabled?: boolean;
 	fields: Array<AppFieldProps>;
 	submitText?: string | React.ReactNode;
 	onSubmit?: ReturnType<ReturnType<typeof useForm<any>>['handleSubmit']>;
@@ -52,9 +53,9 @@ export const AppForm: FC<AppFormProps> = React.memo(props => {
 				<div className={`grid grid-cols-12 grid-rows-${maxRow} gap-4`}>
 					{props.fields?.map(field => {
 						const Field = FieldMap[field.type] as any;
-
+						const disabledClass = props.disabled ? 'opacity-50 pointer-events-none' : '';
 						return (
-							<div key={field.name} className={`flex flex-col ${rowColToCssGrid(field.grid)}`}>
+							<div key={field.name} className={`flex flex-col ${rowColToCssGrid(field.grid)} ${disabledClass}`}>
 								<Field
 									{...field}
 									helperText={undefined}
