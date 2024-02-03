@@ -14,7 +14,13 @@ export default {
 	},
 	plugins: [tailwindSafelistGenerator({
 		path: 'safelist.txt',
-		patterns: ['bg-{colors}']
+		patterns: [
+			'bg-{colors}',
+			'col-start-{gridColumnStart}',
+			'row-start-{gridRowStart}',
+			'col-{gridColumn}',
+			'row-{gridRow}'
+		]
 	})],
 	important: true
 };

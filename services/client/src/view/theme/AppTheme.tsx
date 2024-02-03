@@ -75,6 +75,17 @@ export const AppTheme: FC<AppThemeProps> = props => {
 				defaultProps: {
 					arrow: true
 				}
+			},
+
+			MuiAutocomplete: {
+				styleOverrides: {
+					root: {
+						'& .MuiFilledInput-root': {
+							paddingTop: '3px',
+							paddingBottom: '3px'
+						}
+					}
+				}
 			}
 		}
 	});

@@ -2,6 +2,8 @@ import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import lookup from 'country-code-lookup';
 import moment from 'moment';
+import { AppForm } from '../../../core/form/AppForm';
+import { useForm } from 'react-hook-form';
 
 interface OfferRowProps extends React.PropsWithChildren {
 	productName?: string;
@@ -15,10 +17,19 @@ interface OfferRowProps extends React.PropsWithChildren {
 }
 
 export const OfferRow: FC<OfferRowProps> = React.memo(props => {
+	const form = useForm({
+		defaultValues: {
+			product_id: 2
+		}
+	});
+	const onSubmit = form.handleSubmit(data => {
+		console.log(data);
+	});
+
 	return (
 		<>
-			<div className="w-full bg-slate-100 border-slate-200 border rounded flex justify-between gap-2 p-2 px-4">
-				<div className="flex gap-4 flex-1">
+			<div className="w-full bg-slate-100 border-slate-200 border rounded flex flex-col justify-between gap-2 p-2 px-4">
+				<div className="flex gap-4 flex-1 items-center">
 					<div className="flex-1 flex flex-col h-full justify-center items-start gap-2">
 						<h2 className="text-lg max-w-[200px] font-bold">{props.productName}</h2>
 					</div>
@@ -86,6 +97,43 @@ export const OfferRow: FC<OfferRowProps> = React.memo(props => {
 						<Button>Buy</Button>
 					</div>
 				</div>
+				<AppForm
+					form={form}
+					onSubmit={onSubmit}
+					submitText={
+						<>
+							<i className="fa-solid fa-paper-plane me-2"></i>
+							Send request
+						</>
+					}
+					fields={[
+						{
+							name: 'price_per_unit',
+							type: 'number',
+							helperText: 'Price per kg'
+						},
+						{
+							name: 'quantity',
+							type: 'number',
+							helperText: 'Quantity'
+						},
+						{
+							name: 'payment_terms',
+							type: 'text',
+							helperText: 'Payment terms'
+						},
+						{
+							name: 'product_id',
+							type: 'product',
+							helperText: 'Product'
+						},
+						{
+							name: 'delivery_due_date',
+							type: 'date',
+							helperText: 'Delivery due date'
+						}
+					]}
+				/>
 			</div>
 		</>
 	);
