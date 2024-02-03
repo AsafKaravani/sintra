@@ -50,18 +50,13 @@ export const OfferEditor: FC<OfferEditorProps> = React.memo(props => {
 	const offer = offerForm.watch();
 
 	useEffect(() => {
-		console.log('offer', offer);
-
-		if (offer.id) {
+		if (props.offer && offer.id) {
 			setMode('edit');
-		} else {
-			setMode('new');
 		}
 	}, [offer]);
 
 	const onSubmit: SubmitHandler<OfferFormFields> = offer => {
 		// reamove empty fields
-		console.log(offer);
 
 		Object.keys(offer).forEach(key => {
 			if (offer[key] === '') {
@@ -161,7 +156,7 @@ export const OfferEditor: FC<OfferEditorProps> = React.memo(props => {
 								type="submit"
 								disabled={mutation_CreateOffer.isPending || mutation_UpdateOffer.isPending}
 							>
-								save
+								{mode === 'edit' ? 'Update' : 'Create'}
 							</Button>
 							<Button onClick={createNewOffer} size="small" variant="text" color="primary">
 								<i className="fas fa-plus mr-2" />

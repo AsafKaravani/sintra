@@ -14,6 +14,7 @@ import React from 'react';
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SideMenuItem } from './SideMenuItem';
+import { useQuery_CurrentUserRequests } from '../../core/api/api';
 
 const drawerWidth = '20vw';
 const maxDrawerWidth = '220px';
@@ -21,7 +22,10 @@ const minDrawerWidth = '200px';
 
 export const SideMenu: FC = React.memo(() => {
 	const location = useLocation();
+	const query_CurrentUserRequests = useQuery_CurrentUserRequests();
+
 	if (location.pathname === '/s/onboarding') return null;
+
 	return (
 		<Drawer
 			sx={{
@@ -48,8 +52,13 @@ export const SideMenu: FC = React.memo(() => {
 			<List>
 				<SideMenuItem text="Marketplace" to="/s/marketplace" icon="scale-balanced" />
 				<SideMenuItem text="Offers" to="/s/offers" icon="hand-holding-box" />
-				<SideMenuItem text="My Requests" to="/s/requests" icon="cart-shopping" />
-				<SideMenuItem text="Buyers Requests" to="/s/requests" icon="inbox" notifications={4} notificationsColor="red" />
+				<SideMenuItem
+					text="My Requests"
+					to="/s/requests"
+					icon="cart-shopping"
+					notifications={query_CurrentUserRequests.data?.Offer.length}
+				/>
+				<SideMenuItem text="Buyers Requests" to="/s/requests" icon="inbox" />
 
 				{/* <SideMenuItem
 					disabled

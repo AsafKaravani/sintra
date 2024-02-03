@@ -91,6 +91,48 @@ export const useQuery_CurrentUserOffers = () => {
 	});
 };
 
+export const useQuery_CurrentUserRequests = () => {
+	const profileId = useQuery_ProfileId();
+	return useQuery({
+		enabled: !!profileId,
+		queryKey: ['offers', 'current-user-requests'],
+		queryFn: () =>
+			chain('query', { scalars })({
+				Offer: [{
+					order_by: [{ created_at: order_by.desc }],
+					where: {
+						profile_id: { _eq: profileId },
+						Offer: {
+							parent_id: { _is_null: true }
+						}
+					}
+				}, {
+					id: true,
+					harvest_date: true,
+					quantity: true,
+					packaging: true,
+					price_per_unit: true,
+					active: true,
+					product_id: true,
+					appearance: true,
+					texture: true,
+					payment_terms: true,
+					origin_country: true,
+					end_date: true,
+					delivery_due_date: true,
+					free_text: true,
+					destination_country: true,
+					Product: {
+						name: true,
+						Category: {
+							name: true
+						}
+					}
+				}]
+			})
+	});
+};
+
 export const useQuery_FindOffers = (search: string) => {
 	return useQuery({
 		queryKey: ['offers', 'find-offers', search],
