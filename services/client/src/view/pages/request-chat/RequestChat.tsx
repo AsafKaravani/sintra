@@ -4,6 +4,7 @@ import { AppForm } from '../../../core/form/AppForm';
 import { Avatar, Button, CircularProgress, Grow } from '@mui/material';
 import moment from 'moment';
 import { useMutation_CreateOfferMessage, useQuery_MessagesByOfferId, useQuery_ProfileId } from '../../../core/api/api';
+import { useInterval } from 'usehooks-ts';
 
 interface RequestChatProps extends React.PropsWithChildren {
 	contact?: {
@@ -17,7 +18,9 @@ interface RequestChatProps extends React.PropsWithChildren {
 
 export const RequestChat: FC<RequestChatProps> = React.memo(props => {
 	const mutation_createMessage = useMutation_CreateOfferMessage();
-	const query_message = useQuery_MessagesByOfferId(props.requestId);
+	const query_messages = useQuery_MessagesByOfferId(props.requestId);
+	useInterval(() => query_messages.refetch(), 3000);
+
 	const profileId = useQuery_ProfileId();
 	const form = useForm({ defaultValues: { message: '' } });
 	const onSubmit = form.handleSubmit(data => {
@@ -37,10 +40,13 @@ export const RequestChat: FC<RequestChatProps> = React.memo(props => {
 	});
 
 	useEffect(() => {
-		if (query_message.data) {
-			msgsContainer.current?.scrollTo(0, msgsContainer.current?.scrollHeight);
+		if (query_messages.data) {
+			msgsContainer.current?.scrollTo({
+				top: msgsContainer.current.scrollHeight,
+				behavior: 'smooth'
+			});
 		}
-	}, [query_message.data]);
+	}, [query_messages.data?.OfferMessage.length]);
 
 	const msgsContainer = React.useRef<HTMLDivElement>(null);
 
@@ -55,13 +61,13 @@ export const RequestChat: FC<RequestChatProps> = React.memo(props => {
 				</div>
 			</div>
 			<div ref={msgsContainer} className="flex-1 w-full p-2 overflow-auto">
-				{query_message.data?.OfferMessage.map((msg, i) => (
+				{query_messages.data?.OfferMessage.map((msg, i) => (
 					<Message
 						key={msg.id}
 						message={msg.message}
 						time={msg.created_at}
 						mine={msg.profile_id === profileId}
-						prevMessage={query_message.data?.OfferMessage[i - 1]}
+						prevMessage={query_messages.data?.OfferMessage[i - 1]}
 					/>
 				))}
 			</div>
@@ -140,7 +146,7 @@ const Message: FC<{ message?: string; time?: Date; seen?: boolean; mine?: boolea
 				style={{ transformOrigin: `center ${props.mine ? 'right' : 'left'}` }}
 				{...(checked ? { timeout: 1000 } : {})}
 			>
-				<div className={`${msgClass} max-w-[60%] w-max p-2 mb-4 rounded-lg `}>
+				<div className={`${msgClass} max-w-[60%] w-max p-2 mb-2 rounded-lg `}>
 					{props.message}
 					<span className="opacity-50 ms-2 text-xs">{moment(props.time).format('HH:mm')}</span>
 					{props.seen && <i className="opacity-25 ms-1 text-xs fas fa-eye"></i>}
