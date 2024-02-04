@@ -10,6 +10,7 @@ interface AppFormProps extends React.PropsWithChildren {
 	fields: Array<AppFieldProps>;
 	submitText?: string | React.ReactNode;
 	onSubmit?: ReturnType<ReturnType<typeof useForm<any>>['handleSubmit']>;
+	noSubmit?: boolean;
 }
 
 const rowColToCssGrid = (grid?: { row?: number; col?: number; rowSpan?: number; colSpan?: number }) => {
@@ -68,9 +69,11 @@ export const AppForm: FC<AppFormProps> = React.memo(props => {
 						);
 					})}
 				</div>
-				<Button type="submit" className="mt-4 px-10" size="small">
-					{props.submitText || 'Submit'}
-				</Button>
+				{!props.noSubmit && (
+					<Button type="submit" className="mt-4 px-10" size="small">
+						{props.submitText || 'Submit'}
+					</Button>
+				)}
 			</form>
 		</div>
 	);

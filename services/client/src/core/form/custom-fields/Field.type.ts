@@ -17,4 +17,5 @@ export type AppFieldProps = {
 	helperText?: string;
 	placeholder?: string;
 	options?: RegisterOptions<FieldValues, any> | undefined;
+	autoComplete?: string;
 };

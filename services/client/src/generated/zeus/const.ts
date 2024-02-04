@@ -990,6 +990,16 @@ export const AllTypesProps: Record<string,any> = {
 
 	},
 	Offer:{
+		OfferMessages:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessages_aggregate:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
 		Offers:{
 			distinct_on:"Offer_select_column",
 			order_by:"Offer_order_by",
@@ -1000,6 +1010,152 @@ export const AllTypesProps: Record<string,any> = {
 			order_by:"Offer_order_by",
 			where:"Offer_bool_exp"
 		}
+	},
+	OfferMessage_aggregate_bool_exp:{
+		count:"OfferMessage_aggregate_bool_exp_count"
+	},
+	OfferMessage_aggregate_bool_exp_count:{
+		arguments:"OfferMessage_select_column",
+		filter:"OfferMessage_bool_exp",
+		predicate:"Int_comparison_exp"
+	},
+	OfferMessage_aggregate_fields:{
+		count:{
+			columns:"OfferMessage_select_column"
+		}
+	},
+	OfferMessage_aggregate_order_by:{
+		avg:"OfferMessage_avg_order_by",
+		count:"order_by",
+		max:"OfferMessage_max_order_by",
+		min:"OfferMessage_min_order_by",
+		stddev:"OfferMessage_stddev_order_by",
+		stddev_pop:"OfferMessage_stddev_pop_order_by",
+		stddev_samp:"OfferMessage_stddev_samp_order_by",
+		sum:"OfferMessage_sum_order_by",
+		var_pop:"OfferMessage_var_pop_order_by",
+		var_samp:"OfferMessage_var_samp_order_by",
+		variance:"OfferMessage_variance_order_by"
+	},
+	OfferMessage_arr_rel_insert_input:{
+		data:"OfferMessage_insert_input",
+		on_conflict:"OfferMessage_on_conflict"
+	},
+	OfferMessage_avg_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_bool_exp:{
+		Offer:"Offer_bool_exp",
+		Profile:"Profile_bool_exp",
+		_and:"OfferMessage_bool_exp",
+		_not:"OfferMessage_bool_exp",
+		_or:"OfferMessage_bool_exp",
+		created_at:"timestamp_comparison_exp",
+		id:"Int_comparison_exp",
+		message:"String_comparison_exp",
+		offer_id:"Int_comparison_exp",
+		profile_id:"Int_comparison_exp",
+		updated_at:"timestamp_comparison_exp"
+	},
+	OfferMessage_constraint: "enum" as const,
+	OfferMessage_inc_input:{
+
+	},
+	OfferMessage_insert_input:{
+		Offer:"Offer_obj_rel_insert_input",
+		Profile:"Profile_obj_rel_insert_input",
+		created_at:"timestamp",
+		updated_at:"timestamp"
+	},
+	OfferMessage_max_order_by:{
+		created_at:"order_by",
+		id:"order_by",
+		message:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by",
+		updated_at:"order_by"
+	},
+	OfferMessage_min_order_by:{
+		created_at:"order_by",
+		id:"order_by",
+		message:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by",
+		updated_at:"order_by"
+	},
+	OfferMessage_on_conflict:{
+		constraint:"OfferMessage_constraint",
+		update_columns:"OfferMessage_update_column",
+		where:"OfferMessage_bool_exp"
+	},
+	OfferMessage_order_by:{
+		Offer:"Offer_order_by",
+		Profile:"Profile_order_by",
+		created_at:"order_by",
+		id:"order_by",
+		message:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by",
+		updated_at:"order_by"
+	},
+	OfferMessage_pk_columns_input:{
+
+	},
+	OfferMessage_select_column: "enum" as const,
+	OfferMessage_set_input:{
+		created_at:"timestamp",
+		updated_at:"timestamp"
+	},
+	OfferMessage_stddev_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_stddev_pop_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_stddev_samp_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_stream_cursor_input:{
+		initial_value:"OfferMessage_stream_cursor_value_input",
+		ordering:"cursor_ordering"
+	},
+	OfferMessage_stream_cursor_value_input:{
+		created_at:"timestamp",
+		updated_at:"timestamp"
+	},
+	OfferMessage_sum_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_update_column: "enum" as const,
+	OfferMessage_updates:{
+		_inc:"OfferMessage_inc_input",
+		_set:"OfferMessage_set_input",
+		where:"OfferMessage_bool_exp"
+	},
+	OfferMessage_var_pop_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_var_samp_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
+	},
+	OfferMessage_variance_order_by:{
+		id:"order_by",
+		offer_id:"order_by",
+		profile_id:"order_by"
 	},
 	OfferType: `scalar.OfferType` as const,
 	OfferType_comparison_exp:{
@@ -1123,6 +1279,8 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_bool_exp:{
 		Business:"Business_bool_exp",
 		Offer:"Offer_bool_exp",
+		OfferMessages:"OfferMessage_bool_exp",
+		OfferMessages_aggregate:"OfferMessage_aggregate_bool_exp",
 		Offers:"Offer_bool_exp",
 		Offers_aggregate:"Offer_aggregate_bool_exp",
 		Product:"Product_bool_exp",
@@ -1161,6 +1319,7 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_insert_input:{
 		Business:"Business_obj_rel_insert_input",
 		Offer:"Offer_obj_rel_insert_input",
+		OfferMessages:"OfferMessage_arr_rel_insert_input",
 		Offers:"Offer_arr_rel_insert_input",
 		Product:"Product_obj_rel_insert_input",
 		Profile:"Profile_obj_rel_insert_input",
@@ -1230,6 +1389,7 @@ export const AllTypesProps: Record<string,any> = {
 	Offer_order_by:{
 		Business:"Business_order_by",
 		Offer:"Offer_order_by",
+		OfferMessages_aggregate:"OfferMessage_aggregate_order_by",
 		Offers_aggregate:"Offer_aggregate_order_by",
 		Product:"Product_order_by",
 		Profile:"Profile_order_by",
@@ -1861,6 +2021,16 @@ export const AllTypesProps: Record<string,any> = {
 			order_by:"BusinessWorker_order_by",
 			where:"BusinessWorker_bool_exp"
 		},
+		OfferMessages:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessages_aggregate:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
 		Offers:{
 			distinct_on:"Offer_select_column",
 			order_by:"Offer_order_by",
@@ -1880,6 +2050,8 @@ export const AllTypesProps: Record<string,any> = {
 	Profile_bool_exp:{
 		BusinessWorkers:"BusinessWorker_bool_exp",
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate_bool_exp",
+		OfferMessages:"OfferMessage_bool_exp",
+		OfferMessages_aggregate:"OfferMessage_aggregate_bool_exp",
 		Offers:"Offer_bool_exp",
 		Offers_aggregate:"Offer_aggregate_bool_exp",
 		_and:"Profile_bool_exp",
@@ -1900,6 +2072,7 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Profile_insert_input:{
 		BusinessWorkers:"BusinessWorker_arr_rel_insert_input",
+		OfferMessages:"OfferMessage_arr_rel_insert_input",
 		Offers:"Offer_arr_rel_insert_input",
 		created_at:"timestamp",
 		updated_at:"timestamp"
@@ -1915,6 +2088,7 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Profile_order_by:{
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate_order_by",
+		OfferMessages_aggregate:"OfferMessage_aggregate_order_by",
 		Offers_aggregate:"Offer_aggregate_order_by",
 		created_at:"order_by",
 		email:"order_by",
@@ -2409,6 +2583,12 @@ export const AllTypesProps: Record<string,any> = {
 		delete_Offer:{
 			where:"Offer_bool_exp"
 		},
+		delete_OfferMessage:{
+			where:"OfferMessage_bool_exp"
+		},
+		delete_OfferMessage_by_pk:{
+
+		},
 		delete_Offer_by_pk:{
 
 		},
@@ -2507,6 +2687,14 @@ export const AllTypesProps: Record<string,any> = {
 		insert_Offer:{
 			objects:"Offer_insert_input",
 			on_conflict:"Offer_on_conflict"
+		},
+		insert_OfferMessage:{
+			objects:"OfferMessage_insert_input",
+			on_conflict:"OfferMessage_on_conflict"
+		},
+		insert_OfferMessage_one:{
+			object:"OfferMessage_insert_input",
+			on_conflict:"OfferMessage_on_conflict"
 		},
 		insert_Offer_one:{
 			object:"Offer_insert_input",
@@ -2655,6 +2843,19 @@ export const AllTypesProps: Record<string,any> = {
 			_inc:"Offer_inc_input",
 			_set:"Offer_set_input",
 			where:"Offer_bool_exp"
+		},
+		update_OfferMessage:{
+			_inc:"OfferMessage_inc_input",
+			_set:"OfferMessage_set_input",
+			where:"OfferMessage_bool_exp"
+		},
+		update_OfferMessage_by_pk:{
+			_inc:"OfferMessage_inc_input",
+			_set:"OfferMessage_set_input",
+			pk_columns:"OfferMessage_pk_columns_input"
+		},
+		update_OfferMessage_many:{
+			updates:"OfferMessage_updates"
 		},
 		update_Offer_by_pk:{
 			_inc:"Offer_inc_input",
@@ -2840,6 +3041,19 @@ export const AllTypesProps: Record<string,any> = {
 			distinct_on:"Offer_select_column",
 			order_by:"Offer_order_by",
 			where:"Offer_bool_exp"
+		},
+		OfferMessage:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessage_aggregate:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessage_by_pk:{
+
 		},
 		Offer_aggregate:{
 			distinct_on:"Offer_select_column",
@@ -3052,6 +3266,23 @@ export const AllTypesProps: Record<string,any> = {
 			distinct_on:"Offer_select_column",
 			order_by:"Offer_order_by",
 			where:"Offer_bool_exp"
+		},
+		OfferMessage:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessage_aggregate:{
+			distinct_on:"OfferMessage_select_column",
+			order_by:"OfferMessage_order_by",
+			where:"OfferMessage_bool_exp"
+		},
+		OfferMessage_by_pk:{
+
+		},
+		OfferMessage_stream:{
+			cursor:"OfferMessage_stream_cursor_input",
+			where:"OfferMessage_bool_exp"
 		},
 		Offer_aggregate:{
 			distinct_on:"Offer_select_column",
@@ -3765,6 +3996,8 @@ export const ReturnTypes: Record<string,any> = {
 	Offer:{
 		Business:"Business",
 		Offer:"Offer",
+		OfferMessages:"OfferMessage",
+		OfferMessages_aggregate:"OfferMessage_aggregate",
 		Offers:"Offer",
 		Offers_aggregate:"Offer_aggregate",
 		Product:"Product",
@@ -3790,6 +4023,93 @@ export const ReturnTypes: Record<string,any> = {
 		quantity:"float8",
 		texture:"String",
 		updated_at:"timestamp"
+	},
+	OfferMessage:{
+		Offer:"Offer",
+		Profile:"Profile",
+		created_at:"timestamp",
+		id:"Int",
+		message:"String",
+		offer_id:"Int",
+		profile_id:"Int",
+		updated_at:"timestamp"
+	},
+	OfferMessage_aggregate:{
+		aggregate:"OfferMessage_aggregate_fields",
+		nodes:"OfferMessage"
+	},
+	OfferMessage_aggregate_fields:{
+		avg:"OfferMessage_avg_fields",
+		count:"Int",
+		max:"OfferMessage_max_fields",
+		min:"OfferMessage_min_fields",
+		stddev:"OfferMessage_stddev_fields",
+		stddev_pop:"OfferMessage_stddev_pop_fields",
+		stddev_samp:"OfferMessage_stddev_samp_fields",
+		sum:"OfferMessage_sum_fields",
+		var_pop:"OfferMessage_var_pop_fields",
+		var_samp:"OfferMessage_var_samp_fields",
+		variance:"OfferMessage_variance_fields"
+	},
+	OfferMessage_avg_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_max_fields:{
+		created_at:"timestamp",
+		id:"Int",
+		message:"String",
+		offer_id:"Int",
+		profile_id:"Int",
+		updated_at:"timestamp"
+	},
+	OfferMessage_min_fields:{
+		created_at:"timestamp",
+		id:"Int",
+		message:"String",
+		offer_id:"Int",
+		profile_id:"Int",
+		updated_at:"timestamp"
+	},
+	OfferMessage_mutation_response:{
+		affected_rows:"Int",
+		returning:"OfferMessage"
+	},
+	OfferMessage_stddev_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_stddev_pop_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_stddev_samp_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_sum_fields:{
+		id:"Int",
+		offer_id:"Int",
+		profile_id:"Int"
+	},
+	OfferMessage_var_pop_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_var_samp_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
+	},
+	OfferMessage_variance_fields:{
+		id:"Float",
+		offer_id:"Float",
+		profile_id:"Float"
 	},
 	OfferType: `scalar.OfferType` as const,
 	Offer_aggregate:{
@@ -4146,6 +4466,8 @@ export const ReturnTypes: Record<string,any> = {
 	Profile:{
 		BusinessWorkers:"BusinessWorker",
 		BusinessWorkers_aggregate:"BusinessWorker_aggregate",
+		OfferMessages:"OfferMessage",
+		OfferMessages_aggregate:"OfferMessage_aggregate",
 		Offers:"Offer",
 		Offers_aggregate:"Offer_aggregate",
 		created_at:"timestamp",
@@ -4501,6 +4823,8 @@ export const ReturnTypes: Record<string,any> = {
 		delete_CertificateClaim_by_pk:"CertificateClaim",
 		delete_Certificate_by_pk:"Certificate",
 		delete_Offer:"Offer_mutation_response",
+		delete_OfferMessage:"OfferMessage_mutation_response",
+		delete_OfferMessage_by_pk:"OfferMessage",
 		delete_Offer_by_pk:"Offer",
 		delete_Order:"Order_mutation_response",
 		delete_Order_by_pk:"Order",
@@ -4529,6 +4853,8 @@ export const ReturnTypes: Record<string,any> = {
 		insert_CertificateClaim_one:"CertificateClaim",
 		insert_Certificate_one:"Certificate",
 		insert_Offer:"Offer_mutation_response",
+		insert_OfferMessage:"OfferMessage_mutation_response",
+		insert_OfferMessage_one:"OfferMessage",
 		insert_Offer_one:"Offer",
 		insert_Order:"Order_mutation_response",
 		insert_Order_one:"Order",
@@ -4564,6 +4890,9 @@ export const ReturnTypes: Record<string,any> = {
 		update_Certificate_by_pk:"Certificate",
 		update_Certificate_many:"Certificate_mutation_response",
 		update_Offer:"Offer_mutation_response",
+		update_OfferMessage:"OfferMessage_mutation_response",
+		update_OfferMessage_by_pk:"OfferMessage",
+		update_OfferMessage_many:"OfferMessage_mutation_response",
 		update_Offer_by_pk:"Offer",
 		update_Offer_many:"Offer_mutation_response",
 		update_Order:"Order_mutation_response",
@@ -4608,6 +4937,9 @@ export const ReturnTypes: Record<string,any> = {
 		Certificate_aggregate:"Certificate_aggregate",
 		Certificate_by_pk:"Certificate",
 		Offer:"Offer",
+		OfferMessage:"OfferMessage",
+		OfferMessage_aggregate:"OfferMessage_aggregate",
+		OfferMessage_by_pk:"OfferMessage",
 		Offer_aggregate:"Offer_aggregate",
 		Offer_by_pk:"Offer",
 		Order:"Order",
@@ -4659,6 +4991,10 @@ export const ReturnTypes: Record<string,any> = {
 		Certificate_by_pk:"Certificate",
 		Certificate_stream:"Certificate",
 		Offer:"Offer",
+		OfferMessage:"OfferMessage",
+		OfferMessage_aggregate:"OfferMessage_aggregate",
+		OfferMessage_by_pk:"OfferMessage",
+		OfferMessage_stream:"OfferMessage",
 		Offer_aggregate:"Offer_aggregate",
 		Offer_by_pk:"Offer",
 		Offer_stream:"Offer",

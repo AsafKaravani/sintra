@@ -2879,6 +2879,18 @@ count?: [{	columns?: Array<ValueTypes["Certificate_select_column"]> | undefined 
 	Business?:ValueTypes["Business"],
 	/** An object relationship */
 	Offer?:ValueTypes["Offer"],
+OfferMessages?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
+OfferMessages_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage_aggregate"]],
 Offers?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -2918,6 +2930,311 @@ Offers_aggregate?: [{	/** distinct select on columns */
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
+	/** columns and relationships of "OfferMessage" */
+["OfferMessage"]: AliasType<{
+	/** An object relationship */
+	Offer?:ValueTypes["Offer"],
+	/** An object relationship */
+	Profile?:ValueTypes["Profile"],
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "OfferMessage" */
+["OfferMessage_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["OfferMessage_aggregate_fields"],
+	nodes?:ValueTypes["OfferMessage"],
+		__typename?: boolean | `@${string}`
+}>;
+	["OfferMessage_aggregate_bool_exp"]: {
+	count?: ValueTypes["OfferMessage_aggregate_bool_exp_count"] | undefined | null | Variable<any, string>
+};
+	["OfferMessage_aggregate_bool_exp_count"]: {
+	arguments?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,
+	distinct?: boolean | undefined | null | Variable<any, string>,
+	filter?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>,
+	predicate: ValueTypes["Int_comparison_exp"] | Variable<any, string>
+};
+	/** aggregate fields of "OfferMessage" */
+["OfferMessage_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["OfferMessage_avg_fields"],
+count?: [{	columns?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
+	max?:ValueTypes["OfferMessage_max_fields"],
+	min?:ValueTypes["OfferMessage_min_fields"],
+	stddev?:ValueTypes["OfferMessage_stddev_fields"],
+	stddev_pop?:ValueTypes["OfferMessage_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["OfferMessage_stddev_samp_fields"],
+	sum?:ValueTypes["OfferMessage_sum_fields"],
+	var_pop?:ValueTypes["OfferMessage_var_pop_fields"],
+	var_samp?:ValueTypes["OfferMessage_var_samp_fields"],
+	variance?:ValueTypes["OfferMessage_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by aggregate values of table "OfferMessage" */
+["OfferMessage_aggregate_order_by"]: {
+	avg?: ValueTypes["OfferMessage_avg_order_by"] | undefined | null | Variable<any, string>,
+	count?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	max?: ValueTypes["OfferMessage_max_order_by"] | undefined | null | Variable<any, string>,
+	min?: ValueTypes["OfferMessage_min_order_by"] | undefined | null | Variable<any, string>,
+	stddev?: ValueTypes["OfferMessage_stddev_order_by"] | undefined | null | Variable<any, string>,
+	stddev_pop?: ValueTypes["OfferMessage_stddev_pop_order_by"] | undefined | null | Variable<any, string>,
+	stddev_samp?: ValueTypes["OfferMessage_stddev_samp_order_by"] | undefined | null | Variable<any, string>,
+	sum?: ValueTypes["OfferMessage_sum_order_by"] | undefined | null | Variable<any, string>,
+	var_pop?: ValueTypes["OfferMessage_var_pop_order_by"] | undefined | null | Variable<any, string>,
+	var_samp?: ValueTypes["OfferMessage_var_samp_order_by"] | undefined | null | Variable<any, string>,
+	variance?: ValueTypes["OfferMessage_variance_order_by"] | undefined | null | Variable<any, string>
+};
+	/** input type for inserting array relation for remote table "OfferMessage" */
+["OfferMessage_arr_rel_insert_input"]: {
+	data: Array<ValueTypes["OfferMessage_insert_input"]> | Variable<any, string>,
+	/** upsert condition */
+	on_conflict?: ValueTypes["OfferMessage_on_conflict"] | undefined | null | Variable<any, string>
+};
+	/** aggregate avg on columns */
+["OfferMessage_avg_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by avg() on columns of table "OfferMessage" */
+["OfferMessage_avg_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** Boolean expression to filter rows from the table "OfferMessage". All fields are combined with a logical 'AND'. */
+["OfferMessage_bool_exp"]: {
+	Offer?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_bool_exp"] | undefined | null | Variable<any, string>,
+	_and?: Array<ValueTypes["OfferMessage_bool_exp"]> | undefined | null | Variable<any, string>,
+	_not?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>,
+	_or?: Array<ValueTypes["OfferMessage_bool_exp"]> | undefined | null | Variable<any, string>,
+	created_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
+	message?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["Int_comparison_exp"] | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
+};
+	/** unique or primary key constraints on table "OfferMessage" */
+["OfferMessage_constraint"]:OfferMessage_constraint;
+	/** input type for incrementing numeric columns in table "OfferMessage" */
+["OfferMessage_inc_input"]: {
+	id?: number | undefined | null | Variable<any, string>,
+	offer_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>
+};
+	/** input type for inserting data into table "OfferMessage" */
+["OfferMessage_insert_input"]: {
+	Offer?: ValueTypes["Offer_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
+	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	id?: number | undefined | null | Variable<any, string>,
+	message?: string | undefined | null | Variable<any, string>,
+	offer_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+};
+	/** aggregate max on columns */
+["OfferMessage_max_fields"]: AliasType<{
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by max() on columns of table "OfferMessage" */
+["OfferMessage_max_order_by"]: {
+	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	message?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** aggregate min on columns */
+["OfferMessage_min_fields"]: AliasType<{
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by min() on columns of table "OfferMessage" */
+["OfferMessage_min_order_by"]: {
+	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	message?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** response of any mutation on the table "OfferMessage" */
+["OfferMessage_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ValueTypes["OfferMessage"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "OfferMessage" */
+["OfferMessage_on_conflict"]: {
+	constraint: ValueTypes["OfferMessage_constraint"] | Variable<any, string>,
+	update_columns: Array<ValueTypes["OfferMessage_update_column"]> | Variable<any, string>,
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>
+};
+	/** Ordering options when selecting data from "OfferMessage". */
+["OfferMessage_order_by"]: {
+	Offer?: ValueTypes["Offer_order_by"] | undefined | null | Variable<any, string>,
+	Profile?: ValueTypes["Profile_order_by"] | undefined | null | Variable<any, string>,
+	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	message?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** primary key columns input for table: OfferMessage */
+["OfferMessage_pk_columns_input"]: {
+	id: number | Variable<any, string>
+};
+	/** select columns of table "OfferMessage" */
+["OfferMessage_select_column"]:OfferMessage_select_column;
+	/** input type for updating data in table "OfferMessage" */
+["OfferMessage_set_input"]: {
+	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	id?: number | undefined | null | Variable<any, string>,
+	message?: string | undefined | null | Variable<any, string>,
+	offer_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+};
+	/** aggregate stddev on columns */
+["OfferMessage_stddev_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev() on columns of table "OfferMessage" */
+["OfferMessage_stddev_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** aggregate stddev_pop on columns */
+["OfferMessage_stddev_pop_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev_pop() on columns of table "OfferMessage" */
+["OfferMessage_stddev_pop_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** aggregate stddev_samp on columns */
+["OfferMessage_stddev_samp_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev_samp() on columns of table "OfferMessage" */
+["OfferMessage_stddev_samp_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** Streaming cursor of the table "OfferMessage" */
+["OfferMessage_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ValueTypes["OfferMessage_stream_cursor_value_input"] | Variable<any, string>,
+	/** cursor ordering */
+	ordering?: ValueTypes["cursor_ordering"] | undefined | null | Variable<any, string>
+};
+	/** Initial value of the column from where the streaming should start */
+["OfferMessage_stream_cursor_value_input"]: {
+	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	id?: number | undefined | null | Variable<any, string>,
+	message?: string | undefined | null | Variable<any, string>,
+	offer_id?: number | undefined | null | Variable<any, string>,
+	profile_id?: number | undefined | null | Variable<any, string>,
+	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+};
+	/** aggregate sum on columns */
+["OfferMessage_sum_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by sum() on columns of table "OfferMessage" */
+["OfferMessage_sum_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** update columns of table "OfferMessage" */
+["OfferMessage_update_column"]:OfferMessage_update_column;
+	["OfferMessage_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["OfferMessage_inc_input"] | undefined | null | Variable<any, string>,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["OfferMessage_set_input"] | undefined | null | Variable<any, string>,
+	/** filter the rows which have to be updated */
+	where: ValueTypes["OfferMessage_bool_exp"] | Variable<any, string>
+};
+	/** aggregate var_pop on columns */
+["OfferMessage_var_pop_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by var_pop() on columns of table "OfferMessage" */
+["OfferMessage_var_pop_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** aggregate var_samp on columns */
+["OfferMessage_var_samp_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by var_samp() on columns of table "OfferMessage" */
+["OfferMessage_var_samp_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** aggregate variance on columns */
+["OfferMessage_variance_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by variance() on columns of table "OfferMessage" */
+["OfferMessage_variance_order_by"]: {
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	offer_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	profile_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
 	["OfferType"]:unknown;
 	/** Boolean expression to compare columns of type "OfferType". All fields are combined with logical 'AND'. */
 ["OfferType_comparison_exp"]: {
@@ -3086,6 +3403,8 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_bool_exp"]: {
 	Business?: ValueTypes["Business_bool_exp"] | undefined | null | Variable<any, string>,
 	Offer?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
+	OfferMessages?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>,
+	OfferMessages_aggregate?: ValueTypes["OfferMessage_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
 	Offers?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
 	Offers_aggregate?: ValueTypes["Offer_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_bool_exp"] | undefined | null | Variable<any, string>,
@@ -3132,6 +3451,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_insert_input"]: {
 	Business?: ValueTypes["Business_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Offer?: ValueTypes["Offer_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
+	OfferMessages?: ValueTypes["OfferMessage_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Offers?: ValueTypes["Offer_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Profile?: ValueTypes["Profile_obj_rel_insert_input"] | undefined | null | Variable<any, string>,
@@ -3275,6 +3595,7 @@ count?: [{	columns?: Array<ValueTypes["Offer_select_column"]> | undefined | null
 ["Offer_order_by"]: {
 	Business?: ValueTypes["Business_order_by"] | undefined | null | Variable<any, string>,
 	Offer?: ValueTypes["Offer_order_by"] | undefined | null | Variable<any, string>,
+	OfferMessages_aggregate?: ValueTypes["OfferMessage_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	Offers_aggregate?: ValueTypes["Offer_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	Product?: ValueTypes["Product_order_by"] | undefined | null | Variable<any, string>,
 	Profile?: ValueTypes["Profile_order_by"] | undefined | null | Variable<any, string>,
@@ -4410,6 +4731,18 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
 	order_by?: Array<ValueTypes["BusinessWorker_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["BusinessWorker_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["BusinessWorker_aggregate"]],
+OfferMessages?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
+OfferMessages_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage_aggregate"]],
 Offers?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -4462,6 +4795,8 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ValueTypes["BusinessWorker_bool_exp"] | undefined | null | Variable<any, string>,
 	BusinessWorkers_aggregate?: ValueTypes["BusinessWorker_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
+	OfferMessages?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>,
+	OfferMessages_aggregate?: ValueTypes["OfferMessage_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
 	Offers?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>,
 	Offers_aggregate?: ValueTypes["Offer_aggregate_bool_exp"] | undefined | null | Variable<any, string>,
 	_and?: Array<ValueTypes["Profile_bool_exp"]> | undefined | null | Variable<any, string>,
@@ -4485,6 +4820,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ValueTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
+	OfferMessages?: ValueTypes["OfferMessage_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	Offers?: ValueTypes["Offer_arr_rel_insert_input"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
 	email?: string | undefined | null | Variable<any, string>,
@@ -4542,6 +4878,7 @@ count?: [{	columns?: Array<ValueTypes["Profile_select_column"]> | undefined | nu
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ValueTypes["BusinessWorker_aggregate_order_by"] | undefined | null | Variable<any, string>,
+	OfferMessages_aggregate?: ValueTypes["OfferMessage_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	Offers_aggregate?: ValueTypes["Offer_aggregate_order_by"] | undefined | null | Variable<any, string>,
 	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	email?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
@@ -5569,6 +5906,9 @@ delete_CertificateClaim_by_pk?: [{	id: number | Variable<any, string>},ValueType
 delete_Certificate_by_pk?: [{	id: number | Variable<any, string>},ValueTypes["Certificate"]],
 delete_Offer?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["Offer_bool_exp"] | Variable<any, string>},ValueTypes["Offer_mutation_response"]],
+delete_OfferMessage?: [{	/** filter the rows which have to be deleted */
+	where: ValueTypes["OfferMessage_bool_exp"] | Variable<any, string>},ValueTypes["OfferMessage_mutation_response"]],
+delete_OfferMessage_by_pk?: [{	id: number | Variable<any, string>},ValueTypes["OfferMessage"]],
 delete_Offer_by_pk?: [{	id: number | Variable<any, string>},ValueTypes["Offer"]],
 delete_Order?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["Order_bool_exp"] | Variable<any, string>},ValueTypes["Order_mutation_response"]],
@@ -5633,6 +5973,12 @@ insert_Certificate_one?: [{	/** the row to be inserted */
 insert_Offer?: [{	/** the rows to be inserted */
 	objects: Array<ValueTypes["Offer_insert_input"]> | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["Offer_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Offer_mutation_response"]],
+insert_OfferMessage?: [{	/** the rows to be inserted */
+	objects: Array<ValueTypes["OfferMessage_insert_input"]> | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["OfferMessage_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage_mutation_response"]],
+insert_OfferMessage_one?: [{	/** the row to be inserted */
+	object: ValueTypes["OfferMessage_insert_input"] | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["OfferMessage_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
 insert_Offer_one?: [{	/** the row to be inserted */
 	object: ValueTypes["Offer_insert_input"] | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["Offer_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Offer"]],
@@ -5739,6 +6085,15 @@ update_Offer?: [{	/** increments the numeric columns with given value of the fil
 	_inc?: ValueTypes["Offer_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Offer_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["Offer_bool_exp"] | Variable<any, string>},ValueTypes["Offer_mutation_response"]],
+update_OfferMessage?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["OfferMessage_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["OfferMessage_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
+	where: ValueTypes["OfferMessage_bool_exp"] | Variable<any, string>},ValueTypes["OfferMessage_mutation_response"]],
+update_OfferMessage_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["OfferMessage_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["OfferMessage_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["OfferMessage_pk_columns_input"] | Variable<any, string>},ValueTypes["OfferMessage"]],
+update_OfferMessage_many?: [{	/** updates to execute, in order */
+	updates: Array<ValueTypes["OfferMessage_updates"]> | Variable<any, string>},ValueTypes["OfferMessage_mutation_response"]],
 update_Offer_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ValueTypes["Offer_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Offer_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Offer_pk_columns_input"] | Variable<any, string>},ValueTypes["Offer"]],
@@ -5900,6 +6255,19 @@ Offer?: [{	/** distinct select on columns */
 	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
 	order_by?: Array<ValueTypes["Offer_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Offer"]],
+OfferMessage?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
+OfferMessage_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage_aggregate"]],
+OfferMessage_by_pk?: [{	id: number | Variable<any, string>},ValueTypes["OfferMessage"]],
 Offer_aggregate?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -6113,6 +6481,23 @@ Offer?: [{	/** distinct select on columns */
 	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
 	order_by?: Array<ValueTypes["Offer_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["Offer_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Offer"]],
+OfferMessage?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
+OfferMessage_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["OfferMessage_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["OfferMessage_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage_aggregate"]],
+OfferMessage_by_pk?: [{	id: number | Variable<any, string>},ValueTypes["OfferMessage"]],
+OfferMessage_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
+	cursor: Array<ValueTypes["OfferMessage_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["OfferMessage_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["OfferMessage"]],
 Offer_aggregate?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["Offer_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -8293,6 +8678,18 @@ count?: [{	columns?: Array<ResolverInputTypes["Certificate_select_column"]> | un
 	Business?:ResolverInputTypes["Business"],
 	/** An object relationship */
 	Offer?:ResolverInputTypes["Offer"],
+OfferMessages?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage"]],
+OfferMessages_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage_aggregate"]],
 Offers?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -8332,6 +8729,311 @@ Offers_aggregate?: [{	/** distinct select on columns */
 	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
+	/** columns and relationships of "OfferMessage" */
+["OfferMessage"]: AliasType<{
+	/** An object relationship */
+	Offer?:ResolverInputTypes["Offer"],
+	/** An object relationship */
+	Profile?:ResolverInputTypes["Profile"],
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "OfferMessage" */
+["OfferMessage_aggregate"]: AliasType<{
+	aggregate?:ResolverInputTypes["OfferMessage_aggregate_fields"],
+	nodes?:ResolverInputTypes["OfferMessage"],
+		__typename?: boolean | `@${string}`
+}>;
+	["OfferMessage_aggregate_bool_exp"]: {
+	count?: ResolverInputTypes["OfferMessage_aggregate_bool_exp_count"] | undefined | null
+};
+	["OfferMessage_aggregate_bool_exp_count"]: {
+	arguments?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,
+	distinct?: boolean | undefined | null,
+	filter?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null,
+	predicate: ResolverInputTypes["Int_comparison_exp"]
+};
+	/** aggregate fields of "OfferMessage" */
+["OfferMessage_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["OfferMessage_avg_fields"],
+count?: [{	columns?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
+	max?:ResolverInputTypes["OfferMessage_max_fields"],
+	min?:ResolverInputTypes["OfferMessage_min_fields"],
+	stddev?:ResolverInputTypes["OfferMessage_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["OfferMessage_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["OfferMessage_stddev_samp_fields"],
+	sum?:ResolverInputTypes["OfferMessage_sum_fields"],
+	var_pop?:ResolverInputTypes["OfferMessage_var_pop_fields"],
+	var_samp?:ResolverInputTypes["OfferMessage_var_samp_fields"],
+	variance?:ResolverInputTypes["OfferMessage_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by aggregate values of table "OfferMessage" */
+["OfferMessage_aggregate_order_by"]: {
+	avg?: ResolverInputTypes["OfferMessage_avg_order_by"] | undefined | null,
+	count?: ResolverInputTypes["order_by"] | undefined | null,
+	max?: ResolverInputTypes["OfferMessage_max_order_by"] | undefined | null,
+	min?: ResolverInputTypes["OfferMessage_min_order_by"] | undefined | null,
+	stddev?: ResolverInputTypes["OfferMessage_stddev_order_by"] | undefined | null,
+	stddev_pop?: ResolverInputTypes["OfferMessage_stddev_pop_order_by"] | undefined | null,
+	stddev_samp?: ResolverInputTypes["OfferMessage_stddev_samp_order_by"] | undefined | null,
+	sum?: ResolverInputTypes["OfferMessage_sum_order_by"] | undefined | null,
+	var_pop?: ResolverInputTypes["OfferMessage_var_pop_order_by"] | undefined | null,
+	var_samp?: ResolverInputTypes["OfferMessage_var_samp_order_by"] | undefined | null,
+	variance?: ResolverInputTypes["OfferMessage_variance_order_by"] | undefined | null
+};
+	/** input type for inserting array relation for remote table "OfferMessage" */
+["OfferMessage_arr_rel_insert_input"]: {
+	data: Array<ResolverInputTypes["OfferMessage_insert_input"]>,
+	/** upsert condition */
+	on_conflict?: ResolverInputTypes["OfferMessage_on_conflict"] | undefined | null
+};
+	/** aggregate avg on columns */
+["OfferMessage_avg_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by avg() on columns of table "OfferMessage" */
+["OfferMessage_avg_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** Boolean expression to filter rows from the table "OfferMessage". All fields are combined with a logical 'AND'. */
+["OfferMessage_bool_exp"]: {
+	Offer?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_bool_exp"] | undefined | null,
+	_and?: Array<ResolverInputTypes["OfferMessage_bool_exp"]> | undefined | null,
+	_not?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null,
+	_or?: Array<ResolverInputTypes["OfferMessage_bool_exp"]> | undefined | null,
+	created_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
+	id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
+	message?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	offer_id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
+	profile_id?: ResolverInputTypes["Int_comparison_exp"] | undefined | null,
+	updated_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
+};
+	/** unique or primary key constraints on table "OfferMessage" */
+["OfferMessage_constraint"]:OfferMessage_constraint;
+	/** input type for incrementing numeric columns in table "OfferMessage" */
+["OfferMessage_inc_input"]: {
+	id?: number | undefined | null,
+	offer_id?: number | undefined | null,
+	profile_id?: number | undefined | null
+};
+	/** input type for inserting data into table "OfferMessage" */
+["OfferMessage_insert_input"]: {
+	Offer?: ResolverInputTypes["Offer_obj_rel_insert_input"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_obj_rel_insert_input"] | undefined | null,
+	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	id?: number | undefined | null,
+	message?: string | undefined | null,
+	offer_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
+	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+};
+	/** aggregate max on columns */
+["OfferMessage_max_fields"]: AliasType<{
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by max() on columns of table "OfferMessage" */
+["OfferMessage_max_order_by"]: {
+	created_at?: ResolverInputTypes["order_by"] | undefined | null,
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	message?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
+	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** aggregate min on columns */
+["OfferMessage_min_fields"]: AliasType<{
+	created_at?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	message?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+	updated_at?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by min() on columns of table "OfferMessage" */
+["OfferMessage_min_order_by"]: {
+	created_at?: ResolverInputTypes["order_by"] | undefined | null,
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	message?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
+	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** response of any mutation on the table "OfferMessage" */
+["OfferMessage_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ResolverInputTypes["OfferMessage"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "OfferMessage" */
+["OfferMessage_on_conflict"]: {
+	constraint: ResolverInputTypes["OfferMessage_constraint"],
+	update_columns: Array<ResolverInputTypes["OfferMessage_update_column"]>,
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null
+};
+	/** Ordering options when selecting data from "OfferMessage". */
+["OfferMessage_order_by"]: {
+	Offer?: ResolverInputTypes["Offer_order_by"] | undefined | null,
+	Profile?: ResolverInputTypes["Profile_order_by"] | undefined | null,
+	created_at?: ResolverInputTypes["order_by"] | undefined | null,
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	message?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null,
+	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** primary key columns input for table: OfferMessage */
+["OfferMessage_pk_columns_input"]: {
+	id: number
+};
+	/** select columns of table "OfferMessage" */
+["OfferMessage_select_column"]:OfferMessage_select_column;
+	/** input type for updating data in table "OfferMessage" */
+["OfferMessage_set_input"]: {
+	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	id?: number | undefined | null,
+	message?: string | undefined | null,
+	offer_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
+	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+};
+	/** aggregate stddev on columns */
+["OfferMessage_stddev_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev() on columns of table "OfferMessage" */
+["OfferMessage_stddev_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** aggregate stddev_pop on columns */
+["OfferMessage_stddev_pop_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev_pop() on columns of table "OfferMessage" */
+["OfferMessage_stddev_pop_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** aggregate stddev_samp on columns */
+["OfferMessage_stddev_samp_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by stddev_samp() on columns of table "OfferMessage" */
+["OfferMessage_stddev_samp_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** Streaming cursor of the table "OfferMessage" */
+["OfferMessage_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ResolverInputTypes["OfferMessage_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null
+};
+	/** Initial value of the column from where the streaming should start */
+["OfferMessage_stream_cursor_value_input"]: {
+	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
+	id?: number | undefined | null,
+	message?: string | undefined | null,
+	offer_id?: number | undefined | null,
+	profile_id?: number | undefined | null,
+	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+};
+	/** aggregate sum on columns */
+["OfferMessage_sum_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by sum() on columns of table "OfferMessage" */
+["OfferMessage_sum_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** update columns of table "OfferMessage" */
+["OfferMessage_update_column"]:OfferMessage_update_column;
+	["OfferMessage_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["OfferMessage_inc_input"] | undefined | null,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["OfferMessage_set_input"] | undefined | null,
+	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["OfferMessage_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["OfferMessage_var_pop_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by var_pop() on columns of table "OfferMessage" */
+["OfferMessage_var_pop_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** aggregate var_samp on columns */
+["OfferMessage_var_samp_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by var_samp() on columns of table "OfferMessage" */
+["OfferMessage_var_samp_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** aggregate variance on columns */
+["OfferMessage_variance_fields"]: AliasType<{
+	id?:boolean | `@${string}`,
+	offer_id?:boolean | `@${string}`,
+	profile_id?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** order by variance() on columns of table "OfferMessage" */
+["OfferMessage_variance_order_by"]: {
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	offer_id?: ResolverInputTypes["order_by"] | undefined | null,
+	profile_id?: ResolverInputTypes["order_by"] | undefined | null
+};
 	["OfferType"]:unknown;
 	/** Boolean expression to compare columns of type "OfferType". All fields are combined with logical 'AND'. */
 ["OfferType_comparison_exp"]: {
@@ -8500,6 +9202,8 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_bool_exp"]: {
 	Business?: ResolverInputTypes["Business_bool_exp"] | undefined | null,
 	Offer?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
+	OfferMessages?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null,
+	OfferMessages_aggregate?: ResolverInputTypes["OfferMessage_aggregate_bool_exp"] | undefined | null,
 	Offers?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
 	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_bool_exp"] | undefined | null,
 	Product?: ResolverInputTypes["Product_bool_exp"] | undefined | null,
@@ -8546,6 +9250,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_insert_input"]: {
 	Business?: ResolverInputTypes["Business_obj_rel_insert_input"] | undefined | null,
 	Offer?: ResolverInputTypes["Offer_obj_rel_insert_input"] | undefined | null,
+	OfferMessages?: ResolverInputTypes["OfferMessage_arr_rel_insert_input"] | undefined | null,
 	Offers?: ResolverInputTypes["Offer_arr_rel_insert_input"] | undefined | null,
 	Product?: ResolverInputTypes["Product_obj_rel_insert_input"] | undefined | null,
 	Profile?: ResolverInputTypes["Profile_obj_rel_insert_input"] | undefined | null,
@@ -8689,6 +9394,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Offer_select_column"]> | undefine
 ["Offer_order_by"]: {
 	Business?: ResolverInputTypes["Business_order_by"] | undefined | null,
 	Offer?: ResolverInputTypes["Offer_order_by"] | undefined | null,
+	OfferMessages_aggregate?: ResolverInputTypes["OfferMessage_aggregate_order_by"] | undefined | null,
 	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_order_by"] | undefined | null,
 	Product?: ResolverInputTypes["Product_order_by"] | undefined | null,
 	Profile?: ResolverInputTypes["Profile_order_by"] | undefined | null,
@@ -9824,6 +10530,18 @@ BusinessWorkers_aggregate?: [{	/** distinct select on columns */
 	offset?: number | undefined | null,	/** sort the rows by one or more columns */
 	order_by?: Array<ResolverInputTypes["BusinessWorker_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["BusinessWorker_bool_exp"] | undefined | null},ResolverInputTypes["BusinessWorker_aggregate"]],
+OfferMessages?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage"]],
+OfferMessages_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage_aggregate"]],
 Offers?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -9876,6 +10594,8 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ResolverInputTypes["BusinessWorker_bool_exp"] | undefined | null,
 	BusinessWorkers_aggregate?: ResolverInputTypes["BusinessWorker_aggregate_bool_exp"] | undefined | null,
+	OfferMessages?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null,
+	OfferMessages_aggregate?: ResolverInputTypes["OfferMessage_aggregate_bool_exp"] | undefined | null,
 	Offers?: ResolverInputTypes["Offer_bool_exp"] | undefined | null,
 	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_bool_exp"] | undefined | null,
 	_and?: Array<ResolverInputTypes["Profile_bool_exp"]> | undefined | null,
@@ -9899,6 +10619,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ResolverInputTypes["BusinessWorker_arr_rel_insert_input"] | undefined | null,
+	OfferMessages?: ResolverInputTypes["OfferMessage_arr_rel_insert_input"] | undefined | null,
 	Offers?: ResolverInputTypes["Offer_arr_rel_insert_input"] | undefined | null,
 	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
 	email?: string | undefined | null,
@@ -9956,6 +10677,7 @@ count?: [{	columns?: Array<ResolverInputTypes["Profile_select_column"]> | undefi
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ResolverInputTypes["BusinessWorker_aggregate_order_by"] | undefined | null,
+	OfferMessages_aggregate?: ResolverInputTypes["OfferMessage_aggregate_order_by"] | undefined | null,
 	Offers_aggregate?: ResolverInputTypes["Offer_aggregate_order_by"] | undefined | null,
 	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	email?: ResolverInputTypes["order_by"] | undefined | null,
@@ -10983,6 +11705,9 @@ delete_CertificateClaim_by_pk?: [{	id: number},ResolverInputTypes["CertificateCl
 delete_Certificate_by_pk?: [{	id: number},ResolverInputTypes["Certificate"]],
 delete_Offer?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["Offer_bool_exp"]},ResolverInputTypes["Offer_mutation_response"]],
+delete_OfferMessage?: [{	/** filter the rows which have to be deleted */
+	where: ResolverInputTypes["OfferMessage_bool_exp"]},ResolverInputTypes["OfferMessage_mutation_response"]],
+delete_OfferMessage_by_pk?: [{	id: number},ResolverInputTypes["OfferMessage"]],
 delete_Offer_by_pk?: [{	id: number},ResolverInputTypes["Offer"]],
 delete_Order?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["Order_bool_exp"]},ResolverInputTypes["Order_mutation_response"]],
@@ -11047,6 +11772,12 @@ insert_Certificate_one?: [{	/** the row to be inserted */
 insert_Offer?: [{	/** the rows to be inserted */
 	objects: Array<ResolverInputTypes["Offer_insert_input"]>,	/** upsert condition */
 	on_conflict?: ResolverInputTypes["Offer_on_conflict"] | undefined | null},ResolverInputTypes["Offer_mutation_response"]],
+insert_OfferMessage?: [{	/** the rows to be inserted */
+	objects: Array<ResolverInputTypes["OfferMessage_insert_input"]>,	/** upsert condition */
+	on_conflict?: ResolverInputTypes["OfferMessage_on_conflict"] | undefined | null},ResolverInputTypes["OfferMessage_mutation_response"]],
+insert_OfferMessage_one?: [{	/** the row to be inserted */
+	object: ResolverInputTypes["OfferMessage_insert_input"],	/** upsert condition */
+	on_conflict?: ResolverInputTypes["OfferMessage_on_conflict"] | undefined | null},ResolverInputTypes["OfferMessage"]],
 insert_Offer_one?: [{	/** the row to be inserted */
 	object: ResolverInputTypes["Offer_insert_input"],	/** upsert condition */
 	on_conflict?: ResolverInputTypes["Offer_on_conflict"] | undefined | null},ResolverInputTypes["Offer"]],
@@ -11153,6 +11884,15 @@ update_Offer?: [{	/** increments the numeric columns with given value of the fil
 	_inc?: ResolverInputTypes["Offer_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Offer_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["Offer_bool_exp"]},ResolverInputTypes["Offer_mutation_response"]],
+update_OfferMessage?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["OfferMessage_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["OfferMessage_set_input"] | undefined | null,	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["OfferMessage_bool_exp"]},ResolverInputTypes["OfferMessage_mutation_response"]],
+update_OfferMessage_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["OfferMessage_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["OfferMessage_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["OfferMessage_pk_columns_input"]},ResolverInputTypes["OfferMessage"]],
+update_OfferMessage_many?: [{	/** updates to execute, in order */
+	updates: Array<ResolverInputTypes["OfferMessage_updates"]>},ResolverInputTypes["OfferMessage_mutation_response"]],
 update_Offer_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ResolverInputTypes["Offer_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Offer_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Offer_pk_columns_input"]},ResolverInputTypes["Offer"]],
@@ -11314,6 +12054,19 @@ Offer?: [{	/** distinct select on columns */
 	offset?: number | undefined | null,	/** sort the rows by one or more columns */
 	order_by?: Array<ResolverInputTypes["Offer_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["Offer_bool_exp"] | undefined | null},ResolverInputTypes["Offer"]],
+OfferMessage?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage"]],
+OfferMessage_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage_aggregate"]],
+OfferMessage_by_pk?: [{	id: number},ResolverInputTypes["OfferMessage"]],
 Offer_aggregate?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -11527,6 +12280,23 @@ Offer?: [{	/** distinct select on columns */
 	offset?: number | undefined | null,	/** sort the rows by one or more columns */
 	order_by?: Array<ResolverInputTypes["Offer_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["Offer_bool_exp"] | undefined | null},ResolverInputTypes["Offer"]],
+OfferMessage?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage"]],
+OfferMessage_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["OfferMessage_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["OfferMessage_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage_aggregate"]],
+OfferMessage_by_pk?: [{	id: number},ResolverInputTypes["OfferMessage"]],
+OfferMessage_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number,	/** cursor to stream the results returned by the query */
+	cursor: Array<ResolverInputTypes["OfferMessage_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
+	where?: ResolverInputTypes["OfferMessage_bool_exp"] | undefined | null},ResolverInputTypes["OfferMessage"]],
 Offer_aggregate?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["Offer_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -13516,6 +14286,10 @@ export type ModelTypes = {
 	/** An object relationship */
 	Offer?: ModelTypes["Offer"] | undefined,
 	/** An array relationship */
+	OfferMessages: Array<ModelTypes["OfferMessage"]>,
+	/** An aggregate relationship */
+	OfferMessages_aggregate: ModelTypes["OfferMessage_aggregate"],
+	/** An array relationship */
 	Offers: Array<ModelTypes["Offer"]>,
 	/** An aggregate relationship */
 	Offers_aggregate: ModelTypes["Offer_aggregate"],
@@ -13544,6 +14318,294 @@ export type ModelTypes = {
 	quantity?: ModelTypes["float8"] | undefined,
 	texture?: string | undefined,
 	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** columns and relationships of "OfferMessage" */
+["OfferMessage"]: {
+		/** An object relationship */
+	Offer: ModelTypes["Offer"],
+	/** An object relationship */
+	Profile: ModelTypes["Profile"],
+	created_at: ModelTypes["timestamp"],
+	id: number,
+	message: string,
+	offer_id: number,
+	profile_id: number,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** aggregated selection of "OfferMessage" */
+["OfferMessage_aggregate"]: {
+		aggregate?: ModelTypes["OfferMessage_aggregate_fields"] | undefined,
+	nodes: Array<ModelTypes["OfferMessage"]>
+};
+	["OfferMessage_aggregate_bool_exp"]: {
+	count?: ModelTypes["OfferMessage_aggregate_bool_exp_count"] | undefined
+};
+	["OfferMessage_aggregate_bool_exp_count"]: {
+	arguments?: Array<ModelTypes["OfferMessage_select_column"]> | undefined,
+	distinct?: boolean | undefined,
+	filter?: ModelTypes["OfferMessage_bool_exp"] | undefined,
+	predicate: ModelTypes["Int_comparison_exp"]
+};
+	/** aggregate fields of "OfferMessage" */
+["OfferMessage_aggregate_fields"]: {
+		avg?: ModelTypes["OfferMessage_avg_fields"] | undefined,
+	count: number,
+	max?: ModelTypes["OfferMessage_max_fields"] | undefined,
+	min?: ModelTypes["OfferMessage_min_fields"] | undefined,
+	stddev?: ModelTypes["OfferMessage_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["OfferMessage_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["OfferMessage_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["OfferMessage_sum_fields"] | undefined,
+	var_pop?: ModelTypes["OfferMessage_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["OfferMessage_var_samp_fields"] | undefined,
+	variance?: ModelTypes["OfferMessage_variance_fields"] | undefined
+};
+	/** order by aggregate values of table "OfferMessage" */
+["OfferMessage_aggregate_order_by"]: {
+	avg?: ModelTypes["OfferMessage_avg_order_by"] | undefined,
+	count?: ModelTypes["order_by"] | undefined,
+	max?: ModelTypes["OfferMessage_max_order_by"] | undefined,
+	min?: ModelTypes["OfferMessage_min_order_by"] | undefined,
+	stddev?: ModelTypes["OfferMessage_stddev_order_by"] | undefined,
+	stddev_pop?: ModelTypes["OfferMessage_stddev_pop_order_by"] | undefined,
+	stddev_samp?: ModelTypes["OfferMessage_stddev_samp_order_by"] | undefined,
+	sum?: ModelTypes["OfferMessage_sum_order_by"] | undefined,
+	var_pop?: ModelTypes["OfferMessage_var_pop_order_by"] | undefined,
+	var_samp?: ModelTypes["OfferMessage_var_samp_order_by"] | undefined,
+	variance?: ModelTypes["OfferMessage_variance_order_by"] | undefined
+};
+	/** input type for inserting array relation for remote table "OfferMessage" */
+["OfferMessage_arr_rel_insert_input"]: {
+	data: Array<ModelTypes["OfferMessage_insert_input"]>,
+	/** upsert condition */
+	on_conflict?: ModelTypes["OfferMessage_on_conflict"] | undefined
+};
+	/** aggregate avg on columns */
+["OfferMessage_avg_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by avg() on columns of table "OfferMessage" */
+["OfferMessage_avg_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** Boolean expression to filter rows from the table "OfferMessage". All fields are combined with a logical 'AND'. */
+["OfferMessage_bool_exp"]: {
+	Offer?: ModelTypes["Offer_bool_exp"] | undefined,
+	Profile?: ModelTypes["Profile_bool_exp"] | undefined,
+	_and?: Array<ModelTypes["OfferMessage_bool_exp"]> | undefined,
+	_not?: ModelTypes["OfferMessage_bool_exp"] | undefined,
+	_or?: Array<ModelTypes["OfferMessage_bool_exp"]> | undefined,
+	created_at?: ModelTypes["timestamp_comparison_exp"] | undefined,
+	id?: ModelTypes["Int_comparison_exp"] | undefined,
+	message?: ModelTypes["String_comparison_exp"] | undefined,
+	offer_id?: ModelTypes["Int_comparison_exp"] | undefined,
+	profile_id?: ModelTypes["Int_comparison_exp"] | undefined,
+	updated_at?: ModelTypes["timestamp_comparison_exp"] | undefined
+};
+	["OfferMessage_constraint"]:OfferMessage_constraint;
+	/** input type for incrementing numeric columns in table "OfferMessage" */
+["OfferMessage_inc_input"]: {
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** input type for inserting data into table "OfferMessage" */
+["OfferMessage_insert_input"]: {
+	Offer?: ModelTypes["Offer_obj_rel_insert_input"] | undefined,
+	Profile?: ModelTypes["Profile_obj_rel_insert_input"] | undefined,
+	created_at?: ModelTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** aggregate max on columns */
+["OfferMessage_max_fields"]: {
+		created_at?: ModelTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** order by max() on columns of table "OfferMessage" */
+["OfferMessage_max_order_by"]: {
+	created_at?: ModelTypes["order_by"] | undefined,
+	id?: ModelTypes["order_by"] | undefined,
+	message?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
+	updated_at?: ModelTypes["order_by"] | undefined
+};
+	/** aggregate min on columns */
+["OfferMessage_min_fields"]: {
+		created_at?: ModelTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** order by min() on columns of table "OfferMessage" */
+["OfferMessage_min_order_by"]: {
+	created_at?: ModelTypes["order_by"] | undefined,
+	id?: ModelTypes["order_by"] | undefined,
+	message?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
+	updated_at?: ModelTypes["order_by"] | undefined
+};
+	/** response of any mutation on the table "OfferMessage" */
+["OfferMessage_mutation_response"]: {
+		/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<ModelTypes["OfferMessage"]>
+};
+	/** on_conflict condition type for table "OfferMessage" */
+["OfferMessage_on_conflict"]: {
+	constraint: ModelTypes["OfferMessage_constraint"],
+	update_columns: Array<ModelTypes["OfferMessage_update_column"]>,
+	where?: ModelTypes["OfferMessage_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "OfferMessage". */
+["OfferMessage_order_by"]: {
+	Offer?: ModelTypes["Offer_order_by"] | undefined,
+	Profile?: ModelTypes["Profile_order_by"] | undefined,
+	created_at?: ModelTypes["order_by"] | undefined,
+	id?: ModelTypes["order_by"] | undefined,
+	message?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined,
+	updated_at?: ModelTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: OfferMessage */
+["OfferMessage_pk_columns_input"]: {
+	id: number
+};
+	["OfferMessage_select_column"]:OfferMessage_select_column;
+	/** input type for updating data in table "OfferMessage" */
+["OfferMessage_set_input"]: {
+	created_at?: ModelTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** aggregate stddev on columns */
+["OfferMessage_stddev_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev() on columns of table "OfferMessage" */
+["OfferMessage_stddev_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** aggregate stddev_pop on columns */
+["OfferMessage_stddev_pop_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev_pop() on columns of table "OfferMessage" */
+["OfferMessage_stddev_pop_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** aggregate stddev_samp on columns */
+["OfferMessage_stddev_samp_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev_samp() on columns of table "OfferMessage" */
+["OfferMessage_stddev_samp_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** Streaming cursor of the table "OfferMessage" */
+["OfferMessage_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ModelTypes["OfferMessage_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ModelTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["OfferMessage_stream_cursor_value_input"]: {
+	created_at?: ModelTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: ModelTypes["timestamp"] | undefined
+};
+	/** aggregate sum on columns */
+["OfferMessage_sum_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by sum() on columns of table "OfferMessage" */
+["OfferMessage_sum_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	["OfferMessage_update_column"]:OfferMessage_update_column;
+	["OfferMessage_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["OfferMessage_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ModelTypes["OfferMessage_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: ModelTypes["OfferMessage_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["OfferMessage_var_pop_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by var_pop() on columns of table "OfferMessage" */
+["OfferMessage_var_pop_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** aggregate var_samp on columns */
+["OfferMessage_var_samp_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by var_samp() on columns of table "OfferMessage" */
+["OfferMessage_var_samp_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
+};
+	/** aggregate variance on columns */
+["OfferMessage_variance_fields"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by variance() on columns of table "OfferMessage" */
+["OfferMessage_variance_order_by"]: {
+	id?: ModelTypes["order_by"] | undefined,
+	offer_id?: ModelTypes["order_by"] | undefined,
+	profile_id?: ModelTypes["order_by"] | undefined
 };
 	["OfferType"]:any;
 	/** Boolean expression to compare columns of type "OfferType". All fields are combined with logical 'AND'. */
@@ -13710,6 +14772,8 @@ export type ModelTypes = {
 ["Offer_bool_exp"]: {
 	Business?: ModelTypes["Business_bool_exp"] | undefined,
 	Offer?: ModelTypes["Offer_bool_exp"] | undefined,
+	OfferMessages?: ModelTypes["OfferMessage_bool_exp"] | undefined,
+	OfferMessages_aggregate?: ModelTypes["OfferMessage_aggregate_bool_exp"] | undefined,
 	Offers?: ModelTypes["Offer_bool_exp"] | undefined,
 	Offers_aggregate?: ModelTypes["Offer_aggregate_bool_exp"] | undefined,
 	Product?: ModelTypes["Product_bool_exp"] | undefined,
@@ -13755,6 +14819,7 @@ export type ModelTypes = {
 ["Offer_insert_input"]: {
 	Business?: ModelTypes["Business_obj_rel_insert_input"] | undefined,
 	Offer?: ModelTypes["Offer_obj_rel_insert_input"] | undefined,
+	OfferMessages?: ModelTypes["OfferMessage_arr_rel_insert_input"] | undefined,
 	Offers?: ModelTypes["Offer_arr_rel_insert_input"] | undefined,
 	Product?: ModelTypes["Product_obj_rel_insert_input"] | undefined,
 	Profile?: ModelTypes["Profile_obj_rel_insert_input"] | undefined,
@@ -13895,6 +14960,7 @@ export type ModelTypes = {
 ["Offer_order_by"]: {
 	Business?: ModelTypes["Business_order_by"] | undefined,
 	Offer?: ModelTypes["Offer_order_by"] | undefined,
+	OfferMessages_aggregate?: ModelTypes["OfferMessage_aggregate_order_by"] | undefined,
 	Offers_aggregate?: ModelTypes["Offer_aggregate_order_by"] | undefined,
 	Product?: ModelTypes["Product_order_by"] | undefined,
 	Profile?: ModelTypes["Profile_order_by"] | undefined,
@@ -14922,6 +15988,10 @@ export type ModelTypes = {
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: ModelTypes["BusinessWorker_aggregate"],
 	/** An array relationship */
+	OfferMessages: Array<ModelTypes["OfferMessage"]>,
+	/** An aggregate relationship */
+	OfferMessages_aggregate: ModelTypes["OfferMessage_aggregate"],
+	/** An array relationship */
 	Offers: Array<ModelTypes["Offer"]>,
 	/** An aggregate relationship */
 	Offers_aggregate: ModelTypes["Offer_aggregate"],
@@ -14961,6 +16031,8 @@ export type ModelTypes = {
 ["Profile_bool_exp"]: {
 	BusinessWorkers?: ModelTypes["BusinessWorker_bool_exp"] | undefined,
 	BusinessWorkers_aggregate?: ModelTypes["BusinessWorker_aggregate_bool_exp"] | undefined,
+	OfferMessages?: ModelTypes["OfferMessage_bool_exp"] | undefined,
+	OfferMessages_aggregate?: ModelTypes["OfferMessage_aggregate_bool_exp"] | undefined,
 	Offers?: ModelTypes["Offer_bool_exp"] | undefined,
 	Offers_aggregate?: ModelTypes["Offer_aggregate_bool_exp"] | undefined,
 	_and?: Array<ModelTypes["Profile_bool_exp"]> | undefined,
@@ -14983,6 +16055,7 @@ export type ModelTypes = {
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 	BusinessWorkers?: ModelTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
+	OfferMessages?: ModelTypes["OfferMessage_arr_rel_insert_input"] | undefined,
 	Offers?: ModelTypes["Offer_arr_rel_insert_input"] | undefined,
 	created_at?: ModelTypes["timestamp"] | undefined,
 	email?: string | undefined,
@@ -15037,6 +16110,7 @@ export type ModelTypes = {
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 	BusinessWorkers_aggregate?: ModelTypes["BusinessWorker_aggregate_order_by"] | undefined,
+	OfferMessages_aggregate?: ModelTypes["OfferMessage_aggregate_order_by"] | undefined,
 	Offers_aggregate?: ModelTypes["Offer_aggregate_order_by"] | undefined,
 	created_at?: ModelTypes["order_by"] | undefined,
 	email?: ModelTypes["order_by"] | undefined,
@@ -16002,6 +17076,10 @@ export type ModelTypes = {
 	delete_Certificate_by_pk?: ModelTypes["Certificate"] | undefined,
 	/** delete data from the table: "Offer" */
 	delete_Offer?: ModelTypes["Offer_mutation_response"] | undefined,
+	/** delete data from the table: "OfferMessage" */
+	delete_OfferMessage?: ModelTypes["OfferMessage_mutation_response"] | undefined,
+	/** delete single row from the table: "OfferMessage" */
+	delete_OfferMessage_by_pk?: ModelTypes["OfferMessage"] | undefined,
 	/** delete single row from the table: "Offer" */
 	delete_Offer_by_pk?: ModelTypes["Offer"] | undefined,
 	/** delete data from the table: "Order" */
@@ -16058,6 +17136,10 @@ export type ModelTypes = {
 	insert_Certificate_one?: ModelTypes["Certificate"] | undefined,
 	/** insert data into the table: "Offer" */
 	insert_Offer?: ModelTypes["Offer_mutation_response"] | undefined,
+	/** insert data into the table: "OfferMessage" */
+	insert_OfferMessage?: ModelTypes["OfferMessage_mutation_response"] | undefined,
+	/** insert a single row into the table: "OfferMessage" */
+	insert_OfferMessage_one?: ModelTypes["OfferMessage"] | undefined,
 	/** insert a single row into the table: "Offer" */
 	insert_Offer_one?: ModelTypes["Offer"] | undefined,
 	/** insert data into the table: "Order" */
@@ -16128,6 +17210,12 @@ export type ModelTypes = {
 	update_Certificate_many?: Array<ModelTypes["Certificate_mutation_response"] | undefined> | undefined,
 	/** update data of the table: "Offer" */
 	update_Offer?: ModelTypes["Offer_mutation_response"] | undefined,
+	/** update data of the table: "OfferMessage" */
+	update_OfferMessage?: ModelTypes["OfferMessage_mutation_response"] | undefined,
+	/** update single row of the table: "OfferMessage" */
+	update_OfferMessage_by_pk?: ModelTypes["OfferMessage"] | undefined,
+	/** update multiples rows of table: "OfferMessage" */
+	update_OfferMessage_many?: Array<ModelTypes["OfferMessage_mutation_response"] | undefined> | undefined,
 	/** update single row of the table: "Offer" */
 	update_Offer_by_pk?: ModelTypes["Offer"] | undefined,
 	/** update multiples rows of table: "Offer" */
@@ -16215,6 +17303,12 @@ export type ModelTypes = {
 	Certificate_by_pk?: ModelTypes["Certificate"] | undefined,
 	/** fetch data from the table: "Offer" */
 	Offer: Array<ModelTypes["Offer"]>,
+	/** fetch data from the table: "OfferMessage" */
+	OfferMessage: Array<ModelTypes["OfferMessage"]>,
+	/** fetch aggregated fields from the table: "OfferMessage" */
+	OfferMessage_aggregate: ModelTypes["OfferMessage_aggregate"],
+	/** fetch data from the table: "OfferMessage" using primary key columns */
+	OfferMessage_by_pk?: ModelTypes["OfferMessage"] | undefined,
 	/** fetch aggregated fields from the table: "Offer" */
 	Offer_aggregate: ModelTypes["Offer_aggregate"],
 	/** fetch data from the table: "Offer" using primary key columns */
@@ -16315,6 +17409,14 @@ export type ModelTypes = {
 	Certificate_stream: Array<ModelTypes["Certificate"]>,
 	/** fetch data from the table: "Offer" */
 	Offer: Array<ModelTypes["Offer"]>,
+	/** fetch data from the table: "OfferMessage" */
+	OfferMessage: Array<ModelTypes["OfferMessage"]>,
+	/** fetch aggregated fields from the table: "OfferMessage" */
+	OfferMessage_aggregate: ModelTypes["OfferMessage_aggregate"],
+	/** fetch data from the table: "OfferMessage" using primary key columns */
+	OfferMessage_by_pk?: ModelTypes["OfferMessage"] | undefined,
+	/** fetch data from the table in a streaming manner: "OfferMessage" */
+	OfferMessage_stream: Array<ModelTypes["OfferMessage"]>,
 	/** fetch aggregated fields from the table: "Offer" */
 	Offer_aggregate: ModelTypes["Offer_aggregate"],
 	/** fetch data from the table: "Offer" using primary key columns */
@@ -18359,6 +19461,10 @@ export type GraphQLTypes = {
 	/** An object relationship */
 	Offer?: GraphQLTypes["Offer"] | undefined,
 	/** An array relationship */
+	OfferMessages: Array<GraphQLTypes["OfferMessage"]>,
+	/** An aggregate relationship */
+	OfferMessages_aggregate: GraphQLTypes["OfferMessage_aggregate"],
+	/** An array relationship */
 	Offers: Array<GraphQLTypes["Offer"]>,
 	/** An aggregate relationship */
 	Offers_aggregate: GraphQLTypes["Offer_aggregate"],
@@ -18387,6 +19493,311 @@ export type GraphQLTypes = {
 	quantity?: GraphQLTypes["float8"] | undefined,
 	texture?: string | undefined,
 	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** columns and relationships of "OfferMessage" */
+["OfferMessage"]: {
+	__typename: "OfferMessage",
+	/** An object relationship */
+	Offer: GraphQLTypes["Offer"],
+	/** An object relationship */
+	Profile: GraphQLTypes["Profile"],
+	created_at: GraphQLTypes["timestamp"],
+	id: number,
+	message: string,
+	offer_id: number,
+	profile_id: number,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** aggregated selection of "OfferMessage" */
+["OfferMessage_aggregate"]: {
+	__typename: "OfferMessage_aggregate",
+	aggregate?: GraphQLTypes["OfferMessage_aggregate_fields"] | undefined,
+	nodes: Array<GraphQLTypes["OfferMessage"]>
+};
+	["OfferMessage_aggregate_bool_exp"]: {
+		count?: GraphQLTypes["OfferMessage_aggregate_bool_exp_count"] | undefined
+};
+	["OfferMessage_aggregate_bool_exp_count"]: {
+		arguments?: Array<GraphQLTypes["OfferMessage_select_column"]> | undefined,
+	distinct?: boolean | undefined,
+	filter?: GraphQLTypes["OfferMessage_bool_exp"] | undefined,
+	predicate: GraphQLTypes["Int_comparison_exp"]
+};
+	/** aggregate fields of "OfferMessage" */
+["OfferMessage_aggregate_fields"]: {
+	__typename: "OfferMessage_aggregate_fields",
+	avg?: GraphQLTypes["OfferMessage_avg_fields"] | undefined,
+	count: number,
+	max?: GraphQLTypes["OfferMessage_max_fields"] | undefined,
+	min?: GraphQLTypes["OfferMessage_min_fields"] | undefined,
+	stddev?: GraphQLTypes["OfferMessage_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["OfferMessage_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["OfferMessage_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["OfferMessage_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["OfferMessage_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["OfferMessage_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["OfferMessage_variance_fields"] | undefined
+};
+	/** order by aggregate values of table "OfferMessage" */
+["OfferMessage_aggregate_order_by"]: {
+		avg?: GraphQLTypes["OfferMessage_avg_order_by"] | undefined,
+	count?: GraphQLTypes["order_by"] | undefined,
+	max?: GraphQLTypes["OfferMessage_max_order_by"] | undefined,
+	min?: GraphQLTypes["OfferMessage_min_order_by"] | undefined,
+	stddev?: GraphQLTypes["OfferMessage_stddev_order_by"] | undefined,
+	stddev_pop?: GraphQLTypes["OfferMessage_stddev_pop_order_by"] | undefined,
+	stddev_samp?: GraphQLTypes["OfferMessage_stddev_samp_order_by"] | undefined,
+	sum?: GraphQLTypes["OfferMessage_sum_order_by"] | undefined,
+	var_pop?: GraphQLTypes["OfferMessage_var_pop_order_by"] | undefined,
+	var_samp?: GraphQLTypes["OfferMessage_var_samp_order_by"] | undefined,
+	variance?: GraphQLTypes["OfferMessage_variance_order_by"] | undefined
+};
+	/** input type for inserting array relation for remote table "OfferMessage" */
+["OfferMessage_arr_rel_insert_input"]: {
+		data: Array<GraphQLTypes["OfferMessage_insert_input"]>,
+	/** upsert condition */
+	on_conflict?: GraphQLTypes["OfferMessage_on_conflict"] | undefined
+};
+	/** aggregate avg on columns */
+["OfferMessage_avg_fields"]: {
+	__typename: "OfferMessage_avg_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by avg() on columns of table "OfferMessage" */
+["OfferMessage_avg_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** Boolean expression to filter rows from the table "OfferMessage". All fields are combined with a logical 'AND'. */
+["OfferMessage_bool_exp"]: {
+		Offer?: GraphQLTypes["Offer_bool_exp"] | undefined,
+	Profile?: GraphQLTypes["Profile_bool_exp"] | undefined,
+	_and?: Array<GraphQLTypes["OfferMessage_bool_exp"]> | undefined,
+	_not?: GraphQLTypes["OfferMessage_bool_exp"] | undefined,
+	_or?: Array<GraphQLTypes["OfferMessage_bool_exp"]> | undefined,
+	created_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
+	id?: GraphQLTypes["Int_comparison_exp"] | undefined,
+	message?: GraphQLTypes["String_comparison_exp"] | undefined,
+	offer_id?: GraphQLTypes["Int_comparison_exp"] | undefined,
+	profile_id?: GraphQLTypes["Int_comparison_exp"] | undefined,
+	updated_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined
+};
+	/** unique or primary key constraints on table "OfferMessage" */
+["OfferMessage_constraint"]: OfferMessage_constraint;
+	/** input type for incrementing numeric columns in table "OfferMessage" */
+["OfferMessage_inc_input"]: {
+		id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** input type for inserting data into table "OfferMessage" */
+["OfferMessage_insert_input"]: {
+		Offer?: GraphQLTypes["Offer_obj_rel_insert_input"] | undefined,
+	Profile?: GraphQLTypes["Profile_obj_rel_insert_input"] | undefined,
+	created_at?: GraphQLTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** aggregate max on columns */
+["OfferMessage_max_fields"]: {
+	__typename: "OfferMessage_max_fields",
+	created_at?: GraphQLTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** order by max() on columns of table "OfferMessage" */
+["OfferMessage_max_order_by"]: {
+		created_at?: GraphQLTypes["order_by"] | undefined,
+	id?: GraphQLTypes["order_by"] | undefined,
+	message?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
+	updated_at?: GraphQLTypes["order_by"] | undefined
+};
+	/** aggregate min on columns */
+["OfferMessage_min_fields"]: {
+	__typename: "OfferMessage_min_fields",
+	created_at?: GraphQLTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** order by min() on columns of table "OfferMessage" */
+["OfferMessage_min_order_by"]: {
+		created_at?: GraphQLTypes["order_by"] | undefined,
+	id?: GraphQLTypes["order_by"] | undefined,
+	message?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
+	updated_at?: GraphQLTypes["order_by"] | undefined
+};
+	/** response of any mutation on the table "OfferMessage" */
+["OfferMessage_mutation_response"]: {
+	__typename: "OfferMessage_mutation_response",
+	/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<GraphQLTypes["OfferMessage"]>
+};
+	/** on_conflict condition type for table "OfferMessage" */
+["OfferMessage_on_conflict"]: {
+		constraint: GraphQLTypes["OfferMessage_constraint"],
+	update_columns: Array<GraphQLTypes["OfferMessage_update_column"]>,
+	where?: GraphQLTypes["OfferMessage_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "OfferMessage". */
+["OfferMessage_order_by"]: {
+		Offer?: GraphQLTypes["Offer_order_by"] | undefined,
+	Profile?: GraphQLTypes["Profile_order_by"] | undefined,
+	created_at?: GraphQLTypes["order_by"] | undefined,
+	id?: GraphQLTypes["order_by"] | undefined,
+	message?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined,
+	updated_at?: GraphQLTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: OfferMessage */
+["OfferMessage_pk_columns_input"]: {
+		id: number
+};
+	/** select columns of table "OfferMessage" */
+["OfferMessage_select_column"]: OfferMessage_select_column;
+	/** input type for updating data in table "OfferMessage" */
+["OfferMessage_set_input"]: {
+		created_at?: GraphQLTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** aggregate stddev on columns */
+["OfferMessage_stddev_fields"]: {
+	__typename: "OfferMessage_stddev_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev() on columns of table "OfferMessage" */
+["OfferMessage_stddev_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** aggregate stddev_pop on columns */
+["OfferMessage_stddev_pop_fields"]: {
+	__typename: "OfferMessage_stddev_pop_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev_pop() on columns of table "OfferMessage" */
+["OfferMessage_stddev_pop_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** aggregate stddev_samp on columns */
+["OfferMessage_stddev_samp_fields"]: {
+	__typename: "OfferMessage_stddev_samp_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by stddev_samp() on columns of table "OfferMessage" */
+["OfferMessage_stddev_samp_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** Streaming cursor of the table "OfferMessage" */
+["OfferMessage_stream_cursor_input"]: {
+		/** Stream column input with initial value */
+	initial_value: GraphQLTypes["OfferMessage_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: GraphQLTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["OfferMessage_stream_cursor_value_input"]: {
+		created_at?: GraphQLTypes["timestamp"] | undefined,
+	id?: number | undefined,
+	message?: string | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined,
+	updated_at?: GraphQLTypes["timestamp"] | undefined
+};
+	/** aggregate sum on columns */
+["OfferMessage_sum_fields"]: {
+	__typename: "OfferMessage_sum_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by sum() on columns of table "OfferMessage" */
+["OfferMessage_sum_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** update columns of table "OfferMessage" */
+["OfferMessage_update_column"]: OfferMessage_update_column;
+	["OfferMessage_updates"]: {
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["OfferMessage_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: GraphQLTypes["OfferMessage_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: GraphQLTypes["OfferMessage_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["OfferMessage_var_pop_fields"]: {
+	__typename: "OfferMessage_var_pop_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by var_pop() on columns of table "OfferMessage" */
+["OfferMessage_var_pop_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** aggregate var_samp on columns */
+["OfferMessage_var_samp_fields"]: {
+	__typename: "OfferMessage_var_samp_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by var_samp() on columns of table "OfferMessage" */
+["OfferMessage_var_samp_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
+};
+	/** aggregate variance on columns */
+["OfferMessage_variance_fields"]: {
+	__typename: "OfferMessage_variance_fields",
+	id?: number | undefined,
+	offer_id?: number | undefined,
+	profile_id?: number | undefined
+};
+	/** order by variance() on columns of table "OfferMessage" */
+["OfferMessage_variance_order_by"]: {
+		id?: GraphQLTypes["order_by"] | undefined,
+	offer_id?: GraphQLTypes["order_by"] | undefined,
+	profile_id?: GraphQLTypes["order_by"] | undefined
 };
 	["OfferType"]: "scalar" & { name: "OfferType" };
 	/** Boolean expression to compare columns of type "OfferType". All fields are combined with logical 'AND'. */
@@ -18556,6 +19967,8 @@ export type GraphQLTypes = {
 ["Offer_bool_exp"]: {
 		Business?: GraphQLTypes["Business_bool_exp"] | undefined,
 	Offer?: GraphQLTypes["Offer_bool_exp"] | undefined,
+	OfferMessages?: GraphQLTypes["OfferMessage_bool_exp"] | undefined,
+	OfferMessages_aggregate?: GraphQLTypes["OfferMessage_aggregate_bool_exp"] | undefined,
 	Offers?: GraphQLTypes["Offer_bool_exp"] | undefined,
 	Offers_aggregate?: GraphQLTypes["Offer_aggregate_bool_exp"] | undefined,
 	Product?: GraphQLTypes["Product_bool_exp"] | undefined,
@@ -18602,6 +20015,7 @@ export type GraphQLTypes = {
 ["Offer_insert_input"]: {
 		Business?: GraphQLTypes["Business_obj_rel_insert_input"] | undefined,
 	Offer?: GraphQLTypes["Offer_obj_rel_insert_input"] | undefined,
+	OfferMessages?: GraphQLTypes["OfferMessage_arr_rel_insert_input"] | undefined,
 	Offers?: GraphQLTypes["Offer_arr_rel_insert_input"] | undefined,
 	Product?: GraphQLTypes["Product_obj_rel_insert_input"] | undefined,
 	Profile?: GraphQLTypes["Profile_obj_rel_insert_input"] | undefined,
@@ -18745,6 +20159,7 @@ export type GraphQLTypes = {
 ["Offer_order_by"]: {
 		Business?: GraphQLTypes["Business_order_by"] | undefined,
 	Offer?: GraphQLTypes["Offer_order_by"] | undefined,
+	OfferMessages_aggregate?: GraphQLTypes["OfferMessage_aggregate_order_by"] | undefined,
 	Offers_aggregate?: GraphQLTypes["Offer_aggregate_order_by"] | undefined,
 	Product?: GraphQLTypes["Product_order_by"] | undefined,
 	Profile?: GraphQLTypes["Profile_order_by"] | undefined,
@@ -19834,6 +21249,10 @@ export type GraphQLTypes = {
 	/** An aggregate relationship */
 	BusinessWorkers_aggregate: GraphQLTypes["BusinessWorker_aggregate"],
 	/** An array relationship */
+	OfferMessages: Array<GraphQLTypes["OfferMessage"]>,
+	/** An aggregate relationship */
+	OfferMessages_aggregate: GraphQLTypes["OfferMessage_aggregate"],
+	/** An array relationship */
 	Offers: Array<GraphQLTypes["Offer"]>,
 	/** An aggregate relationship */
 	Offers_aggregate: GraphQLTypes["Offer_aggregate"],
@@ -19876,6 +21295,8 @@ export type GraphQLTypes = {
 ["Profile_bool_exp"]: {
 		BusinessWorkers?: GraphQLTypes["BusinessWorker_bool_exp"] | undefined,
 	BusinessWorkers_aggregate?: GraphQLTypes["BusinessWorker_aggregate_bool_exp"] | undefined,
+	OfferMessages?: GraphQLTypes["OfferMessage_bool_exp"] | undefined,
+	OfferMessages_aggregate?: GraphQLTypes["OfferMessage_aggregate_bool_exp"] | undefined,
 	Offers?: GraphQLTypes["Offer_bool_exp"] | undefined,
 	Offers_aggregate?: GraphQLTypes["Offer_aggregate_bool_exp"] | undefined,
 	_and?: Array<GraphQLTypes["Profile_bool_exp"]> | undefined,
@@ -19899,6 +21320,7 @@ export type GraphQLTypes = {
 	/** input type for inserting data into table "Profile" */
 ["Profile_insert_input"]: {
 		BusinessWorkers?: GraphQLTypes["BusinessWorker_arr_rel_insert_input"] | undefined,
+	OfferMessages?: GraphQLTypes["OfferMessage_arr_rel_insert_input"] | undefined,
 	Offers?: GraphQLTypes["Offer_arr_rel_insert_input"] | undefined,
 	created_at?: GraphQLTypes["timestamp"] | undefined,
 	email?: string | undefined,
@@ -19956,6 +21378,7 @@ export type GraphQLTypes = {
 	/** Ordering options when selecting data from "Profile". */
 ["Profile_order_by"]: {
 		BusinessWorkers_aggregate?: GraphQLTypes["BusinessWorker_aggregate_order_by"] | undefined,
+	OfferMessages_aggregate?: GraphQLTypes["OfferMessage_aggregate_order_by"] | undefined,
 	Offers_aggregate?: GraphQLTypes["Offer_aggregate_order_by"] | undefined,
 	created_at?: GraphQLTypes["order_by"] | undefined,
 	email?: GraphQLTypes["order_by"] | undefined,
@@ -20983,6 +22406,10 @@ export type GraphQLTypes = {
 	delete_Certificate_by_pk?: GraphQLTypes["Certificate"] | undefined,
 	/** delete data from the table: "Offer" */
 	delete_Offer?: GraphQLTypes["Offer_mutation_response"] | undefined,
+	/** delete data from the table: "OfferMessage" */
+	delete_OfferMessage?: GraphQLTypes["OfferMessage_mutation_response"] | undefined,
+	/** delete single row from the table: "OfferMessage" */
+	delete_OfferMessage_by_pk?: GraphQLTypes["OfferMessage"] | undefined,
 	/** delete single row from the table: "Offer" */
 	delete_Offer_by_pk?: GraphQLTypes["Offer"] | undefined,
 	/** delete data from the table: "Order" */
@@ -21039,6 +22466,10 @@ export type GraphQLTypes = {
 	insert_Certificate_one?: GraphQLTypes["Certificate"] | undefined,
 	/** insert data into the table: "Offer" */
 	insert_Offer?: GraphQLTypes["Offer_mutation_response"] | undefined,
+	/** insert data into the table: "OfferMessage" */
+	insert_OfferMessage?: GraphQLTypes["OfferMessage_mutation_response"] | undefined,
+	/** insert a single row into the table: "OfferMessage" */
+	insert_OfferMessage_one?: GraphQLTypes["OfferMessage"] | undefined,
 	/** insert a single row into the table: "Offer" */
 	insert_Offer_one?: GraphQLTypes["Offer"] | undefined,
 	/** insert data into the table: "Order" */
@@ -21109,6 +22540,12 @@ export type GraphQLTypes = {
 	update_Certificate_many?: Array<GraphQLTypes["Certificate_mutation_response"] | undefined> | undefined,
 	/** update data of the table: "Offer" */
 	update_Offer?: GraphQLTypes["Offer_mutation_response"] | undefined,
+	/** update data of the table: "OfferMessage" */
+	update_OfferMessage?: GraphQLTypes["OfferMessage_mutation_response"] | undefined,
+	/** update single row of the table: "OfferMessage" */
+	update_OfferMessage_by_pk?: GraphQLTypes["OfferMessage"] | undefined,
+	/** update multiples rows of table: "OfferMessage" */
+	update_OfferMessage_many?: Array<GraphQLTypes["OfferMessage_mutation_response"] | undefined> | undefined,
 	/** update single row of the table: "Offer" */
 	update_Offer_by_pk?: GraphQLTypes["Offer"] | undefined,
 	/** update multiples rows of table: "Offer" */
@@ -21198,6 +22635,12 @@ export type GraphQLTypes = {
 	Certificate_by_pk?: GraphQLTypes["Certificate"] | undefined,
 	/** fetch data from the table: "Offer" */
 	Offer: Array<GraphQLTypes["Offer"]>,
+	/** fetch data from the table: "OfferMessage" */
+	OfferMessage: Array<GraphQLTypes["OfferMessage"]>,
+	/** fetch aggregated fields from the table: "OfferMessage" */
+	OfferMessage_aggregate: GraphQLTypes["OfferMessage_aggregate"],
+	/** fetch data from the table: "OfferMessage" using primary key columns */
+	OfferMessage_by_pk?: GraphQLTypes["OfferMessage"] | undefined,
 	/** fetch aggregated fields from the table: "Offer" */
 	Offer_aggregate: GraphQLTypes["Offer_aggregate"],
 	/** fetch data from the table: "Offer" using primary key columns */
@@ -21299,6 +22742,14 @@ export type GraphQLTypes = {
 	Certificate_stream: Array<GraphQLTypes["Certificate"]>,
 	/** fetch data from the table: "Offer" */
 	Offer: Array<GraphQLTypes["Offer"]>,
+	/** fetch data from the table: "OfferMessage" */
+	OfferMessage: Array<GraphQLTypes["OfferMessage"]>,
+	/** fetch aggregated fields from the table: "OfferMessage" */
+	OfferMessage_aggregate: GraphQLTypes["OfferMessage_aggregate"],
+	/** fetch data from the table: "OfferMessage" using primary key columns */
+	OfferMessage_by_pk?: GraphQLTypes["OfferMessage"] | undefined,
+	/** fetch data from the table in a streaming manner: "OfferMessage" */
+	OfferMessage_stream: Array<GraphQLTypes["OfferMessage"]>,
 	/** fetch aggregated fields from the table: "Offer" */
 	Offer_aggregate: GraphQLTypes["Offer_aggregate"],
 	/** fetch data from the table: "Offer" using primary key columns */
@@ -21527,6 +22978,28 @@ export const enum Certificate_update_column {
 	id = "id",
 	image_url = "image_url",
 	name = "name",
+	updated_at = "updated_at"
+}
+/** unique or primary key constraints on table "OfferMessage" */
+export const enum OfferMessage_constraint {
+	OfferMessage_pkey = "OfferMessage_pkey"
+}
+/** select columns of table "OfferMessage" */
+export const enum OfferMessage_select_column {
+	created_at = "created_at",
+	id = "id",
+	message = "message",
+	offer_id = "offer_id",
+	profile_id = "profile_id",
+	updated_at = "updated_at"
+}
+/** update columns of table "OfferMessage" */
+export const enum OfferMessage_update_column {
+	created_at = "created_at",
+	id = "id",
+	message = "message",
+	offer_id = "offer_id",
+	profile_id = "profile_id",
 	updated_at = "updated_at"
 }
 /** unique or primary key constraints on table "Offer" */
@@ -22015,6 +23488,33 @@ type ZEUS_VARIABLES = {
 	["Certificate_var_samp_order_by"]: ValueTypes["Certificate_var_samp_order_by"];
 	["Certificate_variance_order_by"]: ValueTypes["Certificate_variance_order_by"];
 	["Int_comparison_exp"]: ValueTypes["Int_comparison_exp"];
+	["OfferMessage_aggregate_bool_exp"]: ValueTypes["OfferMessage_aggregate_bool_exp"];
+	["OfferMessage_aggregate_bool_exp_count"]: ValueTypes["OfferMessage_aggregate_bool_exp_count"];
+	["OfferMessage_aggregate_order_by"]: ValueTypes["OfferMessage_aggregate_order_by"];
+	["OfferMessage_arr_rel_insert_input"]: ValueTypes["OfferMessage_arr_rel_insert_input"];
+	["OfferMessage_avg_order_by"]: ValueTypes["OfferMessage_avg_order_by"];
+	["OfferMessage_bool_exp"]: ValueTypes["OfferMessage_bool_exp"];
+	["OfferMessage_constraint"]: ValueTypes["OfferMessage_constraint"];
+	["OfferMessage_inc_input"]: ValueTypes["OfferMessage_inc_input"];
+	["OfferMessage_insert_input"]: ValueTypes["OfferMessage_insert_input"];
+	["OfferMessage_max_order_by"]: ValueTypes["OfferMessage_max_order_by"];
+	["OfferMessage_min_order_by"]: ValueTypes["OfferMessage_min_order_by"];
+	["OfferMessage_on_conflict"]: ValueTypes["OfferMessage_on_conflict"];
+	["OfferMessage_order_by"]: ValueTypes["OfferMessage_order_by"];
+	["OfferMessage_pk_columns_input"]: ValueTypes["OfferMessage_pk_columns_input"];
+	["OfferMessage_select_column"]: ValueTypes["OfferMessage_select_column"];
+	["OfferMessage_set_input"]: ValueTypes["OfferMessage_set_input"];
+	["OfferMessage_stddev_order_by"]: ValueTypes["OfferMessage_stddev_order_by"];
+	["OfferMessage_stddev_pop_order_by"]: ValueTypes["OfferMessage_stddev_pop_order_by"];
+	["OfferMessage_stddev_samp_order_by"]: ValueTypes["OfferMessage_stddev_samp_order_by"];
+	["OfferMessage_stream_cursor_input"]: ValueTypes["OfferMessage_stream_cursor_input"];
+	["OfferMessage_stream_cursor_value_input"]: ValueTypes["OfferMessage_stream_cursor_value_input"];
+	["OfferMessage_sum_order_by"]: ValueTypes["OfferMessage_sum_order_by"];
+	["OfferMessage_update_column"]: ValueTypes["OfferMessage_update_column"];
+	["OfferMessage_updates"]: ValueTypes["OfferMessage_updates"];
+	["OfferMessage_var_pop_order_by"]: ValueTypes["OfferMessage_var_pop_order_by"];
+	["OfferMessage_var_samp_order_by"]: ValueTypes["OfferMessage_var_samp_order_by"];
+	["OfferMessage_variance_order_by"]: ValueTypes["OfferMessage_variance_order_by"];
 	["OfferType"]: ValueTypes["OfferType"];
 	["OfferType_comparison_exp"]: ValueTypes["OfferType_comparison_exp"];
 	["Offer_aggregate_bool_exp"]: ValueTypes["Offer_aggregate_bool_exp"];

@@ -10,6 +10,7 @@ import { RequestsPage } from '../../view/pages/requests-page/RequestsPage';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 import { BuyersRequestsPage } from '../../view/pages/buyers-requests/BuyersRequestsPage';
+import { RequestChatPage } from '../../view/pages/request-chat/RequestChatPage';
 
 const authGuard = async () => {
 	const isAuthenticated = await checkAuth();
@@ -52,6 +53,7 @@ export const ProtectedRoutes: RouteObject = {
 		{ path: 'offers', element: <OffersPage /> },
 		{ path: 'requests', element: <RequestsPage /> },
 		{ path: 'buyers-requests', element: <BuyersRequestsPage /> },
+		{ path: 'requests/chat/:requestId', element: <RequestChatPage /> },
 		{ path: 'onboarding', element: <OnboardingPage /> }
 	]
 };

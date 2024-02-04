@@ -9,7 +9,7 @@ export const RequestsPage: FC = React.memo(() => {
 	return (
 		<div className="offers-page p-4 h-full flex flex-col">
 			<div className="flex gap-2 mb-2">
-				<h1 className="text-xl">My Requests</h1>
+				<h1 className="text-xl mb-[9px]">My Requests</h1>
 			</div>
 			<div className="flex flex-col gap-4">
 				{query_CurrentUserRequests.data?.Offer?.map(request => (

@@ -11,16 +11,17 @@ datasource db {
 }
 
 model Profile {
-  id          Int              @id @default(autoincrement())
-  email       String           @unique
-  picture_url String?
-  first_name  String?
-  last_name   String?
-  phone       String?
-  created_at  DateTime         @default(now())
-  updated_at  DateTime?        @updatedAt
-  WorkingAt   BusinessWorker[]
-  Offer       Offer[]
+  id           Int              @id @default(autoincrement())
+  email        String           @unique
+  picture_url  String?
+  first_name   String?
+  last_name    String?
+  phone        String?
+  created_at   DateTime         @default(now())
+  updated_at   DateTime?        @updatedAt
+  WorkingAt    BusinessWorker[]
+  Offer        Offer[]
+  OfferMessage OfferMessage[]
 }
 
 model Business {
@@ -175,17 +176,17 @@ model CertificateClaim {
 }
 
 model Offer {
-  id                  Int        @id @default(autoincrement())
+  id                  Int            @id @default(autoincrement())
   offer_type          OfferType?
   parent_id           Int?
-  parent              Offer?     @relation(fields: [parent_id], references: [id], name: "ParentOffer")
-  child_offers        Offer[]    @relation("ParentOffer")
+  parent              Offer?         @relation(fields: [parent_id], references: [id], name: "ParentOffer")
+  child_offers        Offer[]        @relation("ParentOffer")
   product_id          Int
-  product             Product    @relation(fields: [product_id], references: [id])
+  product             Product        @relation(fields: [product_id], references: [id])
   business_id         Int?
-  business            Business?  @relation(fields: [business_id], references: [id])
+  business            Business?      @relation(fields: [business_id], references: [id])
   profile_id          Int?
-  profile             Profile?   @relation(fields: [profile_id], references: [id])
+  profile             Profile?       @relation(fields: [profile_id], references: [id])
   end_date            DateTime?
   price_per_unit      Float?
   packaging           Float?
@@ -197,8 +198,20 @@ model Offer {
   payment_terms       String?
   free_text           String?
   delivery_due_date   DateTime?
-  active              Boolean    @default(true)
+  active              Boolean        @default(true)
   harvest_date        DateTime?
-  created_at          DateTime   @default(now())
-  updated_at          DateTime?  @updatedAt
+  created_at          DateTime       @default(now())
+  updated_at          DateTime?      @updatedAt
+  OfferMessage        OfferMessage[]
+}
+
+model OfferMessage {
+  id         Int       @id @default(autoincrement())
+  offer_id   Int
+  offer      Offer     @relation(fields: [offer_id], references: [id])
+  profile    Profile   @relation(fields: [profile_id], references: [id])
+  profile_id Int
+  message    String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
 }

@@ -209,6 +209,72 @@ export const useQuery_CurrentUserRequests = () => {
 	});
 };
 
+export const useQuery_OfferById = (id?: number) => {
+	return useQuery({
+		enabled: !!id,
+		queryKey: ['offers', `offer-${id}`],
+		queryFn: () =>
+			chain('query', { scalars })({
+				Offer_by_pk: [{
+					id: id as number
+				}, {
+					id: true,
+					profile_id: true,
+					harvest_date: true,
+					quantity: true,
+					packaging: true,
+					price_per_unit: true,
+					active: true,
+					product_id: true,
+					appearance: true,
+					texture: true,
+					payment_terms: true,
+					origin_country: true,
+					end_date: true,
+					delivery_due_date: true,
+					free_text: true,
+					destination_country: true,
+					Profile: {
+						id: true,
+						first_name: true,
+						last_name: true,
+						picture_url: true
+					},
+					Product: {
+						name: true,
+						Category: {
+							name: true
+						}
+					},
+					Offer: {
+						Profile: {
+							id: true,
+							first_name: true,
+							last_name: true,
+							picture_url: true
+						},
+						id: true,
+						profile_id: true,
+						harvest_date: true,
+						quantity: true,
+						packaging: true,
+						price_per_unit: true,
+						active: true,
+						product_id: true,
+						appearance: true,
+						texture: true,
+						payment_terms: true,
+						origin_country: true,
+						end_date: true,
+						delivery_due_date: true,
+						free_text: true,
+						destination_country: true
+					}
+				}]
+			})
+	});
+};
+
 export const useQuery_FindOffers = (search: string) => {
 	return useQuery({
 		queryKey: ['offers', 'find-offers', search],
@@ -324,6 +390,52 @@ export const useMutation_DeleteOffer = () => {
 			queryClient.invalidateQueries({ queryKey: ['offers'] });
 			if (error) toast.error('Error deleting offer', { id: toastIdRef.current });
 			else toast.success('Offer deleted successfully', { id: toastIdRef.current });
+		}
+	});
+};
+
+// ---- OfferMessage --------------------------------------------------------------------
+export type OfferMessage = DeepPartial<ModelTypes['OfferMessage']>;
+
+export const useQuery_MessagesByOfferId = (offerId?: number) => {
+	return useQuery({
+		enabled: !!offerId,
+		queryKey: ['messages', `messages-by-offer-${offerId}`],
+		queryFn: () =>
+			chain('query', { scalars })({
+				OfferMessage: [{
+					order_by: [{ created_at: order_by.asc }],
+					where: {
+						offer_id: { _eq: offerId }
+					}
+				}, {
+					id: true,
+					offer_id: true,
+					profile_id: true,
+					message: true,
+					created_at: true
+				}]
+			})
+	});
+};
+
+export const useMutation_CreateOfferMessage = () => {
+	const profileId = useQuery_ProfileId();
+	return useMutation({
+		mutationFn: (message: OfferMessage) => {
+			return chain('mutation', { scalars })({
+				insert_OfferMessage_one: [{
+					object: {
+						...toInput(message),
+						profile_id: profileId
+					}
+				}, {
+					id: true
+				}]
+			});
+		},
+		onSettled: (data, error) => {
+			queryClient.invalidateQueries({ queryKey: ['messages'] });
 		}
 	});
 };
